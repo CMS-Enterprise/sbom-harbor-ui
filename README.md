@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project contains the Harbor application's UI built with React, Vite, and SWC.
+This project contains the Harbor application's UI built with React, Vite, TypeScript, and SWC. This UI application accompanies the [SBOM Harbor](https://github.com/CMS-Enterprise/sbom-harbor) project.
 
 ## Status
 
@@ -31,10 +31,10 @@ cd sbom-harbor-ui
 yarn
 ```
 
-3. Install git pre-commit hooks:
+3. Install pre-commit hooks:
 
 ```shell
-pre-commit install
+yarn prepare
 ```
 
 ## Building
@@ -57,4 +57,12 @@ To lint all files, run the following from the root directory:
 
 ```shell
 yarn lint
+```
+
+## Developing
+
+To start the local development server, run the following from the root directory:
+
+```shell
+yarn dev
 ```
