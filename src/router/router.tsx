@@ -1,7 +1,7 @@
 /**
  * Component that renders all routes in the application.
  * @module @sbom-harbor-ui/dashboard/router
- * @see {@link @sbom-harbor-ui/dashboard/Main} for usage.
+ * @see {@link @sbom-harbor-ui/dashboard/main} for usage.
  */
 import { createHashRouter } from 'react-router-dom'
 import { RouteIds } from '@/types'

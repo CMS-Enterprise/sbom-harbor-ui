@@ -31,7 +31,7 @@ export const defaultProvider: AuthValuesType = {
   ...INITIAL_STATE,
 }
 
-interface AuthActionParams {
+export interface AuthActionParams {
   type: AuthActions
   payload: AuthValuesType
   error: Error | null

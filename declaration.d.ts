@@ -1,3 +1,5 @@
+/// <reference types="vite/client" />
+
 /**
  * Global type declarations
  * @module @sbom-harbor-ui/dashboard/declaration

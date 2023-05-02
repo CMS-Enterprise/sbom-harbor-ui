@@ -2,9 +2,9 @@
   "compilerOptions": {
     "baseUrl": "./",
     "rootDir": "./",
-    "target": "es6",
+    "target": "esnext",
     "lib": ["dom", "dom.iterable", "esnext"],
-    "module": "ESNext",
+    "module": "esnext",
     "skipLibCheck": true,
 
     /* Bundler mode */
@@ -45,7 +45,7 @@
       "@testing-library/jest-dom"
     ]
   },
-  "include": ["src", "declaration.d.ts"],
+  "include": ["src", "declaration.d.ts", "config/jest/setupTests.ts"],
   "exclude": ["**/node_modules"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

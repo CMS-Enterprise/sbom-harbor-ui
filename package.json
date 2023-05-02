@@ -12,7 +12,7 @@
     "test": "NODE_ENV=test jest --all --coverage --colors",
     "test:ci": "NODE_ENV=test jest --all --watchAll=false --ci",
     "test:precommit": "NODE_ENV=test jest --coverage --colors --onlyChanged --watch=false",
-    "test:watch": "yarn run test --watch",
+    "test:watch": "NODE_ENV=test jest --onlyChanged --colors --watch",
     "lint": "run-p 'lint:js' 'lint:other'",
     "lint:js": "eslint ./ --ext ts,tsx,js,jsx,cjs -c .eslintrc.cjs --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint --color  --report-unused-disable-directives",
     "lint:other": "prettier --check '**/*.{json,md,yaml,yml}' --ignore-path .gitignore --ignore-path .prettierignore",
@@ -77,6 +77,7 @@
     "@typescript-eslint/eslint-plugin": "^5.59.2",
     "@typescript-eslint/parser": "^5.59.2",
     "@vitejs/plugin-react-swc": "^3.0.0",
+    "babel-plugin-transform-import-meta": "^2.2.0",
     "camelcase": "6",
     "conventional-changelog-conventionalcommits": "5.0.0",
     "dotenv": "^16.0.3",
@@ -105,6 +106,7 @@
     "typescript": "^5.0.4",
     "typescript-plugin-css-modules": "^5.0.1",
     "vite": "^4.3.2",
+    "vite-plugin-environment": "^1.1.3",
     "web-vitals": "^3.3.1"
   },
   "browserslist": {

@@ -83,6 +83,7 @@ const LoginPage = () => {
     const { email, password } = data
     setLoading(true)
     try {
+      // @ts-ignore
       await loginUser(dispatch, { email, password })
       setLoading(false)
       navigate('/app')
