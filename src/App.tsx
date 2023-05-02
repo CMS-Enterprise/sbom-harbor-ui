@@ -1,35 +1,31 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+/**
+ * The main component that renders all routes in the application.
+ * @module @sbom-harbor-ui/dashboard/Main
+ */
+import { Outlet } from 'react-router-dom'
+import { ThemeProvider } from '@mui/material/styles'
+import { AlertProvider } from '@/hooks/useAlert'
+import { AuthProvider } from '@/hooks/useAuth'
+import DialogProvider from '@/hooks/useDialog'
+import theme from '@/utils/theme'
 
-function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+/**
+ * Root Layout component that renders the entire application,
+ *  including the public (home, auth) and private (app) views.
+ * @returns {JSX.Element}
+ */
+const App = (): JSX.Element => (
+  <main data-testid="main">
+    <ThemeProvider theme={theme}>
+      <AuthProvider>
+        <AlertProvider>
+          <DialogProvider>
+            <Outlet />
+          </DialogProvider>
+        </AlertProvider>
+      </AuthProvider>
+    </ThemeProvider>
+  </main>
+)
 
 export default App
