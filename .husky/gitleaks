@@ -1,0 +1,20 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# Check if Gitleaks is installed
+command -v gitleaks >/dev/null 2>&1 || {
+  echo >&2 "Error: Gitleaks is not installed. Please install it and try again.";
+  exit 1;
+}
+
+# Run Gitleaks on staged changes
+gitleaks_result=$(gitleaks --config .gitleaks.toml --staged --verbose)
+
+if [ -z "$gitleaks_result" ]; then
+  echo "Gitleaks: No leaks found. Proceeding with commit."
+  exit 0
+else
+  echo "Gitleaks: Leaks detected. Aborting commit."
+  echo "$gitleaks_result"
+  exit 1
+fi

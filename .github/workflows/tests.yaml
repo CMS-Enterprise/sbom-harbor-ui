@@ -53,3 +53,9 @@ jobs:
 
       - name: TEST - unit
         run: yarn test
+
+      - name: BUILD
+        run: yarn build
+
+      - name: VERSION
+        run: yarn semantic-release
