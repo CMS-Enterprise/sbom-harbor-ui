@@ -1,5 +1,10 @@
 module.exports = {
-  env: { browser: true, es2020: true },
+  env: {
+    browser: true,
+    es2022: true,
+    jest: true,
+    'jest/globals': true,
+  },
   extends: [
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
@@ -8,13 +13,6 @@ module.exports = {
     'plugin:react-hooks/recommended',
     'prettier',
   ],
-  env: {
-    browser: true,
-    es2020: true,
-    es6: true,
-    jest: true,
-    'jest/globals': true,
-  },
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 'latest',
@@ -51,7 +49,7 @@ module.exports = {
   settings: {
     'import/resolver': {
       node: {
-        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+        extensions: ['.js', '.jsx', '.ts', '.tsx', '.cjs'],
       },
     },
     react: {
@@ -59,4 +57,12 @@ module.exports = {
       version: 'detect',
     },
   },
+  overrides: [
+    {
+      files: ['**/*.cjs'],
+      env: {
+        node: true,
+      },
+    },
+  ],
 }
