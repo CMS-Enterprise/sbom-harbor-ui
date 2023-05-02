@@ -1,0 +1,28 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# Run linting
+yarn lint-staged
+
+# Run tests
+echo "\nRunning tests..."
+yarn test-precommit
+
+# Check if Gitleaks is i2nstalled
+command -v gitleaks >/dev/null 2>&1 || {
+  echo >&2 "Error: Gitleaks is not installed. Please install it and try again.";
+  exit 1;
+}
+
+# Run Gitleaks on staged changes
+echo "\nRunning Gitleaks..."
+gitleaks_result=$(gitleaks protect --config .gitleaks.toml --source ./ --staged  --verbose --log-level=debug)
+
+if [ -z "$gitleaks_result" ]; then
+  echo "Gitleaks: No leaks found. Proceeding with commit.\n"
+  exit 0
+else
+  echo "Gitleaks: Leaks detected. Aborting commit.\n"
+  echo "$gitleaks_result"
+  exit 1
+fi

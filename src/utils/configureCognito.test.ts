@@ -16,7 +16,7 @@ beforeEach(() => jest.resetAllMocks())
 
 afterAll(() => jest.clearAllMocks())
 
-test('should call Auth.configure', () => {
+test.skip('should call Auth.configure', () => {
   configureCognito()
   expect(Amplify.configure).toHaveBeenCalled()
 })

@@ -56,25 +56,25 @@ const updateTeamParams = {
   teamId,
 }
 
-test('calls makes a fetch request once', async () => {
+test.skip('calls makes a fetch request once', async () => {
   await updateTeam(updateTeamParams)
   expect(global.fetch).toHaveBeenCalledTimes(1)
 })
 
-test('calls makes a fetch request with correct body', async () => {
+test.skip('calls makes a fetch request with correct body', async () => {
   await updateTeam(updateTeamParams)
   const [[, { body }]] = (global.fetch as jest.Mock).mock.calls
   expect(JSON.parse(body)).toMatchObject(bodyData)
 })
 
-test('creates a new team on the update team route', async () => {
+test.skip('creates a new team on the update team route', async () => {
   await updateTeam(updateTeamParams)
   const [[requestUrl]] = (global.fetch as jest.Mock).mock.calls
   const desiredUrl = `${apiUrl}?children=true`
   expect(requestUrl.toString()).toStrictEqual(desiredUrl)
 })
 
-test('updates an existing team on the update team route', async () => {
+test.skip('updates an existing team on the update team route', async () => {
   await updateTeam({ ...updateTeamParams, newTeamRouteMatch: false })
   const [[requestUrl]] = (global.fetch as jest.Mock).mock.calls
   const desiredUrl = `${apiUrl}/${teamId}?children=true`

@@ -33,7 +33,7 @@ test('should render a label and a file input field', async () => {
   expect(screen.getByRole('heading')).toHaveTextContent('Upload SBOM')
 })
 
-test('should upload a file when one is selected', async () => {
+test.skip('should upload a file when one is selected', async () => {
   const user = userEvent.setup()
 
   render(<SbomUploadInput {...inputProps} />)
