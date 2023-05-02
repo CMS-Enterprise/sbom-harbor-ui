@@ -9,6 +9,7 @@
 import * as React from 'react'
 import { useMatch, useNavigate, useLocation } from 'react-router-dom'
 import { Auth } from 'aws-amplify'
+import { AuthActions } from '@/actions/actionTypes'
 import { AuthValuesType } from './types'
 
 type AuthProviderProps = {
@@ -30,13 +31,6 @@ export const defaultProvider: AuthValuesType = {
   ...INITIAL_STATE,
 }
 
-enum AuthActions {
-  REQUEST_LOGIN = 'REQUEST_LOGIN',
-  LOGIN_SUCCESS = 'LOGIN_SUCCESS',
-  LOGIN_ERROR = 'LOGIN_ERROR',
-  LOGOUT = 'LOGOUT',
-}
-
 interface AuthActionParams {
   type: AuthActions
   payload: AuthValuesType
@@ -48,7 +42,7 @@ export const AuthReducer = (
   action: React.ReducerAction<React.Reducer<string, AuthActionParams>>
 ) => {
   switch (action.type) {
-    case AuthActions.REQUEST_LOGIN:
+    case AuthActions.LOGIN_REQUEST:
       return {
         ...initialState,
       }
@@ -63,7 +57,7 @@ export const AuthReducer = (
         jwtToken: '',
       }
 
-    case AuthActions.LOGIN_ERROR:
+    case AuthActions.LOGIN_FAILURE:
       return {
         ...initialState,
         error: action.error,
@@ -154,7 +148,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       }
     } catch (error) {
       dispatch({
-        type: AuthActions.LOGIN_ERROR,
+        type: AuthActions.LOGIN_FAILURE,
         error: error as Error,
         payload: defaultProvider,
       })

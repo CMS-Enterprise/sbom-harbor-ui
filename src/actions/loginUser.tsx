@@ -3,14 +3,19 @@
  */
 import React from 'react'
 import { Auth } from 'aws-amplify'
+import { AuthActions } from '@/actions/actionTypes'
 import { LoginParams } from '@/hooks/types'
 
 export default async function loginUser(
-  dispatch: React.Dispatch<any>,
+  dispatch: React.Dispatch<{
+    type: AuthActions
+    payload?: unknown
+    error?: Error
+  }>,
   payload: LoginParams
 ) {
   try {
-    dispatch({ type: 'REQUEST_LOGIN' })
+    dispatch({ type: AuthActions.LOGIN_REQUEST })
     const user = await Auth.signIn(payload.email, payload.password)
     const jwtToken = await (await Auth.currentSession())
       .getAccessToken()
@@ -23,13 +28,13 @@ export default async function loginUser(
         teams: user.attributes['custom:teams'],
         username: user.getUsername(),
       }
-      dispatch({ type: 'LOGIN_SUCCESS', payload: data })
+      dispatch({ type: AuthActions.LOGIN_SUCCESS, payload: data })
       return data
     }
 
     return
   } catch (error) {
     console.warn(`Login failed for ${payload.email}`, error)
-    dispatch({ type: 'LOGIN_ERROR', error: error })
+    dispatch({ type: AuthActions.LOGIN_FAILURE, error: error as Error })
   }
 }
