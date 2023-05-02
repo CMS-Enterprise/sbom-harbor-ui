@@ -1,6 +1,8 @@
 module.exports = {
   env: {
     browser: true,
+    es6: true,
+    es2020: true,
     es2022: true,
     jest: true,
     'jest/globals': true,
@@ -9,8 +11,10 @@ module.exports = {
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:jest/recommended',
+    'plugin:react/jsx-runtime',
     'plugin:react/recommended',
     'plugin:react-hooks/recommended',
+    'plugin:react/jsx-runtime',
     'prettier',
   ],
   parser: '@typescript-eslint/parser',
@@ -44,7 +48,9 @@ module.exports = {
     'react/jsx-indent-props': [2, 2],
     'react/jsx-indent': [2, 2, { indentLogicalExpressions: true }],
     'react/jsx-max-props-per-line': [2, { maximum: 1, when: 'multiline' }],
+    'react/jsx-uses-react': 'off',
     'react/prop-types': 'off',
+    'react/react-in-jsx-scope': 'off',
   },
   settings: {
     'import/resolver': {
@@ -64,5 +70,12 @@ module.exports = {
         node: true,
       },
     },
+    {
+      files: ['**/*.ts', '**/*.tsx'],
+      rules: {
+        'react/react-in-jsx-scope': 'off',
+      },
+    },
   ],
+  ignorePatterns: ['node_modules/', 'coverage/', 'build/', 'dist/', 'public/'],
 }

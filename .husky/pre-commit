@@ -6,7 +6,7 @@ yarn lint-staged
 
 # Run tests
 echo "\nRunning tests..."
-yarn test-precommit
+yarn test:precommit
 
 # Check if Gitleaks is i2nstalled
 command -v gitleaks >/dev/null 2>&1 || {

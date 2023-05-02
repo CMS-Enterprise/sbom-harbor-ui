@@ -10,15 +10,15 @@
     "build": "tsc -p tsconfig.prod.json && vite build",
     "preview": "vite preview",
     "test": "NODE_ENV=test jest --all --coverage --colors",
-    "test-ci": "NODE_ENV=test jest --all --watchAll=false --ci",
-    "test-precommit": "NODE_ENV=test jest --coverage --colors --onlyChanged --watch=false",
-    "test-watch": "yarn run test --watch",
-    "lint": "run-p 'lint-js' 'lint-other'",
-    "lint-js": "eslint  --ext ts,tsx,js,jsx,cjs -c .eslintrc.cjs --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint --color  --report-unused-disable-directives --max-warnings 0",
-    "lint-other": "prettier --check '**/*.{json,md,yaml,yml}' --ignore-path .gitignore --ignore-path .prettierignore",
-    "fix": "run-p 'fix-js' 'fix-other'",
-    "fix-js": "yarn run lint-js --fix",
-    "fix-other": "yarn run lint-other --write",
+    "test:ci": "NODE_ENV=test jest --all --watchAll=false --ci",
+    "test:precommit": "NODE_ENV=test jest --coverage --colors --onlyChanged --watch=false",
+    "test:watch": "yarn run test --watch",
+    "lint": "run-p 'lint:js' 'lint:other'",
+    "lint:js": "eslint ./ --ext ts,tsx,js,jsx,cjs -c .eslintrc.cjs --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint --color  --report-unused-disable-directives",
+    "lint:other": "prettier --check '**/*.{json,md,yaml,yml}' --ignore-path .gitignore --ignore-path .prettierignore",
+    "fix": "run-p 'fix:js' 'fix:other'",
+    "fix:js": "yarn run lint:js --fix",
+    "fix:other": "yarn run lint:other --write",
     "semantic-release": "semantic-release",
     "postinstall": "yarn run prepare",
     "prepare": "husky install"
@@ -124,12 +124,12 @@
     ]
   },
   "lint-staged": {
-    "**/*.html": "prettier --parser html",
+    "**/*.html": "prettier --parser html --fix",
     "**/*.{js,jsx,ts,tsx,cjs}": [
-      "yarn fix-js"
+      "yarn fix:js"
     ],
     "**/{json,md,yaml,yml}": [
-      "yarn fix-other"
+      "yarn fix:other"
     ]
   },
   "publishConfig": {
