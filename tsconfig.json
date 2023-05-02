@@ -1,0 +1,50 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "rootDir": "./",
+    "target": "ESNext",
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "module": "ESNext",
+    "skipLibCheck": true,
+
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "jsx": "react-jsx",
+
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+
+    /* Paths */
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+
+    /* Plugins */
+    "plugins": [{ "name": "typescript-plugin-css-modules" }],
+
+    /* Types */
+    "types": [
+      "vite/client",
+      "jest",
+      "lodash",
+      "node",
+      "react",
+      "uuid",
+      "yup",
+      "@testing-library/jest-dom"
+    ]
+  },
+  "include": ["src", "declaration.d.ts"],
+  "references": [{ "path": "./tsconfig.node.json" }]
+}

@@ -1,0 +1,62 @@
+module.exports = {
+  env: { browser: true, es2020: true },
+  extends: [
+    'eslint:recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:jest/recommended',
+    'plugin:react/recommended',
+    'plugin:react-hooks/recommended',
+    'prettier',
+  ],
+  env: {
+    browser: true,
+    es2020: true,
+    es6: true,
+    jest: true,
+    'jest/globals': true,
+  },
+  parser: '@typescript-eslint/parser',
+  parserOptions: {
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+    jsx: true,
+    useJSXTextNode: true,
+  },
+  plugins: [
+    'node',
+    '@typescript-eslint',
+    'react',
+    'react-hooks',
+    'react-refresh',
+    'jest',
+    'prettier',
+  ],
+  rules: {
+    semi: 'off',
+    'no-debugger': 'error',
+    '@typescript-eslint/semi': ['error', 'never'],
+    '@typescript-eslint/ban-ts-comment': 'off',
+    '@typescript-eslint/no-var-requires': 'off',
+    'prettier/prettier': ['error'],
+    'react-hooks/exhaustive-deps': 'warn',
+    'react-hooks/rules-of-hooks': 'error',
+    'react-refresh/only-export-components': 'warn',
+    'react/jsx-closing-bracket-location': [2, 'tag-aligned'],
+    'react/jsx-first-prop-new-line': [2, 'multiline'],
+    'react/jsx-indent-props': [2, 2],
+    'react/jsx-indent': [2, 2, { indentLogicalExpressions: true }],
+    'react/jsx-max-props-per-line': [2, { maximum: 1, when: 'multiline' }],
+    'react/prop-types': 'off',
+  },
+  settings: {
+    'import/resolver': {
+      node: {
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+      },
+    },
+    react: {
+      pragma: 'React',
+      version: 'detect',
+    },
+  },
+}
