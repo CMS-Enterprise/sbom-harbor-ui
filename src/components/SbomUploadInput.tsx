@@ -4,7 +4,7 @@
 import * as React from 'react'
 import { useLoaderData } from 'react-router-dom'
 import Container from '@mui/material/Container'
-import Grid from '@mui/material/Unstable_Grid2'
+import Grid from '@mui/material/Grid'
 import uploadSBOM from '@/api/uploadSBOM'
 import useAlert from '@/hooks/useAlert'
 import { Team } from '@/types'

@@ -7,7 +7,7 @@
 import * as React from 'react'
 import { useNavigate, useLoaderData, Await } from 'react-router-dom'
 import Box from '@mui/material/Box'
-import Grid2 from '@mui/material/Unstable_Grid2'
+import Grid from '@mui/material/Grid'
 import Fallback from '@/components/SimpleLoadingFallback'
 import DashboardTeamCard from '@/views/Dashboard/Team/components/DashboardTeamCard'
 import DashboardTeamCreationCard from '@/views/Dashboard/Team/components/DashboardTeamCreateCard'
@@ -31,7 +31,7 @@ const DashboardContainer = (): JSX.Element => {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <Grid2 container spacing={6} className="match-height">
+      <Grid container spacing={6} className="match-height">
         <React.Suspense fallback={<Fallback />}>
           <Await
             resolve={data}
@@ -39,21 +39,21 @@ const DashboardContainer = (): JSX.Element => {
             // eslint-disable-next-line react/no-children-prop
             children={(resolvedTeams: Team[]) => (
               <>
-                <Grid2 xs={12} md={4}>
+                <Grid xs={12} md={4}>
                   <DashboardTeamCreationCard onClick={navigateToCreateTeam} />
-                </Grid2>
+                </Grid>
                 {resolvedTeams &&
                   resolvedTeams.length > 0 &&
                   resolvedTeams.map((team: Team) => (
-                    <Grid2 xs={12} md={4} key={team.id}>
+                    <Grid xs={12} md={4} key={team.id}>
                       <DashboardTeamCard team={team} />
-                    </Grid2>
+                    </Grid>
                   ))}
               </>
             )}
           />
         </React.Suspense>
-      </Grid2>
+      </Grid>
     </Box>
   )
 }

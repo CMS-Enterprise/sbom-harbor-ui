@@ -20,7 +20,7 @@ import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
-import Grid2 from '@mui/material/Unstable_Grid2'
+import Grid from '@mui/material/Grid'
 import Paper from '@mui/material/Paper'
 import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
@@ -307,8 +307,8 @@ const TeamForm = () => {
                 onSubmit={handleSubmitForm}
                 data-testid="team-form"
               >
-                <Grid2 container spacing={6}>
-                  <Grid2 xs={12} sx={{ p: 3.5 }}>
+                <Grid container spacing={6}>
+                  <Grid xs={12} sx={{ p: 3.5 }}>
                     <TextField
                       autoFocus
                       fullWidth
@@ -328,19 +328,19 @@ const TeamForm = () => {
                       }}
                       sx={{ display: 'revert' }}
                     />
-                  </Grid2>
+                  </Grid>
 
-                  <Grid2 xs={12} sx={{ mt: 2, pb: 0 }}>
+                  <Grid xs={12} sx={{ mt: 2, pb: 0 }}>
                     <Typography component="h2" variant="h5">
                       Team Members
                     </Typography>
-                  </Grid2>
+                  </Grid>
 
-                  <Grid2 xs={12}>
+                  <Grid xs={12}>
                     <Card>
                       <CardContent sx={{ p: 0 }}>
-                        <Grid2 container spacing={3}>
-                          <Grid2 xs={12} md={6}>
+                        <Grid container spacing={3}>
+                          <Grid xs={12} md={6}>
                             <TeamMembersSection
                               name="newAdminEmail"
                               title="admins"
@@ -350,8 +350,8 @@ const TeamForm = () => {
                               members={admins}
                               newEmail={formInput.newAdminEmail}
                             />
-                          </Grid2>
-                          <Grid2 xs={12} md={6}>
+                          </Grid>
+                          <Grid xs={12} md={6}>
                             <TeamMembersSection
                               name="newMemberEmail"
                               title="members"
@@ -361,38 +361,38 @@ const TeamForm = () => {
                               members={members}
                               newEmail={formInput.newMemberEmail}
                             />
-                          </Grid2>
-                          <Grid2 xs={12}>
+                          </Grid>
+                          <Grid xs={12}>
                             <UserAutocomplete
                               label="Search for a User"
                               name="newUserSearch"
                               control={control}
                             />
-                          </Grid2>
-                        </Grid2>
+                          </Grid>
+                        </Grid>
                       </CardContent>
                     </Card>
-                  </Grid2>
+                  </Grid>
 
-                  <Grid2 xs={12} sx={{ mt: 2, pb: 0 }}>
+                  <Grid xs={12} sx={{ mt: 2, pb: 0 }}>
                     <Typography component="h2" variant="h5">
                       Projects
                     </Typography>
-                  </Grid2>
+                  </Grid>
 
                   {Object.values(formInput.projects).map((project) => (
-                    <Grid2 xs={12} md={12} key={project.id}>
+                    <Grid xs={12} md={12} key={project.id}>
                       <TeamViewProjectCreateCard
                         project={project}
                         onUpdate={handleUpdateProject}
                       />
-                    </Grid2>
+                    </Grid>
                   ))}
-                  <Grid2 xs={12} md={12}>
+                  <Grid xs={12} md={12}>
                     <TeamViewProjectCreationCard onClick={handleAddProject} />
-                  </Grid2>
+                  </Grid>
 
-                  <Grid2 xs={12}>
+                  <Grid xs={12}>
                     <Box
                       sx={{
                         display: 'flex',
@@ -409,8 +409,8 @@ const TeamForm = () => {
                       </Button>
                       <SubmitButton disabled={isSubmitting} />
                     </Box>
-                  </Grid2>
-                </Grid2>
+                  </Grid>
+                </Grid>
               </Box>
             </>
           )}

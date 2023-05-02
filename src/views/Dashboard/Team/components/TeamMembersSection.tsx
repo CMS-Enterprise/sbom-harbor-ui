@@ -3,7 +3,7 @@
  */
 import * as React from 'react'
 import FormControl from '@mui/material/FormControl'
-import Grid2 from '@mui/material/Unstable_Grid2'
+import Grid from '@mui/material/Grid'
 import IconButton from '@mui/material/IconButton'
 import Input from '@mui/material/Input'
 import InputAdornment from '@mui/material/InputAdornment'
@@ -72,7 +72,7 @@ const TeamMembersSection = ({
       >
         {title}:
       </Typography>
-      <Grid2 xs={12} sx={{ p: 0 }}>
+      <Grid xs={12} sx={{ p: 0 }}>
         <FormControl fullWidth variant="standard" size="small">
           <InputLabel htmlFor={`${name}`}>
             <Typography sx={{ textTransform: 'capitalize' }}>
@@ -103,11 +103,11 @@ const TeamMembersSection = ({
             }
           />
         </FormControl>
-      </Grid2>
-      <Grid2 container spacing={1} sx={{ p: 0, mb: 3 }}>
+      </Grid>
+      <Grid container spacing={1} sx={{ p: 0, mb: 3 }}>
         {members &&
           members.map(({ id, email }, index) => (
-            <Grid2 xs={12} key={id} sx={{ mt: 1 }}>
+            <Grid xs={12} key={id} sx={{ mt: 1 }}>
               <FormControl fullWidth variant="standard" disabled margin="none">
                 <TeamMemberReadOnlyField
                   index={index}
@@ -115,9 +115,9 @@ const TeamMembersSection = ({
                   handleRemove={handleRemove}
                 />
               </FormControl>
-            </Grid2>
+            </Grid>
           ))}
-      </Grid2>
+      </Grid>
     </>
   )
 }

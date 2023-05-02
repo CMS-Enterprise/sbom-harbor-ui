@@ -10,7 +10,7 @@ import CardActions from '@mui/material/CardActions'
 import CardContent from '@mui/material/CardContent'
 import CardHeader from '@mui/material/CardHeader'
 import FormControl from '@mui/material/FormControl'
-import Grid2 from '@mui/material/Unstable_Grid2'
+import Grid from '@mui/material/Grid'
 import IconButton from '@mui/material/IconButton'
 import InputLabel from '@mui/material/InputLabel'
 import MenuItem from '@mui/material/MenuItem'
@@ -148,7 +148,7 @@ const TeamViewProjectCreateCard = ({
           }}
           sx={{ mb: 3 }}
         />
-        <Grid2
+        <Grid
           container
           spacing={2}
           sx={{
@@ -159,12 +159,12 @@ const TeamViewProjectCreateCard = ({
             justifyContent: 'space-between',
           }}
         >
-          <Grid2 sx={{ justifyContent: 'space-between' }}>
+          <Grid sx={{ justifyContent: 'space-between' }}>
             <Typography component="p" variant="caption" sx={{ mb: 0 }}>
               {Object.keys(project.codebases).length || 0} Codebases
             </Typography>
-          </Grid2>
-        </Grid2>
+          </Grid>
+        </Grid>
 
         {formInput?.codebases &&
           Object.entries(formInput.codebases).map(
@@ -227,8 +227,8 @@ const TeamViewProjectCreateCard = ({
                         justifyContent: 'flex-end',
                       }}
                     >
-                      <Grid2 container spacing={1}>
-                        <Grid2>
+                      <Grid container spacing={1}>
+                        <Grid>
                           <FormControl>
                             <InputLabel>Language</InputLabel>
                             <Select
@@ -260,8 +260,8 @@ const TeamViewProjectCreateCard = ({
                               ))}
                             </Select>
                           </FormControl>
-                        </Grid2>
-                        <Grid2>
+                        </Grid>
+                        <Grid>
                           <FormControl>
                             <InputLabel>Build Tool</InputLabel>
                             <Select
@@ -293,8 +293,8 @@ const TeamViewProjectCreateCard = ({
                               ))}
                             </Select>
                           </FormControl>
-                        </Grid2>
-                      </Grid2>
+                        </Grid>
+                      </Grid>
                     </Box>
                   </Box>
                 </Box>

@@ -6,7 +6,7 @@
 import * as React from 'react'
 import { Await, Link, useLoaderData } from 'react-router-dom'
 import Box from '@mui/material/Box'
-import Grid2 from '@mui/material/Unstable_Grid2'
+import Grid from '@mui/material/Grid'
 import Paper from '@mui/material/Paper'
 import Typography from '@mui/material/Typography'
 import Fallback from '@/components/SimpleLoadingFallback'
@@ -63,8 +63,8 @@ const TeamView = (): JSX.Element => {
                   <Link to={`edit`}>Edit Team</Link>
                 </Box>
                 <Box sx={{ mb: 4 }}>
-                  <Grid2 container spacing={3}>
-                    <Grid2>
+                  <Grid container spacing={3}>
+                    <Grid>
                       <Typography
                         component="h2"
                         variant="h5"
@@ -72,15 +72,15 @@ const TeamView = (): JSX.Element => {
                       >
                         Members
                       </Typography>
-                    </Grid2>
-                    <Grid2 xs={12} md={12}>
+                    </Grid>
+                    <Grid xs={12} md={12}>
                       <TeamMembersTable members={membersTableRows} />
-                    </Grid2>
-                  </Grid2>
+                    </Grid>
+                  </Grid>
                 </Box>
                 <Box>
-                  <Grid2 container spacing={3} sx={{ mb: 0 }}>
-                    <Grid2>
+                  <Grid container spacing={3} sx={{ mb: 0 }}>
+                    <Grid>
                       <Typography
                         component="h2"
                         variant="h5"
@@ -88,15 +88,15 @@ const TeamView = (): JSX.Element => {
                       >
                         Tokens
                       </Typography>
-                    </Grid2>
-                    <Grid2 xs={12} md={12}>
+                    </Grid>
+                    <Grid xs={12} md={12}>
                       <TokensTable tokens={Object.values(tokens)} teamId={id} />
-                    </Grid2>
-                  </Grid2>
+                    </Grid>
+                  </Grid>
                 </Box>
                 <Box>
-                  <Grid2 container spacing={3} sx={{ mb: 2 }}>
-                    <Grid2>
+                  <Grid container spacing={3} sx={{ mb: 2 }}>
+                    <Grid>
                       <Typography
                         component="h2"
                         variant="h5"
@@ -104,19 +104,19 @@ const TeamView = (): JSX.Element => {
                       >
                         Projects
                       </Typography>
-                    </Grid2>
+                    </Grid>
                     {projects &&
                       Object.values(projects as Record<string, Project>).map(
                         (project) => (
-                          <Grid2 xs={12} md={12} key={project.id}>
+                          <Grid xs={12} md={12} key={project.id}>
                             <TeamViewProjectCard
                               teamId={id}
                               project={project}
                             />
-                          </Grid2>
+                          </Grid>
                         )
                       )}
-                  </Grid2>
+                  </Grid>
                 </Box>
               </>
             )
