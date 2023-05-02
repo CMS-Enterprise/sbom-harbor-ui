@@ -236,7 +236,7 @@ const TokensTable = ({ teamId, tokens }: InputProps) => {
    * Callback that updates the rows in the table after a token is created.
    * @param {GridRowId} id The id of the row matching the token to update.
    */
-  /* eslint-disable react-hooks/exhaustive-deps */
+
   const handleTokenAdded = React.useCallback((token: Token) => {
     setRows((prevRows) => [...prevRows, { ...token, loading: false }])
   }, [])

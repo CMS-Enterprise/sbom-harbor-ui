@@ -8,7 +8,11 @@ import { CONFIG } from '@/utils/constants'
  */
 export function configureCognito(): null {
   // TODO: remove this once Cognito is configured
-  if (!CONFIG.AWS_REGION || !CONFIG.USER_POOL_ID || !CONFIG.USER_POOL_CLIENT_ID) {
+  if (
+    !CONFIG.AWS_REGION ||
+    !CONFIG.USER_POOL_ID ||
+    !CONFIG.USER_POOL_CLIENT_ID
+  ) {
     return null
   }
 
