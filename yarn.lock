@@ -2920,7 +2920,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commitlint/cli@npm:17.6.1":
+"@commitlint/cli@npm:^17.6.1":
   version: 17.6.1
   resolution: "@commitlint/cli@npm:17.6.1"
   dependencies:
@@ -2940,7 +2940,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commitlint/config-conventional@npm:17.6.1":
+"@commitlint/config-conventional@npm:^17.6.1":
   version: 17.6.1
   resolution: "@commitlint/config-conventional@npm:17.6.1"
   dependencies:
@@ -3145,7 +3145,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@emotion/cache@npm:^11.10.7, @emotion/cache@npm:^11.10.8":
+"@emotion/cache@npm:^11.10.8":
   version: 11.10.8
   resolution: "@emotion/cache@npm:11.10.8"
   dependencies:
@@ -3868,14 +3868,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mui/base@npm:5.0.0-alpha.127":
-  version: 5.0.0-alpha.127
-  resolution: "@mui/base@npm:5.0.0-alpha.127"
+"@mui/base@npm:5.0.0-alpha.128":
+  version: 5.0.0-alpha.128
+  resolution: "@mui/base@npm:5.0.0-alpha.128"
   dependencies:
     "@babel/runtime": ^7.21.0
     "@emotion/is-prop-valid": ^1.2.0
     "@mui/types": ^7.2.4
-    "@mui/utils": ^5.12.0
+    "@mui/utils": ^5.12.3
     "@popperjs/core": ^2.11.7
     clsx: ^1.2.1
     prop-types: ^15.8.1
@@ -3887,14 +3887,14 @@ __metadata:
   peerDependenciesMeta:
     "@types/react":
       optional: true
-  checksum: 330baeef1fdaa513707f295e07a3436af24d0831a18109ed877f76b86cf1f392309833d33a2c7ca250db79fdf53f5e88c2618f876f50dbbbf9323bbf08e367e7
+  checksum: 882a68a1e305a4e42ce904f307436ff07786f2213241b7c972912c9737a9ca23e1a0e62d374debed40050c4dd698baa26c849b814d3b1649e8d6d825de1e26ef
   languageName: node
   linkType: hard
 
-"@mui/core-downloads-tracker@npm:^5.12.2":
-  version: 5.12.2
-  resolution: "@mui/core-downloads-tracker@npm:5.12.2"
-  checksum: d748bdc56df6fdfe6712550a94263cf094c53ddcb70f6a8f633caf23927edf5ac88b1f888429d895fe2a5045b27eb7aa9826ccee5b917e31973667d604ed87fe
+"@mui/core-downloads-tracker@npm:^5.12.3":
+  version: 5.12.3
+  resolution: "@mui/core-downloads-tracker@npm:5.12.3"
+  checksum: ad9c9e4f03a3c09e3a2d68d48c1a2c336b844878ee0ed3ca0062668ed065ad9616251802cf3329e748ba059d82861dc5631a231073397d6c659fe9dcca952b5c
   languageName: node
   linkType: hard
 
@@ -3914,15 +3914,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mui/lab@npm:^5.0.0-alpha.128":
-  version: 5.0.0-alpha.128
-  resolution: "@mui/lab@npm:5.0.0-alpha.128"
+"@mui/lab@npm:^5.0.0-alpha.129":
+  version: 5.0.0-alpha.129
+  resolution: "@mui/lab@npm:5.0.0-alpha.129"
   dependencies:
     "@babel/runtime": ^7.21.0
-    "@mui/base": 5.0.0-alpha.127
-    "@mui/system": ^5.12.1
+    "@mui/base": 5.0.0-alpha.128
+    "@mui/system": ^5.12.3
     "@mui/types": ^7.2.4
-    "@mui/utils": ^5.12.0
+    "@mui/utils": ^5.12.3
     clsx: ^1.2.1
     prop-types: ^15.8.1
     react-is: ^18.2.0
@@ -3940,20 +3940,20 @@ __metadata:
       optional: true
     "@types/react":
       optional: true
-  checksum: dc7f4d53c5ffbdf11c7018a65cd0fad82fe0d956c5f1569a693636110b837321bd42a2ac46cbde918b47262ed1566019fffc3ce5e8a32ed18eaa2185112d7eb9
+  checksum: 0ea3d173b10aaf9123a2e976d6496a7a49ee8914ff42855605e09dcbdbb8ddcde4ba60d8b20275faeb593069edd12622aa26baedaa7d5326171a8cd4abd76a2c
   languageName: node
   linkType: hard
 
-"@mui/material@npm:^5.12.2":
-  version: 5.12.2
-  resolution: "@mui/material@npm:5.12.2"
+"@mui/material@npm:^5.12.3":
+  version: 5.12.3
+  resolution: "@mui/material@npm:5.12.3"
   dependencies:
     "@babel/runtime": ^7.21.0
-    "@mui/base": 5.0.0-alpha.127
-    "@mui/core-downloads-tracker": ^5.12.2
-    "@mui/system": ^5.12.1
+    "@mui/base": 5.0.0-alpha.128
+    "@mui/core-downloads-tracker": ^5.12.3
+    "@mui/system": ^5.12.3
     "@mui/types": ^7.2.4
-    "@mui/utils": ^5.12.0
+    "@mui/utils": ^5.12.3
     "@types/react-transition-group": ^4.4.5
     clsx: ^1.2.1
     csstype: ^3.1.2
@@ -3973,16 +3973,16 @@ __metadata:
       optional: true
     "@types/react":
       optional: true
-  checksum: a3464dfbcc496164967e134d6f1d40e060ee02fc2ddb5fcf648ca85580efdbd5eff5aab6a73486d0a7f329f7299127b52501a13993bb131cbd4e310c7f2e633f
+  checksum: ccd42e4f8cf04ce00d0078b85bb0a4c96822a1ed327138c591efc00bfe07d7b6299a88b4c86d0a185e28d4816458b6651e46d58ae6966e8af2d45d39b919be52
   languageName: node
   linkType: hard
 
-"@mui/private-theming@npm:^5.12.0":
-  version: 5.12.0
-  resolution: "@mui/private-theming@npm:5.12.0"
+"@mui/private-theming@npm:^5.12.3":
+  version: 5.12.3
+  resolution: "@mui/private-theming@npm:5.12.3"
   dependencies:
     "@babel/runtime": ^7.21.0
-    "@mui/utils": ^5.12.0
+    "@mui/utils": ^5.12.3
     prop-types: ^15.8.1
   peerDependencies:
     "@types/react": ^17.0.0 || ^18.0.0
@@ -3990,16 +3990,16 @@ __metadata:
   peerDependenciesMeta:
     "@types/react":
       optional: true
-  checksum: 761bc7a57e1643c2c4c327886882fa5efc7bacae1c6fffe6be4197f49d337261c916a883d96996445efcdedc0672251725c1e5b264b6250d6c9527fd0cafcc62
+  checksum: 4607951eff066085a42172254755433788aafcfdcc58f93589a821939b56f9f943f16d30edc99610f439b8e265c5182608de711ec15ca6268a4c7000ad37a1dc
   languageName: node
   linkType: hard
 
-"@mui/styled-engine@npm:^5.12.0":
-  version: 5.12.0
-  resolution: "@mui/styled-engine@npm:5.12.0"
+"@mui/styled-engine@npm:^5.12.3":
+  version: 5.12.3
+  resolution: "@mui/styled-engine@npm:5.12.3"
   dependencies:
     "@babel/runtime": ^7.21.0
-    "@emotion/cache": ^11.10.7
+    "@emotion/cache": ^11.10.8
     csstype: ^3.1.2
     prop-types: ^15.8.1
   peerDependencies:
@@ -4011,19 +4011,19 @@ __metadata:
       optional: true
     "@emotion/styled":
       optional: true
-  checksum: 4a415473cf62aa05012f667dd2e9b1dc2fb175be5b0c4d0b8df541e2dac3d7db410e920e0d5910c8e2b8996a4fb51f74d79483e2878a9b5c0d334498f5537d74
+  checksum: bd96f276013fa1578b54426d70896203928927fdaf158ad7645e6cb43c42c8a535307451666cea7e04d69ad44d33ab3ab8a0d24eff32c0c364f8b5e82281fe69
   languageName: node
   linkType: hard
 
-"@mui/system@npm:^5.12.1":
-  version: 5.12.1
-  resolution: "@mui/system@npm:5.12.1"
+"@mui/system@npm:^5.12.3":
+  version: 5.12.3
+  resolution: "@mui/system@npm:5.12.3"
   dependencies:
     "@babel/runtime": ^7.21.0
-    "@mui/private-theming": ^5.12.0
-    "@mui/styled-engine": ^5.12.0
+    "@mui/private-theming": ^5.12.3
+    "@mui/styled-engine": ^5.12.3
     "@mui/types": ^7.2.4
-    "@mui/utils": ^5.12.0
+    "@mui/utils": ^5.12.3
     clsx: ^1.2.1
     csstype: ^3.1.2
     prop-types: ^15.8.1
@@ -4039,7 +4039,7 @@ __metadata:
       optional: true
     "@types/react":
       optional: true
-  checksum: b951959bf5e5af581319354c044f441d97849ff120cfec111d2ed5e7fa05efd63721acff96f48093b8e2bdeb5ccbe35c48613fb925be2b58c596447d10dbed3e
+  checksum: c2f0e55e8ff5a55f75ecc829a4c5877c9cafa834c106856318053459f1bf8f794b9e84d258b932507d4c35c76a32d3622e3fa49005e6754503d173b491e6a594
   languageName: node
   linkType: hard
 
@@ -4055,7 +4055,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mui/utils@npm:^5.10.3, @mui/utils@npm:^5.12.0":
+"@mui/utils@npm:^5.10.3":
   version: 5.12.0
   resolution: "@mui/utils@npm:5.12.0"
   dependencies:
@@ -4067,6 +4067,21 @@ __metadata:
   peerDependencies:
     react: ^17.0.0 || ^18.0.0
   checksum: 87b2c7468803b083f50af28d7c215c45291e73fef16570848b596d0f1cde1fc613c20e8951f431217b31451de254744abd50eda5013dedec4982420b5bf1c6b6
+  languageName: node
+  linkType: hard
+
+"@mui/utils@npm:^5.12.3":
+  version: 5.12.3
+  resolution: "@mui/utils@npm:5.12.3"
+  dependencies:
+    "@babel/runtime": ^7.21.0
+    "@types/prop-types": ^15.7.5
+    "@types/react-is": ^16.7.1 || ^17.0.0
+    prop-types: ^15.8.1
+    react-is: ^18.2.0
+  peerDependencies:
+    react: ^17.0.0 || ^18.0.0
+  checksum: bec2d8e173805e2a7446aa4fa7a3119d96a62787b685dbf59908f337daec922fa74a54bc60038cf1269621aebb7b61e7a52caa4ac4daa0140c5e290adce20160
   languageName: node
   linkType: hard
 
@@ -4496,7 +4511,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@semantic-release/changelog@npm:6.0.3":
+"@semantic-release/changelog@npm:^6.0.3":
   version: 6.0.3
   resolution: "@semantic-release/changelog@npm:6.0.3"
   dependencies:
@@ -4510,7 +4525,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@semantic-release/commit-analyzer@npm:9.0.2, @semantic-release/commit-analyzer@npm:^9.0.2":
+"@semantic-release/commit-analyzer@npm:^9.0.2":
   version: 9.0.2
   resolution: "@semantic-release/commit-analyzer@npm:9.0.2"
   dependencies:
@@ -4534,7 +4549,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@semantic-release/github@npm:8.0.7, @semantic-release/github@npm:^8.0.0":
+"@semantic-release/github@npm:^8.0.0, @semantic-release/github@npm:^8.0.7":
   version: 8.0.7
   resolution: "@semantic-release/github@npm:8.0.7"
   dependencies:
@@ -4560,7 +4575,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@semantic-release/npm@npm:10.0.3, @semantic-release/npm@npm:^10.0.2":
+"@semantic-release/npm@npm:^10.0.2, @semantic-release/npm@npm:^10.0.3":
   version: 10.0.3
   resolution: "@semantic-release/npm@npm:10.0.3"
   dependencies:
@@ -4583,9 +4598,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@semantic-release/release-notes-generator@npm:10.0.3, @semantic-release/release-notes-generator@npm:^10.0.0":
-  version: 10.0.3
-  resolution: "@semantic-release/release-notes-generator@npm:10.0.3"
+"@semantic-release/release-notes-generator@npm:^11.0.0, @semantic-release/release-notes-generator@npm:^11.0.1":
+  version: 11.0.1
+  resolution: "@semantic-release/release-notes-generator@npm:11.0.1"
   dependencies:
     conventional-changelog-angular: ^5.0.0
     conventional-changelog-writer: ^5.0.0
@@ -4594,12 +4609,12 @@ __metadata:
     debug: ^4.0.0
     get-stream: ^6.0.0
     import-from: ^4.0.0
-    into-stream: ^6.0.0
-    lodash: ^4.17.4
-    read-pkg-up: ^7.0.0
+    into-stream: ^7.0.0
+    lodash-es: ^4.17.21
+    read-pkg-up: ^9.0.0
   peerDependencies:
-    semantic-release: ">=18.0.0-beta.1"
-  checksum: 0237e7e6ebf41b7c6a72eea704b007442cfd05910ded7059235a5684a0e4a233b2ca3c3e39923901131e7f0a4dcb5e95737af469081529acc393223c04715505
+    semantic-release: ">=20.1.0"
+  checksum: 19bb468c96be0e642646d192d16cdcbf1aee5e60203c53c7e0148da09f47d581939cc20e7aaccd26f0198d93932254b7ab496ef3d73d59d129d38ea9e3f25c04
   languageName: node
   linkType: hard
 
@@ -6170,17 +6185,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"camelcase@npm:6, camelcase@npm:^6.2.0":
-  version: 6.3.0
-  resolution: "camelcase@npm:6.3.0"
-  checksum: 8c96818a9076434998511251dcb2761a94817ea17dbdc37f47ac080bd088fc62c7369429a19e2178b993497132c8cbcf5cc1f44ba963e76782ba469c0474938d
-  languageName: node
-  linkType: hard
-
 "camelcase@npm:^5.3.1":
   version: 5.3.1
   resolution: "camelcase@npm:5.3.1"
   checksum: e6effce26b9404e3c0f301498184f243811c30dfe6d0b9051863bd8e4034d09c8c2923794f280d6827e5aa055f6c434115ff97864a16a963366fb35fd673024b
+  languageName: node
+  linkType: hard
+
+"camelcase@npm:^6, camelcase@npm:^6.2.0":
+  version: 6.3.0
+  resolution: "camelcase@npm:6.3.0"
+  checksum: 8c96818a9076434998511251dcb2761a94817ea17dbdc37f47ac080bd088fc62c7369429a19e2178b993497132c8cbcf5cc1f44ba963e76782ba469c0474938d
   languageName: node
   linkType: hard
 
@@ -8853,13 +8868,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"into-stream@npm:^6.0.0":
-  version: 6.0.0
-  resolution: "into-stream@npm:6.0.0"
+"into-stream@npm:^7.0.0":
+  version: 7.0.0
+  resolution: "into-stream@npm:7.0.0"
   dependencies:
     from2: ^2.3.0
     p-is-promise: ^3.0.0
-  checksum: 8df24c9eadd7cdd1cbc160bc20914b961dfd0ca29767785b69e698f799e85466b6f7c637d237dca1472d09d333399f70cc05a2fb8d08cb449dc9a80d92193980
+  checksum: 10c259101237622b2f90a3a30388f2e997f7c4cb16d7236da0380f2e5691b8f9ce32ea2614ae5d1d3b5ad4eba89e2adac0e3d3d24f8494bff69de145432c2d94
   languageName: node
   linkType: hard
 
@@ -12545,7 +12560,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"read-pkg-up@npm:^7.0.0, read-pkg-up@npm:^7.0.1":
+"read-pkg-up@npm:^7.0.1":
   version: 7.0.1
   resolution: "read-pkg-up@npm:7.0.1"
   dependencies:
@@ -12556,7 +12571,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"read-pkg-up@npm:^9.1.0":
+"read-pkg-up@npm:^9.0.0, read-pkg-up@npm:^9.1.0":
   version: 9.1.0
   resolution: "read-pkg-up@npm:9.1.0"
   dependencies:
@@ -13036,22 +13051,22 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "sbom-harbor-ui@workspace:."
   dependencies:
-    "@commitlint/cli": 17.6.1
-    "@commitlint/config-conventional": 17.6.1
+    "@commitlint/cli": ^17.6.1
+    "@commitlint/config-conventional": ^17.6.1
     "@emotion/react": ^11.10.8
     "@emotion/styled": ^11.10.8
     "@hookform/resolvers": ^3.1.0
     "@mui/icons-material": ^5.11.16
-    "@mui/lab": ^5.0.0-alpha.128
-    "@mui/material": ^5.12.2
-    "@mui/system": ^5.12.1
+    "@mui/lab": ^5.0.0-alpha.129
+    "@mui/material": ^5.12.3
+    "@mui/system": ^5.12.3
     "@mui/x-data-grid": ^5.17.26
     "@popperjs/core": ^2.11.7
-    "@semantic-release/changelog": 6.0.3
-    "@semantic-release/commit-analyzer": 9.0.2
-    "@semantic-release/github": 8.0.7
-    "@semantic-release/npm": 10.0.3
-    "@semantic-release/release-notes-generator": 10.0.3
+    "@semantic-release/changelog": ^6.0.3
+    "@semantic-release/commit-analyzer": ^9.0.2
+    "@semantic-release/github": ^8.0.7
+    "@semantic-release/npm": ^10.0.3
+    "@semantic-release/release-notes-generator": ^11.0.1
     "@swc/core": ^1.3.56
     "@swc/jest": ^0.2.26
     "@testing-library/dom": ^9.2.0
@@ -13070,7 +13085,7 @@ __metadata:
     "@vitejs/plugin-react-swc": ^3.0.0
     aws-amplify: ^5.1.4
     babel-plugin-transform-import-meta: ^2.2.0
-    camelcase: 6
+    camelcase: ^6
     classnames: ^2.3.2
     clipboard-copy: ^4.0.1
     conventional-changelog-conventionalcommits: 5.0.0
@@ -13103,7 +13118,7 @@ __metadata:
     react-router-dom: ^6.11.0
     rimraf: ^5.0.0
     rollup-plugin-visualizer: ^5.9.0
-    semantic-release: 21.0.1
+    semantic-release: ^21.0.2
     source-map-explorer: ^2.5.3
     typescript: ^5.0.4
     typescript-plugin-css-modules: ^5.0.1
@@ -13124,15 +13139,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"semantic-release@npm:21.0.1":
-  version: 21.0.1
-  resolution: "semantic-release@npm:21.0.1"
+"semantic-release@npm:^21.0.2":
+  version: 21.0.2
+  resolution: "semantic-release@npm:21.0.2"
   dependencies:
     "@semantic-release/commit-analyzer": ^9.0.2
     "@semantic-release/error": ^3.0.0
     "@semantic-release/github": ^8.0.0
     "@semantic-release/npm": ^10.0.2
-    "@semantic-release/release-notes-generator": ^10.0.0
+    "@semantic-release/release-notes-generator": ^11.0.0
     aggregate-error: ^4.0.1
     cosmiconfig: ^8.0.0
     debug: ^4.0.0
@@ -13158,7 +13173,7 @@ __metadata:
     yargs: ^17.5.1
   bin:
     semantic-release: bin/semantic-release.js
-  checksum: a83cede26ac79a3fa3a55586531ea8077ea18b04a0c3bbeb6d415cf31148c6c510189cb2e9863796db8b842fc1afc5d02921325f8880db83d34be40806c0d93d
+  checksum: 362f8b2b396a7b98414e9fa49c3ab0d8030c2b400718e50b1b46edd9707e8187dfcbc87b15acd0a25359fb38e5f0832337795132ea1280835c23e2403a98838d
   languageName: node
   linkType: hard
 
