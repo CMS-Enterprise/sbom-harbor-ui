@@ -1,3 +1,7 @@
+/**
+ * @module @cyclone-dx/ui/sbom/utils/setupTests
+ */
+import '@testing-library/jest-dom'
 import '@testing-library/jest-dom/extend-expect'
 
 window.matchMedia = (query) => ({

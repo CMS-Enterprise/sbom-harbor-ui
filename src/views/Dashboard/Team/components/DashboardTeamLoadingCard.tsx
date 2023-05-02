@@ -3,7 +3,6 @@
  * with animations where the team's name, projects, and members will be.
  * @module @sbom-harbor-ui/dashboard/views/Dashboard/Team/DashboardTeamLoadingCard
  */
-import * as React from 'react'
 import Box from '@mui/material/Box'
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'

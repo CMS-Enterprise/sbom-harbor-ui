@@ -16,11 +16,13 @@ const SignOut = (): JSX.Element => {
   const dispatch = useAuthDispatch()
   const navigate = useNavigate()
 
+  /* eslint-disable react-hooks/exhaustive-deps */
   React.useEffect(() => {
     logoutUser(dispatch).then(() => {
       navigate('/login')
     })
   }, [])
+  /* eslint-enable react-hooks/exhaustive-deps */
 
   return <></>
 }

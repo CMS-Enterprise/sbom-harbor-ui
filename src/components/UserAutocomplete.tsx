@@ -78,6 +78,7 @@ const UserSearchInput = ({
     []
   )
 
+  /* eslint-disable react-hooks/exhaustive-deps */
   React.useEffect(() => {
     let active = true
     if (state.inputValue === '' || state.value === state.inputValue) {
@@ -95,9 +96,11 @@ const UserSearchInput = ({
       abortController.abort()
     }
   }, [state.value, state.inputValue])
+  /* eslint-enable react-hooks/exhaustive-deps */
 
   // TODO: filter out illegal characters
   const handleInputChange = React.useCallback(
+    // @ts-ignore TS6133
     (event: React.SyntheticEvent<Element, Event>, newValue: string) => {
       dispatchSetState({ inputValue: newValue })
     },

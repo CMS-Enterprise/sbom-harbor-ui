@@ -3,7 +3,6 @@
  * the team's name. It can be clicked to navigate to the team view.
  * @module @sbom-harbor-ui/dashboard/views/Dashboard/Team/DashboardTeamCard
  */
-import * as React from 'react'
 import { Link } from 'react-router-dom'
 import Box from '@mui/material/Box'
 import Card from '@mui/material/Card'

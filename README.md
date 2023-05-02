@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project contains the Harbor application's UI.
+This project contains the Harbor application's UI built with React, Vite, and SWC.
 
 ## Status
 
@@ -14,11 +14,10 @@ but at this time all features are not yet operational, and the usage documentati
 - [Node 18.16.0](https://nodejs.org/en/download)
 - [Yarn](https://yarnpkg.com/getting-started/install)
 - [GitLeaks](https://github.com/gitleaks/gitleaks/tree/master#installing)
-- [pre-commit](https://pre-commit.com/index.html#install)
 
 ## Getting Started
 
-1. Clone the repository and `cd` into its directory:
+1. Clone the repository and `cd` into the root directory:
 
 ```shell
 git clone git@github.com:cms-enterprise/sbom-harbor-ui`
@@ -40,7 +39,7 @@ pre-commit install
 
 ## Building
 
-To build all workspace targets on the local machine run the following from the root directory:
+To build the application, run the following from the root directory:
 
 ```shell
 yarn build
@@ -48,8 +47,14 @@ yarn build
 
 ## Testing
 
-To run tests for all workspace targets on the local machine, run the following from the root directory:
+To run all tests, run the following from the root directory:
 
 ```shell
 yarn test
+```
+
+To lint all files, run the following from the root directory:
+
+```shell
+yarn lint
 ```

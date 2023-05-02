@@ -2,8 +2,8 @@
   "compilerOptions": {
     "baseUrl": "./",
     "rootDir": "./",
-    "target": "ESNext",
-    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "target": "es6",
+    "lib": ["dom", "dom.iterable", "esnext"],
     "module": "ESNext",
     "skipLibCheck": true,
 
@@ -46,5 +46,6 @@
     ]
   },
   "include": ["src", "declaration.d.ts"],
+  "exclude": ["**/node_modules"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

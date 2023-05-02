@@ -24,7 +24,7 @@ dist-ssr
 *.sln
 *.sw?
 
-# temporary folders
+# temporary
 tmp/
 **/temp/
 **/.cache/
@@ -33,9 +33,10 @@ tmp/
 # macos
 **/.DS_Store
 
-# coverage
+# coverage and stats
 **/coverage/**
 .coverage
+stats.*
 
 # yarn
 .yarn/*

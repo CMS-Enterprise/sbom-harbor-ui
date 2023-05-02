@@ -3,7 +3,6 @@
  * @module @sbom-harbor-ui/dashboard/components/SocialLoginButtons
  * @see {@link @sbom-harbor-ui/dashboard/components/Header} for usage.
  */
-import * as React from 'react'
 import { Link } from 'react-router-dom'
 import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'

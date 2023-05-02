@@ -10,8 +10,9 @@ type DialogState = {
 }
 
 const DialogContext = React.createContext([
-  (_dialog: DialogState) => {
-    return
+  (dialog: DialogState): void => {
+    // HACK: this is a hack to get around the unused variable error
+    return dialog as unknown as void
   },
 ])
 

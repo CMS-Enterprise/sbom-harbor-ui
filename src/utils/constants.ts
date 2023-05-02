@@ -6,6 +6,7 @@
 import { AppConfig } from '@/types'
 
 // parse `CONFIG` from environment variables
+// FIXME: enable environment variables in vite.config.ts
 // const apiUrl = `${process.env.CF_DOMAIN}/api`
 const apiUrl = `/api`
 
@@ -24,3 +25,5 @@ export const CONFIG = {
   // USER_POOL_CLIENT_ID: process.env.USER_POOL_CLIENT_ID,
   // AWS_REGION: process.env.AWS_REGION,
 } as AppConfig
+
+export const DEFAULT_ALERT_TIMEOUT = 3000

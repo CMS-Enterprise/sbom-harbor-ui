@@ -2,7 +2,6 @@
  * A component for rendering a card with a button to create a new team.
  * @module @sbom-harbor-ui/dashboard/views/Dashboard/Team/DashboardTeamCreateCard
  */
-import * as React from 'react'
 import Button from '@mui/material/Button'
 import Card from '@mui/material/Card'
 import { CenteredCardContent } from '@/components/mui/CardContent'
