@@ -131,7 +131,7 @@
     "**/*.{js,jsx,ts,tsx,cjs}": [
       "yarn fix:js"
     ],
-    "**/{json,md,yaml,yml}": [
+    "**/*.{json,md,yaml,yml}": [
       "yarn fix:other"
     ]
   },
