@@ -20,7 +20,7 @@ const ButtonContainerBox = styled(Box)({ mr: 2, ml: 2, pr: 2, pl: 2 })
  */
 const LoginButton = (): JSX.Element => (
   <ButtonBox>
-    <Button component={RouterLink} to="/login" color="inherit">
+    <Button component={RouterLink} to="/login" color="inherit" role="button">
       Login
     </Button>
   </ButtonBox>
@@ -33,7 +33,7 @@ const LoginButton = (): JSX.Element => (
 const LogoutButton = (): JSX.Element => {
   return (
     <ButtonBox>
-      <Button component={RouterLink} to="/logout" color="inherit">
+      <Button component={RouterLink} to="/logout" color="inherit" role="button">
         Logout
       </Button>
     </ButtonBox>
