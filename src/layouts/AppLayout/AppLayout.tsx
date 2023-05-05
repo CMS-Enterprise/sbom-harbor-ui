@@ -81,7 +81,7 @@ const AppContent = (): JSX.Element => {
         </AppBar>
 
         {/* drawer */}
-        <AppDrawer variant="permanent" open={drawerOpen}>
+        <AppDrawer open={drawerOpen}>
           <Toolbar
             sx={{
               display: 'flex',
@@ -100,7 +100,6 @@ const AppContent = (): JSX.Element => {
             <MenuListItems />
           </List>
         </AppDrawer>
-
         {/* main content outlet for child routes */}
         <Container
           component="main"

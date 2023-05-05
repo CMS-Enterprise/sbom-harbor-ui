@@ -6,6 +6,7 @@ import Link from '@mui/material/Link'
 import Typography, { TypographyProps } from '@mui/material/Typography'
 import Container from '@mui/material/Container'
 import { SxProps } from '@mui/material/styles'
+import { COPYRIGHT_LABEL, ORG_NAME, ORG_URL } from '@/constants'
 
 const Copyright = ({
   typograpyProps,
@@ -21,11 +22,10 @@ const Copyright = ({
       align="center"
       {...typograpyProps}
     >
-      {'Copyright © '}
-      <Link color="inherit" href="https://cms.gov/">
-        Centers for Medicare & Medicaid Services
+      {`${COPYRIGHT_LABEL}`}{' '}
+      <Link color="inherit" href={ORG_URL}>
+        {ORG_NAME}
       </Link>
-      {` ${new Date().getFullYear()}.`}
     </Typography>
   </Container>
 )

@@ -53,4 +53,9 @@ const AppDrawer = styled(MuiDrawer, {
   },
 }))
 
+AppDrawer.defaultProps = {
+  role: 'navigation',
+  variant: 'permanent',
+}
+
 export default AppDrawer
