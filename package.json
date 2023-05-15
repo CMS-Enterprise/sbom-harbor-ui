@@ -31,7 +31,7 @@
   },
   "dependencies": {
     "@emotion/react": "^11.11.0",
-    "@emotion/styled": "^11.10.8",
+    "@emotion/styled": "^11.11.0",
     "@hookform/resolvers": "^3.1.0",
     "@mui/icons-material": "^5.11.16",
     "@mui/lab": "^5.0.0-alpha.129",
