@@ -22,7 +22,7 @@ const Copyright = ({
       align="center"
       {...typograpyProps}
     >
-      {`${COPYRIGHT_LABEL}`}{' '}
+      {COPYRIGHT_LABEL}{' '}
       <Link color="inherit" href={ORG_URL}>
         {ORG_NAME}
       </Link>

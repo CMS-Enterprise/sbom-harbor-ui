@@ -10,22 +10,6 @@ import type {
 //* Application Types
 //*--------------------------------------------------------/
 
-/**
- * The shape of the global CONFIG object provided by craco (webpack).
- * @see {@link @sbom-harbor-ui/dashboard/craco.config.js}
- */
-export type AppConfig = {
-  AWS_REGION: string | 'us-east-1'
-  CF_DOMAIN: string
-  API_URL: string
-  TEAM_API_URL: string
-  TEAMS_API_URL: string
-  USER_API_URL: string
-  USER_API_SEARCH_URL: string
-  USER_POOL_ID: string
-  USER_POOL_CLIENT_ID: string
-}
-
 export enum RouteIds {
   AUTHED_APP = 'authed-app',
   DASHBOARD = 'dashboard',
