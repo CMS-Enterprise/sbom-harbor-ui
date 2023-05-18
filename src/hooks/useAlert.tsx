@@ -13,7 +13,7 @@ export type AlertProps = {
   timeout?: number
 }
 
-type AlertState = {
+export type AlertState = {
   isVisible: boolean
   message: string
   severity: AlertColor
@@ -25,7 +25,7 @@ const INITIAL_STATE = {
   severity: 'info' as AlertColor,
 }
 
-const AlertContext = React.createContext<{
+export const AlertContext = React.createContext<{
   state: AlertState
   clearAlert: () => void
   setAlert: (values: AlertProps) => void
