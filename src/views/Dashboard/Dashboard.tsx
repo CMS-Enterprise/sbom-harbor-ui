@@ -39,15 +39,15 @@ const DashboardContainer = (): JSX.Element => {
             // eslint-disable-next-line react/no-children-prop
             children={(resolvedTeams: Team[]) => (
               <>
-                <Grid xs={12} md={4}>
+                <Box xs={12} md={4} component={Grid} item>
                   <DashboardTeamCreationCard onClick={navigateToCreateTeam} />
-                </Grid>
+                </Box>
                 {resolvedTeams &&
                   resolvedTeams.length > 0 &&
                   resolvedTeams.map((team: Team) => (
-                    <Grid xs={12} md={4} key={team.id}>
+                    <Box xs={12} md={4} key={team.id} component={Grid} item>
                       <DashboardTeamCard team={team} />
-                    </Grid>
+                    </Box>
                   ))}
               </>
             )}
