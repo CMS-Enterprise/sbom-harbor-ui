@@ -1,14 +1,20 @@
 {
   "name": "sbom-harbor-ui",
   "private": true,
-  "version": "0.0.0",
-  "type": "module",
+  "version": "0.0.0-semantic-release",
   "license": "UNLICENSED",
+  "description": "SBOM Harbor UI",
+  "homepage": "https://github.com/CMS-Enterprise/sbom-harbor-ui/#readme",
+  "bugs": {
+    "url": "https://github.com/CMS-Enterprise/sbom-harbor-ui/issues"
+  },
+  "type": "module",
   "scripts": {
     "start": "yarn run dev",
     "dev": "vite",
     "build": "tsc -p tsconfig.prod.json && vite build --mode production",
     "preview": "vite preview",
+    "clean": "rimraf dist",
     "test": "NODE_ENV=test jest --all --coverage --colors",
     "test:ci": "NODE_ENV=test jest --all --watchAll=false --ci",
     "test:precommit": "NODE_ENV=test jest --coverage --colors --onlyChanged --watch=false",
@@ -16,7 +22,7 @@
     "lint": "run-p 'lint:js' 'lint:other'",
     "lint:js": "eslint ./ --ext ts,tsx,js,jsx,cjs -c .eslintrc.cjs --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint --color  --report-unused-disable-directives",
     "lint:other": "prettier --check '**/*.{json,md,yaml,yml}' --ignore-path .gitignore --ignore-path .prettierignore",
-    "fix": "run-p 'fix:js' 'fix:other'",
+    "fix": "run-p 'fix:**'",
     "fix:js": "yarn run lint:js --fix",
     "fix:other": "yarn run lint:other --write",
     "semantic-release": "semantic-release",
@@ -26,7 +32,7 @@
   "packageManager": "yarn@3.5.1",
   "engines": {
     "node": "19",
-    "npm": "9.6.5",
+    "npm": "9.6.6",
     "yarn": "3.5.1"
   },
   "dependencies": {
@@ -169,30 +175,17 @@
         {
           "assets": [
             {
-              "path": "dist/index.html",
-              "label": "index.html"
+              "path": "dist",
+              "label": "Distribution"
             },
             {
-              "path": "dist/*.(svg|png|jpg|jpeg|gif|webp|ico|tif|tiff|bmp)",
-              "label": "Public images"
+              "path": "CHANGELOG.md",
+              "label": "Changelog"
             },
             {
-              "path": "dist/assets/*.js",
-              "label": "JS distribution"
-            },
-            {
-              "path": "dist/assets/*.css",
-              "label": "CSS distribution"
-            },
-            {
-              "path": "dist/assets/*.(svg|png|jpg|jpeg|gif|webp|ico|tif|tiff|bmp)",
-              "label": "IMG distribution"
-            },
-            {
-              "path": "(README|CHANGELOG).md",
-              "label": "Documentation"
-            },
-            "package.json"
+              "path": "README.md",
+              "label": "Readme"
+            }
           ]
         }
       ]
