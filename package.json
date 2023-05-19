@@ -12,7 +12,7 @@
     "test": "NODE_ENV=test jest --all --coverage --colors",
     "test:ci": "NODE_ENV=test jest --all --watchAll=false --ci",
     "test:precommit": "NODE_ENV=test jest --coverage --colors --onlyChanged --watch=false",
-    "test:watch": "NODE_ENV=test jest --onlyChanged --colors --watch",
+    "test:watch": "NODE_ENV=test jest --coverage --onlyChanged --colors --watch",
     "lint": "run-p 'lint:js' 'lint:other'",
     "lint:js": "eslint ./ --ext ts,tsx,js,jsx,cjs -c .eslintrc.cjs --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint --color  --report-unused-disable-directives",
     "lint:other": "prettier --check '**/*.{json,md,yaml,yml}' --ignore-path .gitignore --ignore-path .prettierignore",
