@@ -179,9 +179,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@aws-amplify/predictions@npm:5.1.6":
-  version: 5.1.6
-  resolution: "@aws-amplify/predictions@npm:5.1.6"
+"@aws-amplify/predictions@npm:5.1.7":
+  version: 5.1.7
+  resolution: "@aws-amplify/predictions@npm:5.1.7"
   dependencies:
     "@aws-amplify/core": 5.3.0
     "@aws-amplify/storage": 5.2.6
@@ -192,9 +192,10 @@ __metadata:
     "@aws-sdk/client-translate": 3.6.1
     "@aws-sdk/eventstream-marshaller": 3.6.1
     "@aws-sdk/util-utf8-node": 3.6.1
+    buffer: 4.9.2
     tslib: ^1.8.0
     uuid: ^3.2.1
-  checksum: 0959aac1deff1984040819ef20910c919b59315a21a169f2132f67eaa07a7d7bbbcf3d0de199ff193542219767cfac9ce4864606655f939502c24d28583f6876
+  checksum: ae490d408b953b51b489850d6cb45aa381bf8c1cd6f396a81dcfa029dd2ebdc81d1ccca474149f99f888f7305e5acedf853f6e7917ff0facc6d126ea52caab76
   languageName: node
   linkType: hard
 
@@ -5990,9 +5991,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"aws-amplify@npm:^5.2.1":
-  version: 5.2.1
-  resolution: "aws-amplify@npm:5.2.1"
+"aws-amplify@npm:^5.2.2":
+  version: 5.2.2
+  resolution: "aws-amplify@npm:5.2.2"
   dependencies:
     "@aws-amplify/analytics": 6.1.0
     "@aws-amplify/api": 5.1.0
@@ -6003,11 +6004,11 @@ __metadata:
     "@aws-amplify/geo": 2.0.32
     "@aws-amplify/interactions": 5.0.32
     "@aws-amplify/notifications": 1.1.6
-    "@aws-amplify/predictions": 5.1.6
+    "@aws-amplify/predictions": 5.1.7
     "@aws-amplify/pubsub": 5.1.15
     "@aws-amplify/storage": 5.2.6
     tslib: ^2.0.0
-  checksum: c5536e15e60bbe03e1702031cfb0f3b38a8f16270d788ac04841b0482c22ef5ffa186bbbd27cc174204b46206477004ae70e7426408a0d374e3465188c198866
+  checksum: 4a08c2531d3185ceaabbf7496be7390a1d0662f4ba389a4c99d6d7a3388e4dd28b9978a1c18e94316f630a80f156ce5e27e999bc1e158fa0263e10d582acbc07
   languageName: node
   linkType: hard
 
@@ -13299,7 +13300,7 @@ __metadata:
     "@typescript-eslint/eslint-plugin": ^5.59.6
     "@typescript-eslint/parser": ^5.59.6
     "@vitejs/plugin-react-swc": ^3.3.1
-    aws-amplify: ^5.2.1
+    aws-amplify: ^5.2.2
     babel-plugin-transform-import-meta: ^2.2.0
     camelcase: ^6
     classnames: ^2.3.2
