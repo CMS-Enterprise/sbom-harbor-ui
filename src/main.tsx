@@ -7,7 +7,7 @@ import * as ReactDOMClient from 'react-dom/client'
 import { RouterProvider } from 'react-router-dom'
 import CssBaseline from '@mui/material/CssBaseline'
 import router from '@/router/router'
-import { CONFIG } from '@/utils/constants'
+import { CONFIG } from '@/utils/config'
 import configureCognito from '@/utils/configureCognito'
 
 // IIFE that initializes the root node and renders the application.

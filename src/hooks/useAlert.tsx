@@ -3,8 +3,7 @@
  */
 import * as React from 'react'
 import { AlertColor } from '@mui/material/Alert'
-
-export const DEFAULT_ALERT_TIMEOUT = 3000
+import { DEFAULT_ALERT_TIMEOUT } from '@/constants'
 
 export type AlertProps = {
   severity?: AlertColor
