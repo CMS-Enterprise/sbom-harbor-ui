@@ -9,7 +9,6 @@ import CssBaseline from '@mui/material/CssBaseline'
 import router from '@/router/router'
 import { CONFIG } from '@/utils/constants'
 import configureCognito from '@/utils/configureCognito'
-import reportWebVitals from '@/utils/reportWebVitals'
 
 // IIFE that initializes the root node and renders the application.
 ;(async function () {
@@ -30,7 +29,19 @@ import reportWebVitals from '@/utils/reportWebVitals'
   if (process.env.NODE_ENV === 'production') return
   // print the global app CONFIG to the console
   console.debug('Welcome to the Harbor!', CONFIG)
+
+  function onPerfEntry(entry: any) {
+    console.debug(entry)
+  }
+
   // enable React performance measurement tools.
   // see https://create-react-app.dev/docs/measuring-performance/
-  reportWebVitals(console.debug)
+  import('web-vitals').then(({ onCLS, onFID, onFCP, onINP, onLCP, onTTFB }) => {
+    onCLS(onPerfEntry)
+    onFID(onPerfEntry)
+    onFCP(onPerfEntry)
+    onINP(onPerfEntry)
+    onLCP(onPerfEntry)
+    onTTFB(onPerfEntry)
+  })
 })()
