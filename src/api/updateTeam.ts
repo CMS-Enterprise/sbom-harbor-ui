@@ -1,5 +1,5 @@
 /**
- * @module @sbom-harbor-ui/dashboard/api/updateTeam
+ * @module sbom-harbor-ui/api/updateTeam
  */
 import harborRequest from '@/utils/harborRequest'
 import { FormState } from '@/views/Dashboard/Team/types'

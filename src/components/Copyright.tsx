@@ -1,6 +1,6 @@
 /**
  * Copyright component used in the footer.
- * @module @sbom-harbor-ui/dashboard/components/Copyright
+ * @module sbom-harbor-ui/components/Copyright
  */
 import Link from '@mui/material/Link'
 import Typography, { TypographyProps } from '@mui/material/Typography'

@@ -1,6 +1,6 @@
 /**
  * Calculates a date in the future and returns it as ISO
- * @module @sbom-harbor-ui/dashboard/utils/getFutureDate
+ * @module sbom-harbor-ui/utils/getFutureDate
  * @param {Date} date The date to format.
  * @param {number} daysToAdd The number of days to add to the date.
  * @returns {TDateISO} The resultant date as an ISO string.

@@ -1,6 +1,6 @@
 /**
  * Sanitizes a URL by removing any double slashes.
- * @module @sbom-harbor-ui/dashboard/utils/sanitizeUrl
+ * @module sbom-harbor-ui/utils/sanitizeUrl
  *
  * @param {string} url The URL to sanitize as a string.
  * @returns {URL} The sanitized URL.

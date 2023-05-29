@@ -1,5 +1,5 @@
 /**
- * @module @sbom-harbor-ui/dashboard/constants
+ * @module sbom-harbor-ui/constants
  */
 
 //* Application Strings

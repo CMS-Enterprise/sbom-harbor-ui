@@ -1,6 +1,6 @@
 /**
  * Generic React error boundary component.
- * @module @sbom-harbor-ui/dashboard/components/ErrorBoundary
+ * @module sbom-harbor-ui/components/ErrorBoundary
  */
 import {
   isRouteErrorResponse,

@@ -1,6 +1,6 @@
 /**
  * Helper function that reports web vitals for analytics.
- * @module @sbom-harbor-ui/dashboard/utils/reportWebVitals
+ * @module sbom-harbor-ui/utils/reportWebVitals
  */
 import { ReportCallback } from 'web-vitals'
 

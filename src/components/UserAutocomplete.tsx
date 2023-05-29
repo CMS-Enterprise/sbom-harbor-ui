@@ -1,7 +1,7 @@
 /**
  * Component that renders a text input with autocomplete
  *  for searching for users by their email address.
- * @module @sbom-harbor-ui/dashboard/components/UserAutocomplete
+ * @module sbom-harbor-ui/components/UserAutocomplete
  */
 import * as React from 'react'
 import {

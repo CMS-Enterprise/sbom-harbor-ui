@@ -1,7 +1,7 @@
 /**
  * Component that renders the react-router Navigate component to
  *  redirect the user to the login page at the `/login` route.
- * @module @sbom-harbor-ui/dashboard/components/react-router/NavigateToLogin
+ * @module sbom-harbor-ui/components/react-router/NavigateToLogin
  *
  * @see {@link @sbom-harbor-ui/dashboard/Routes} for usage.
  * @see {@link https://reactrouter.com/web/api/Navigate} for documentation.

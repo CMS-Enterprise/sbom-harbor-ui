@@ -1,6 +1,6 @@
 /**
  * A component that renders a table of a teams tokens and allows for editing.
- * @module @sbom-harbor-ui/dashboard/views/Dashboard/Team/TokensTable
+ * @module sbom-harbor-ui/views/Dashboard/Team/TokensTable
  */
 import * as React from 'react'
 import AddIcon from '@mui/icons-material/Add'

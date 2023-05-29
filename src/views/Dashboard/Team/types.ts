@@ -1,5 +1,5 @@
 /**
- * @module @sbom-harbor-ui/dashboard/views/Dashboard/Team/types
+ * @module sbom-harbor-ui/views/Dashboard/Team/types
  */
 import { Project, TeamMember, Token } from '@/types'
 

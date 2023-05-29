@@ -1,5 +1,5 @@
 /**
- * @module @sbom-harbor-ui/dashboard/hooks/useData
+ * @module sbom-harbor-ui/hooks/useData
  */
 import * as React from 'react'
 import { useAuthState } from '@/hooks/useAuth'

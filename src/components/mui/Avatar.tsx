@@ -1,6 +1,6 @@
 /**
  * A component that renders a circular avatar for a user.
- * @module @sbom-harbor-ui/dashboard/components/mui/avatar
+ * @module sbom-harbor-ui/components/mui/avatar
  */
 import * as React from 'react'
 import MuiAvatar, { AvatarProps } from '@mui/material/Avatar'

@@ -1,5 +1,5 @@
 /**
- * @module @sbom-harbor-ui/dashboard/views/SignIn/SignInGraphic
+ * @module sbom-harbor-ui/views/SignIn/SignInGraphic
  */
 import { useTheme } from '@mui/material/styles'
 

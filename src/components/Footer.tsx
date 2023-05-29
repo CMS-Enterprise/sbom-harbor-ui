@@ -1,6 +1,6 @@
 /**
  * Sticky footer component.
- * @module @sbom-harbor-ui/dashboard/components/Footer
+ * @module sbom-harbor-ui/components/Footer
  */
 import Box from '@mui/material/Box'
 import Container from '@mui/material/Container'

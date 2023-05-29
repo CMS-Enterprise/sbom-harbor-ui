@@ -2,7 +2,7 @@
  * The default view that an authenticated user first sees when they visit the
  *  app. It renders a list of teams that the user is a member of, and a list
  *  of the api keys that the user has access to.
- * @module @sbom-harbor-ui/dashboard/views/Dashboard/Dashboard
+ * @module sbom-harbor-ui/views/Dashboard/Dashboard
  */
 import * as React from 'react'
 import { useNavigate, useLoaderData, Await } from 'react-router-dom'

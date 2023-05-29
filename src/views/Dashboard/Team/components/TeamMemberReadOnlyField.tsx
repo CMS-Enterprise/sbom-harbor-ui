@@ -1,6 +1,6 @@
 /**
  * A read only text field that displays an email and a remove button.
- * @module @sbom-harbor-ui/dashboard/views/Dashboard/Team/components/TeamMemberReadOnlyField
+ * @module sbom-harbor-ui/views/Dashboard/Team/components/TeamMemberReadOnlyField
  */
 import * as React from 'react'
 import IconButton from '@mui/material/IconButton'

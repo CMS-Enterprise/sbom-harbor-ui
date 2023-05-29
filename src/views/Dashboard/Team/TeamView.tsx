@@ -1,7 +1,7 @@
 /**
  * A component that renders a team.
  * URL: /team/:teamId - @see {@link @sbom-harbor-ui/dashboard/Routes}.
- * @module @sbom-harbor-ui/dashboard/views/Dashboard/Team/TeamView
+ * @module sbom-harbor-ui/views/Dashboard/Team/TeamView
  */
 import * as React from 'react'
 import { Await, Link, useLoaderData } from 'react-router-dom'

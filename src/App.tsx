@@ -1,6 +1,6 @@
 /**
  * The main component that renders all routes in the application.
- * @module @sbom-harbor-ui/dashboard/Main
+ * @module sbom-harbor-ui/Main
  */
 import { Outlet } from 'react-router-dom'
 import { ThemeProvider } from '@mui/material/styles'

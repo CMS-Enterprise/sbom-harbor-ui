@@ -1,5 +1,5 @@
 /**
- * @module @sbom-harbor-ui/dashboard/hooks/useCopyToClipboard
+ * @module sbom-harbor-ui/hooks/useCopyToClipboard
  */
 import * as React from 'react'
 

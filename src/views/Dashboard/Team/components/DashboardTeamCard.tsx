@@ -1,7 +1,7 @@
 /**
  * A component for rendering a team as a card in the dashboard with
  * the team's name. It can be clicked to navigate to the team view.
- * @module @sbom-harbor-ui/dashboard/views/Dashboard/Team/DashboardTeamCard
+ * @module sbom-harbor-ui/views/Dashboard/Team/DashboardTeamCard
  */
 import { Link } from 'react-router-dom'
 import Box from '@mui/material/Box'

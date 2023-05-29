@@ -1,5 +1,5 @@
 /**
- * @module @sbom-harbor-ui/dashboard/views/Dashboard/Team/TeamViewProjectCreateCard
+ * @module sbom-harbor-ui/views/Dashboard/Team/TeamViewProjectCreateCard
  */
 import * as React from 'react'
 import { v4 as uuidv4 } from 'uuid'

@@ -1,5 +1,5 @@
 /**
- * @module @sbom-harbor-ui/dashboard/hooks/useDialog
+ * @module sbom-harbor-ui/hooks/useDialog
  */
 import * as React from 'react'
 import Dialog, { DialogProps } from '@mui/material/Dialog'

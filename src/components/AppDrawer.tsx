@@ -1,5 +1,5 @@
 /**
- * @module @sbom-harbor-ui/dashboard/components/AppDrawer
+ * @module sbom-harbor-ui/components/AppDrawer
  */
 import { styled } from '@mui/material/styles'
 import MuiDrawer from '@mui/material/Drawer'

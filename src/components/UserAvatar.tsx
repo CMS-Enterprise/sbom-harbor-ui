@@ -1,6 +1,6 @@
 /**
  * A component that renders a user's avatar image or initials.
- * @module @sbom-harbor-ui/dashboard/components/UserAvatar
+ * @module sbom-harbor-ui/components/UserAvatar
  */
 import { styled } from '@mui/material/styles'
 import Avatar from '@/components/mui/Avatar'

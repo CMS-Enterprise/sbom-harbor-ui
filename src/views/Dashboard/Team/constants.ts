@@ -1,5 +1,5 @@
 /**
- * @module @sbom-harbor-ui/dashboard/views/Dashboard/Team/constants
+ * @module sbom-harbor-ui/views/Dashboard/Team/constants
  */
 import { Codebase, Project } from '@/types'
 import { FormState, FormTeamState } from './types'

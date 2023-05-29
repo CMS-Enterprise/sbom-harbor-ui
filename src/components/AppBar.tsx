@@ -1,5 +1,5 @@
 /**
- * @module @sbom-harbor-ui/dashboard/components/AppBar
+ * @module sbom-harbor-ui/components/AppBar
  */
 import { styled } from '@mui/material/styles'
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar'

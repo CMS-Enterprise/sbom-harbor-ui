@@ -1,6 +1,6 @@
 /**
  * Types used in custom hooks.
- * @module @sbom-harbor-ui/dashboard/hooks/types
+ * @module sbom-harbor-ui/hooks/types
  */
 
 /**

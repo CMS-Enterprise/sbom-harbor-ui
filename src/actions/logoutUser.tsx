@@ -1,5 +1,5 @@
 /**
- * @module @sbom-harbor-ui/dashboard/actions/logoutUser
+ * @module sbom-harbor-ui/actions/logoutUser
  */
 import { Auth } from 'aws-amplify'
 import React from 'react'

@@ -1,7 +1,7 @@
 /**
  * This component is used to sign out the user and redirect to the login page.
  * It does not render any visible UI and returns an empty React Fragment.
- * @module @sbom-harbor-ui/dashboard/views/SignOut/SignOut
+ * @module sbom-harbor-ui/views/SignOut/SignOut
  */
 import * as React from 'react'
 import { useNavigate } from 'react-router-dom'

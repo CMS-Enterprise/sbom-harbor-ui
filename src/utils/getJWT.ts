@@ -2,7 +2,7 @@ import { Auth } from 'aws-amplify'
 
 /**
  * Get the Cognito JWT Token from the current session.
- * @module @sbom-harbor-ui/dashboard/utils/getJWT
+ * @module sbom-harbor-ui/utils/getJWT
  *
  * @returns {Promise<string>} The Cognito JWT Token.
  */

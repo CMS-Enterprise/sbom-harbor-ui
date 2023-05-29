@@ -3,7 +3,7 @@
  * URL: /teams/:teamId/edit - @see {@link @sbom-harbor-ui/dashboard/Routes}.
  * Enables the user to change the members of the team, the projects
  *  the team is working on, and the codebases inside those projects.
- * @module @sbom-harbor-ui/dashboard/views/Dashboard/Team/TeamForm
+ * @module sbom-harbor-ui/views/Dashboard/Team/TeamForm
  */
 import * as React from 'react'
 import {

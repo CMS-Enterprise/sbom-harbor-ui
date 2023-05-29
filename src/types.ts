@@ -1,5 +1,5 @@
 /**
- * @module @sbom-harbor-ui/dashboard/types
+ * @module sbom-harbor-ui/types
  */
 import type {
   CognitoIdToken,

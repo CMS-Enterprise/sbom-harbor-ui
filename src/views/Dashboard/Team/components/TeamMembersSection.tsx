@@ -1,5 +1,5 @@
 /**
- * @module @sbom-harbor-ui/dashboard/views/Dashboard/Team/components/TeamMemberSection
+ * @module sbom-harbor-ui/views/Dashboard/Team/components/TeamMemberSection
  */
 import * as React from 'react'
 import FormControl from '@mui/material/FormControl'

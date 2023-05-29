@@ -1,6 +1,6 @@
 /**
  * Custom MuiCardContent components
- * @module @sbom-harbor-ui/dashboard/components/mui/CardContent
+ * @module sbom-harbor-ui/components/mui/CardContent
  */
 import { styled } from '@mui/system'
 import CardContent from '@mui/material/CardContent'
