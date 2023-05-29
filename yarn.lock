@@ -4556,6 +4556,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@popperjs/core@npm:^2.11.8":
+  version: 2.11.8
+  resolution: "@popperjs/core@npm:2.11.8"
+  checksum: e5c69fdebf52a4012f6a1f14817ca8e9599cb1be73dd1387e1785e2ed5e5f0862ff817f420a87c7fc532add1f88a12e25aeb010ffcbdc98eace3d55ce2139cf0
+  languageName: node
+  linkType: hard
+
 "@remix-run/router@npm:1.6.2":
   version: 1.6.2
   resolution: "@remix-run/router@npm:1.6.2"
@@ -13277,7 +13284,7 @@ __metadata:
     "@mui/material": ^5.13.1
     "@mui/system": ^5.13.1
     "@mui/x-data-grid": ^5.17.26
-    "@popperjs/core": ^2.11.7
+    "@popperjs/core": ^2.11.8
     "@semantic-release/changelog": ^6.0.3
     "@semantic-release/commit-analyzer": ^9.0.2
     "@semantic-release/github": ^8.0.7
