@@ -9,3 +9,9 @@ export enum AuthActions {
   LOGIN_FAILURE = 'LOGIN_FAILURE',
   LOGOUT = 'LOGOUT',
 }
+
+export type AuthActionType = {
+  type: AuthActions
+  payload?: any
+  error?: Error
+}

@@ -1,11 +1,13 @@
 /**
  * @module sbom-harbor-ui/actions/logoutUser
  */
+import * as React from 'react'
 import { Auth } from 'aws-amplify'
-import React from 'react'
-import { AuthActions } from '@/actions/actionTypes'
+import { AuthActions, AuthActionType } from '@/actions/actionTypes'
 
-export default async function logoutUser(dispatch: React.Dispatch<any>) {
+export default async function logoutUser(
+  dispatch: React.Dispatch<AuthActionType>
+) {
   await Auth.signOut()
   dispatch({ type: AuthActions.LOGOUT })
 }
