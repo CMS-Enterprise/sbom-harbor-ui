@@ -10,7 +10,7 @@ type InputProps = {
 } & ButtonProps
 
 const SubmitButton = ({ label, ...props }: InputProps) => (
-  <Button sx={{ mt: 3, ml: 1, ...props.sx }} {...props}>
+  <Button {...props} sx={{ mt: 3, ml: 1, ...props.sx }}>
     {label}
   </Button>
 )
