@@ -23,6 +23,7 @@ const Chip = (props: CustomChipProps) => {
 
   return (
     <MuiChip
+      role="status"
       {...props}
       variant="filled"
       {...(skin === 'light' && { className: 'MuiChip-light' })}
