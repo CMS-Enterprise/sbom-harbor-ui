@@ -4,7 +4,7 @@
  */
 import { styled } from '@mui/material/styles'
 import Avatar from '@/components/mui/Avatar'
-import { getInitials } from '@/utils/getInitials'
+import getInitials from '@/utils/getInitials'
 import { TeamMemberTableRow } from '@/types'
 
 const StyledAvatar = styled(Avatar, {
