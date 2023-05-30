@@ -10,7 +10,7 @@ import Card from '@mui/material/Card'
 import Fab from '@mui/material/Fab'
 import IconButton from '@mui/material/IconButton'
 import Typography from '@mui/material/Typography'
-import styled from '@mui/system/styled'
+import { styled } from '@mui/material/styles'
 import {
   DataGrid,
   GridActionsCell,

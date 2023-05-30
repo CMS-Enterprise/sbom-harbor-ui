@@ -3,7 +3,7 @@
  */
 import { styled } from '@mui/material/styles'
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar'
-import { MuiDrawerWidth } from '@/utils/theme'
+import { MuiDrawerWidth } from '@/theme/theme'
 
 interface AppBarProps extends MuiAppBarProps {
   open?: boolean

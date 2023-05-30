@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react'
 import AppBar from '@/components/AppBar'
-import { MuiDrawerWidth } from '@/utils/theme'
+import { MuiDrawerWidth } from '@/theme/theme'
 
 describe('AppBar', () => {
   it('should render the AppBar with closed drawer', () => {
