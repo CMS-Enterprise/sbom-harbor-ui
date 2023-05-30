@@ -7,7 +7,6 @@ import Box, { BoxProps } from '@mui/material/Box'
 import MuiFormControlLabel, {
   FormControlLabelProps,
 } from '@mui/material/FormControlLabel'
-import Typography, { TypographyProps } from '@mui/material/Typography'
 
 export const LoginIllustrationWrapper = styled(Box)<BoxProps>(({ theme }) => ({
   padding: theme.spacing(10),
@@ -35,15 +34,6 @@ export const BoxWrapper = styled(Box)<BoxProps>(({ theme }) => ({
     maxWidth: 400,
   },
 }))
-
-export const TypographyStyled = styled(Typography)<TypographyProps>(
-  ({ theme }) => ({
-    fontWeight: 600,
-    letterSpacing: '0.18px',
-    marginBottom: theme.spacing(1.5),
-    [theme.breakpoints.down('md')]: { marginTop: theme.spacing(8) },
-  })
-)
 
 export const FormControlLabel = styled(
   MuiFormControlLabel
