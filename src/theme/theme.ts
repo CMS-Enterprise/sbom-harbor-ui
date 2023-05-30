@@ -16,8 +16,8 @@ let theme = createTheme({
       xs: 0,
       sm: 600,
       md: 900,
-      lg: 1200,
-      xl: 1536,
+      lg: 1280,
+      xl: 1900,
     },
     unit: 'px',
   },
@@ -124,10 +124,12 @@ theme = createTheme(theme, {
   },
 })
 
-// ** Base Typography: typography[fontFamily, htmlFontSize, fontSize, fontWeight...]
+// ** Typography
 theme = createTheme(theme, {
   typography: {
     fontFamily: [
+      'Inter',
+      'sans-serif',
       '-apple-system',
       'BlinkMacSystemFont',
       '"Segoe UI"',
@@ -145,14 +147,9 @@ theme = createTheme(theme, {
     fontWeightRegular: 400,
     fontWeightMedium: 500,
     fontWeightBold: 700,
-  },
-})
-
-// ** Typography Variants
-theme = createTheme(theme, {
-  typography: {
     h1: {
-      fontWeight: theme.typography.fontWeightMedium,
+      fontFamily: `Lato,${theme.typography.fontFamily}`,
+      fontWeight: theme.typography.fontWeightBold,
       fontSize: '3.5rem',
       lineHeight: 1.167,
       letterSpacing: '-1.5px',
@@ -168,7 +165,8 @@ theme = createTheme(theme, {
       },
     },
     h2: {
-      fontWeight: theme.typography.fontWeightMedium,
+      fontFamily: `Lato,${theme.typography.fontFamily}`,
+      fontWeight: theme.typography.fontWeightBold,
       fontSize: '2.375rem',
       lineHeight: 1.2,
       letterSpacing: '-0.5px',
@@ -184,7 +182,8 @@ theme = createTheme(theme, {
       },
     },
     h3: {
-      fontWeight: theme.typography.fontWeightMedium,
+      fontFamily: `Lato,${theme.typography.fontFamily}`,
+      fontWeight: theme.typography.fontWeightBold,
       fontSize: '2rem',
       lineHeight: 1.167,
       letterSpacing: 0,
@@ -200,7 +199,8 @@ theme = createTheme(theme, {
       },
     },
     h4: {
-      fontWeight: theme.typography.fontWeightMedium,
+      fontFamily: `Lato,${theme.typography.fontFamily}`,
+      fontWeight: theme.typography.fontWeightBold,
       fontSize: '1.5625rem',
       lineHeight: 1.235,
       letterSpacing: '0.25px',
@@ -216,7 +216,8 @@ theme = createTheme(theme, {
       },
     },
     h5: {
-      fontWeight: theme.typography.fontWeightMedium,
+      fontFamily: `Lato,${theme.typography.fontFamily}`,
+      fontWeight: theme.typography.fontWeightBold,
       fontSize: '1.25rem',
       lineHeight: 1.334,
       letterSpacing: 0,
@@ -232,7 +233,8 @@ theme = createTheme(theme, {
       },
     },
     h6: {
-      fontWeight: theme.typography.fontWeightMedium,
+      fontFamily: `Lato,${theme.typography.fontFamily}`,
+      fontWeight: theme.typography.fontWeightBold,
       fontSize: '1.125rem',
       lineHeight: 1.6,
       letterSpacing: '0.15px',
@@ -248,6 +250,7 @@ theme = createTheme(theme, {
       },
     },
     subtitle1: {
+      fontFamily: theme.typography.fontFamily,
       fontWeight: theme.typography.fontWeightRegular,
       fontSize: '1rem',
       lineHeight: 1.75,
@@ -255,6 +258,7 @@ theme = createTheme(theme, {
       color: theme.palette.text.primary,
     },
     subtitle2: {
+      fontFamily: theme.typography.fontFamily,
       fontWeight: theme.typography.fontWeightMedium,
       fontSize: '0.875rem',
       lineHeight: 1.57,
@@ -262,6 +266,7 @@ theme = createTheme(theme, {
       color: theme.palette.text.secondary,
     },
     body1: {
+      fontFamily: theme.typography.fontFamily,
       fontWeight: theme.typography.fontWeightRegular,
       fontSize: '1rem',
       lineHeight: 1.5,
@@ -269,6 +274,7 @@ theme = createTheme(theme, {
       color: theme.palette.text.primary,
     },
     body2: {
+      fontFamily: theme.typography.fontFamily,
       fontWeight: theme.typography.fontWeightRegular,
       fontSize: '0.875rem',
       lineHeight: 1.429,
@@ -276,6 +282,7 @@ theme = createTheme(theme, {
       color: theme.palette.text.secondary,
     },
     button: {
+      fontFamily: theme.typography.fontFamily,
       fontWeight: theme.typography.fontWeightMedium,
       fontSize: '0.875rem',
       lineHeight: 1.75,
@@ -284,6 +291,7 @@ theme = createTheme(theme, {
       color: theme.palette.text.primary,
     },
     caption: {
+      fontFamily: theme.typography.fontFamily,
       fontWeight: theme.typography.fontWeightRegular,
       fontSize: '0.75rem',
       lineHeight: 1.25,
@@ -291,6 +299,7 @@ theme = createTheme(theme, {
       color: theme.palette.text.secondary,
     },
     overline: {
+      fontFamily: theme.typography.fontFamily,
       fontWeight: theme.typography.fontWeightRegular,
       fontSize: '0.75rem',
       lineHeight: 2.66,
@@ -522,6 +531,9 @@ theme = createTheme(theme, {
         },
       },
     },
+    MuiAppBar: {
+      // styleOverrides
+    },
     MuiAutocomplete: {
       styleOverrides: {
         paper: {
@@ -741,12 +753,12 @@ theme = createTheme(theme, {
         title: {
           fontSize: '1.125rem',
           lineHeight: '1.75rem',
-          fontWeight: theme.typography.fontWeightMedium,
+          // fontWeight: theme.typography.fontWeightMedium,
         },
         subheader: {
           fontSize: '0.875rem',
           lineHeight: '1.25rem',
-          fontWeight: theme.typography.fontWeightRegular,
+          // fontWeight: theme.typography.fontWeightRegular,
           color: theme.palette.text.secondary,
         },
         action: {
@@ -859,19 +871,19 @@ theme = createTheme(theme, {
         root: {
           paddingLeft: '1.25rem',
           paddingRight: '1.25rem',
-          '@media (min-width: 600px)': {
+          [theme.breakpoints.up('sm')]: {
             paddingLeft: '1.875rem',
             paddingRight: '1.875rem',
           },
-          '@media (min-width: 960px)': {
+          [theme.breakpoints.up('md')]: {
             paddingLeft: '2.5rem',
             paddingRight: '2.5rem',
           },
-          '@media (min-width: 1280px)': {
+          [theme.breakpoints.up('lg')]: {
             paddingLeft: '3.75rem',
             paddingRight: '3.75rem',
           },
-          '@media (min-width: 1920px)': {
+          [theme.breakpoints.up('xl')]: {
             paddingLeft: '5rem',
             paddingRight: '5rem',
           },
@@ -927,19 +939,19 @@ theme = createTheme(theme, {
         vertical: {
           marginLeft: '1.25rem',
           marginRight: '1.25rem',
-          '@media (min-width: 600px)': {
+          [theme.breakpoints.up('sm')]: {
             marginLeft: '1.875rem',
             marginRight: '1.875rem',
           },
-          '@media (min-width: 960px)': {
+          [theme.breakpoints.up('md')]: {
             marginLeft: '2.5rem',
             marginRight: '2.5rem',
           },
-          '@media (min-width: 1280px)': {
+          [theme.breakpoints.up('lg')]: {
             marginLeft: '3.75rem',
             marginRight: '3.75rem',
           },
-          '@media (min-width: 1920px)': {
+          [theme.breakpoints.up('xl')]: {
             marginLeft: '5rem',
             marginRight: '5rem',
           },
@@ -1077,19 +1089,19 @@ theme = createTheme(theme, {
         gutters: {
           paddingLeft: '1.25rem',
           paddingRight: '1.25rem',
-          '@media (min-width: 600px)': {
+          [theme.breakpoints.up('sm')]: {
             paddingLeft: '1.875rem',
             paddingRight: '1.875rem',
           },
-          '@media (min-width: 960px)': {
+          [theme.breakpoints.up('md')]: {
             paddingLeft: '2.5rem',
             paddingRight: '2.5rem',
           },
-          '@media (min-width: 1280px)': {
+          [theme.breakpoints.up('lg')]: {
             paddingLeft: '3.75rem',
             paddingRight: '3.75rem',
           },
-          '@media (min-width: 1920px)': {
+          [theme.breakpoints.up('xl')]: {
             paddingLeft: '5rem',
             paddingRight: '5rem',
           },
@@ -1179,65 +1191,8 @@ theme = createTheme(theme, {
     },
     MuiPaper: {
       styleOverrides: {
-        elevation1: {
-          boxShadow: theme.shadows[6],
-        },
-        elevation2: {
-          boxShadow: theme.shadows[6],
-        },
-        elevation3: {
-          boxShadow: theme.shadows[6],
-        },
-        elevation4: {
-          boxShadow: theme.shadows[6],
-        },
-        elevation5: {
-          boxShadow: theme.shadows[6],
-        },
-        elevation6: {
-          boxShadow: theme.shadows[6],
-        },
-        elevation7: {
-          boxShadow: theme.shadows[6],
-        },
-        elevation8: {
-          boxShadow: theme.shadows[6],
-        },
-        elevation9: {
-          boxShadow: theme.shadows[6],
-        },
-        elevation10: {
-          boxShadow: theme.shadows[6],
-        },
-        elevation11: {
-          boxShadow: theme.shadows[6],
-        },
-        elevation12: {
-          boxShadow: theme.shadows[6],
-        },
-        elevation13: {
-          boxShadow: theme.shadows[6],
-        },
-        elevation14: {
-          boxShadow: theme.shadows[6],
-        },
-        elevation15: {
-          boxShadow: theme.shadows[6],
-        },
-        elevation16: {
-          boxShadow: theme.shadows[6],
-        },
-        elevation17: {
-          boxShadow: theme.shadows[6],
-        },
-        elevation18: {
-          boxShadow: theme.shadows[6],
-        },
-        elevation19: {
-          boxShadow: theme.shadows[6],
-        },
-        elevation20: {
-          boxShadow: theme.shadows[6],
+        root: {
+          backgroundImage: 'none',
         },
       },
     },
@@ -1367,6 +1322,9 @@ theme = createTheme(theme, {
     },
     MuiTypography: {
       styleOverrides: {
+        root: {
+          fontWeight: theme.typography.fontWeightBold,
+        },
         body1: {
           fontWeight: theme.typography.fontWeightRegular,
         },
