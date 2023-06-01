@@ -1,4 +1,6 @@
-name: TESTS
+# Workflow that lints code, runs tests, and builds the project. On pushes
+# to the main branch, also creates a version and create a release on GitHub.
+name: CI/CD
 
 on:
   push:
@@ -13,16 +15,24 @@ on:
       - synchronize
 
 jobs:
-  frontend:
+  test_build_release:
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [19]
+
+    env:
+      CI: true
+
     steps:
       - name: CHECKOUT
         uses: actions/checkout@v3
 
-      - name: INSTALL- nodejs, yarn
+      - name: INSTALL - node.js, yarn
         uses: actions/setup-node@v3
         with:
-          node-version: 19
+          node-version: ${{ matrix.node-version }}
           cache: 'yarn'
           cache-dependency-path: 'yarn.lock'
 
@@ -32,30 +42,33 @@ jobs:
           echo "npm --version: $(npm --version)"
           echo "yarn --version: $(yarn --version)"
 
-      - name: CACHE - get folder path
-        id: yarn-cache-dir-path
+      - name: CACHE - get yarn cache folder path
+        id: yarn-cache-path
         run: echo "dir=$(yarn config get cacheFolder)" >> $GITHUB_OUTPUT
 
-      - name: CACHE - .yarn/
+      - name: CACHE - yarn dependencies
         id: yarn-cache
         uses: actions/cache@v3
         with:
-          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          key: yarn-cache-folder-${{ hashFiles('**/yarn.lock', '.yarnrc.yml') }}
+          path: ${{ steps.yarn-cache-path.outputs.dir }}
+          key: node-${{ matrix.node-version }}-yarn-${{ hashFiles('**/yarn.lock', '.yarnrc.yml') }}
           restore-keys: |
-            yarn-cache-folder-
+            node-${{ matrix.node-version }}-yarn-
 
       - name: INSTALL - dependencies
-        run: CI=true yarn install
+        run: yarn install --immutable
 
       - name: LINT
         run: yarn lint
 
-      - name: TEST - unit
+      - name: TEST
         run: yarn test
 
       - name: BUILD
         run: yarn build
 
-      - name: VERSION
+      # semantic-release will only run on pushes to main (see package.json)
+      - name: RELEASE
         run: yarn semantic-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
