@@ -1,5 +1,5 @@
 /**
- * @module @sbom-harbor-ui/dashboard/views/App/AppDrawerListItems
+ * @module sbom-harbor-ui/views/App/AppDrawerListItems
  */
 import { Link as RouterLink } from 'react-router-dom'
 import Link from '@mui/material/Link'

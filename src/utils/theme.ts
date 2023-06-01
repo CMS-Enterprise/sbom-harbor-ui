@@ -1,6 +1,6 @@
 /**
  * Material UI theme object at the root of the application.
- * @module @sbom-harbor-ui/dashboard/utils/theme
+ * @module sbom-harbor-ui/utils/theme
  * @see {@link @sbom-harbor-ui/dashboard/index} for where this is imported.
  * @see https://material-ui.com/customization/themes/ for documentation.
  */

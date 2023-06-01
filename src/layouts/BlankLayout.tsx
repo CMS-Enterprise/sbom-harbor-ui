@@ -1,5 +1,5 @@
 /**
- * @module @sbom-harbor-ui/dashboard/layouts/BlankLayout
+ * @module sbom-harbor-ui/layouts/BlankLayout
  */
 import * as React from 'react'
 import { styled } from '@mui/material/styles'

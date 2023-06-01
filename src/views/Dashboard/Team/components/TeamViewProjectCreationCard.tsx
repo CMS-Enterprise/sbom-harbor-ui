@@ -1,5 +1,5 @@
 /**
- * @module @sbom-harbor-ui/dashboard/views/Dashboard/Team/TeamViewProjectCreationCard
+ * @module sbom-harbor-ui/views/Dashboard/Team/TeamViewProjectCreationCard
  */
 import * as React from 'react'
 import Card from '@mui/material/Card'

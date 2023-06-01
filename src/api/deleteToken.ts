@@ -1,5 +1,5 @@
 /**
- * @module @sbom-harbor-ui/dashboard/api/deleteToken
+ * @module sbom-harbor-ui/api/deleteToken
  */
 import harborRequest from '@/utils/harborRequest'
 

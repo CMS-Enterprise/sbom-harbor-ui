@@ -1,6 +1,6 @@
 /**
  * The layout for rendering the authenticated user's layout.
- * @module @sbom-harbor-ui/dashboard/layouts/AppLayout/AppLayout
+ * @module sbom-harbor-ui/layouts/AppLayout/AppLayout
  */
 // ** React Imports
 import * as React from 'react'

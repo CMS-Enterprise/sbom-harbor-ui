@@ -1,6 +1,6 @@
 /**
  * The view at the /login route that renders the sign in form.
- * @module @sbom-harbor-ui/dashboard/views/SignIn/SignIn
+ * @module sbom-harbor-ui/views/SignIn/SignIn
  */
 import * as React from 'react'
 import { Link, useNavigate } from 'react-router-dom'

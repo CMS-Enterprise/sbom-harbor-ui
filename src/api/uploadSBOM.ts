@@ -1,6 +1,6 @@
 /**
  * Function that makes a request to the Harbor API.
- * @module @sbom-harbor-ui/dashboard/api/harborRequest
+ * @module sbom-harbor-ui/api/harborRequest
  */
 import harborRequest from '@/utils/harborRequest'
 

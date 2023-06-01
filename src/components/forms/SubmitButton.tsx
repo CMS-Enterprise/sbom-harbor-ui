@@ -1,6 +1,6 @@
 /**
  * A component that renders a button to submit a form.
- * @module @sbom-harbor-ui/dashboard/components/forms/SubmitButton
+ * @module sbom-harbor-ui/components/forms/SubmitButton
  */
 import Button, { ButtonProps } from '@mui/material/Button'
 

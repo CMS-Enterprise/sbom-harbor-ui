@@ -1,6 +1,6 @@
 /**
  * An image component that defaults to lazy loading.
- * @module @sbom-harbor-ui/dashboard/components/Image
+ * @module sbom-harbor-ui/components/Image
  */
 import Box from '@mui/material/Box'
 

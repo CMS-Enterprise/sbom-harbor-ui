@@ -1,6 +1,6 @@
 /**
  * The entry point for the cyclonedx-ui-sbom frontend.
- * @module @sbom-harbor-ui/dashboard
+ * @module sbom-harbor-ui
  */
 import * as React from 'react'
 import * as ReactDOMClient from 'react-dom/client'

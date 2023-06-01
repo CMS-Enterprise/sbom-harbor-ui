@@ -1,11 +1,12 @@
+/**
+ * @module sbom-harbor-ui/actions/actionTypes
+ * @description Initializes and configures Amazon Cognito
+ *  authentication in the root loader of the data router.
+ * @see {@link @sbom-harbor-ui/dashboard/router/routes.tsx}
+ */
 import { Amplify } from 'aws-amplify'
 import { CONFIG } from '@/utils/constants'
 
-/**
- * Initializes and configures Amazon Cognito auth.
- * This is used as the root loader for the data router.
- * @see {@link @sbom-harbor-ui/dashboard/router/routes.tsx}
- */
 export function configureCognito(): null {
   // TODO: remove this once Cognito is configured
   if (

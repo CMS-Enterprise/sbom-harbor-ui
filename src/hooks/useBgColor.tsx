@@ -1,6 +1,6 @@
 /**
  * Custom React Hook to get the background color of the current theme.
- * @module @sbom-harbor-ui/dashboard/hooks/useBgColor
+ * @module sbom-harbor-ui/hooks/useBgColor
  */
 import { useTheme } from '@mui/material/styles'
 import { hexToRGBA } from '@/utils/hexToRGBA'

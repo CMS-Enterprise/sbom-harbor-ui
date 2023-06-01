@@ -1,5 +1,5 @@
 /**
- * @module actions
+ * @module sbom-harbor-ui/actions/actionTypes
  * @description dispatch action types.
  */
 

@@ -1,5 +1,5 @@
 /**
- * @module @sbom-harbor-ui/dashboard/hooks/useAlert
+ * @module sbom-harbor-ui/hooks/useAlert
  */
 import * as React from 'react'
 import { AlertColor } from '@mui/material/Alert'

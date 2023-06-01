@@ -1,6 +1,6 @@
 /**
  * Helper function that returns the initials from full name.
- * @module @sbom-harbor-ui/dashboard/utils/get-initials
+ * @module sbom-harbor-ui/utils/get-initials
  */
 
 type UserPropsForInitials = RequireAtLeastOne<

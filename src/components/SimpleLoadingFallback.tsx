@@ -1,5 +1,5 @@
 /**
- * @module @sbom-harbor-ui/dashboard/hooks/SimpleLoadingFallback
+ * @module sbom-harbor-ui/hooks/SimpleLoadingFallback
  */
 import Container from '@mui/material/Container'
 

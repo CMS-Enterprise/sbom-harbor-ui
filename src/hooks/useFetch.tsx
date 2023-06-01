@@ -1,5 +1,5 @@
 /**
- * @module @sbom-harbor-ui/dashboard/hooks/useFetch
+ * @module sbom-harbor-ui/hooks/useFetch
  */
 import * as React from 'react'
 

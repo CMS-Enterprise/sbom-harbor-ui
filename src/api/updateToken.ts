@@ -1,5 +1,5 @@
 /**
- * @module @sbom-harbor-ui/dashboard/api/updateToken
+ * @module sbom-harbor-ui/api/updateToken
  */
 import harborRequest from '@/utils/harborRequest'
 

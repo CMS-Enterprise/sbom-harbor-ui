@@ -1,5 +1,5 @@
 /**
- * @module @sbom-harbor-ui/dashboard/api/getUsersSearch
+ * @module sbom-harbor-ui/api/getUsersSearch
  */
 import { Auth } from 'aws-amplify'
 import { CONFIG } from '@/utils/constants'

@@ -1,6 +1,6 @@
 /**
  * Auth state loader for react-router data routes.
- * @module @sbom-harbor-ui/dashboard/loaders/authLoader
+ * @module sbom-harbor-ui/loaders/authLoader
  * @see {@link @sbom-harbor-ui/dashboard/Routes}
  */
 import { defer } from 'react-router-dom'

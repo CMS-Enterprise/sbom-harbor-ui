@@ -1,7 +1,7 @@
 /**
  * A component that renders a blank state team card in the dashboard
  * with animations where the team's name, projects, and members will be.
- * @module @sbom-harbor-ui/dashboard/views/Dashboard/Team/DashboardTeamLoadingCard
+ * @module sbom-harbor-ui/views/Dashboard/Team/DashboardTeamLoadingCard
  */
 import Box from '@mui/material/Box'
 import Card from '@mui/material/Card'

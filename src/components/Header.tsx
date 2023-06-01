@@ -1,5 +1,5 @@
 /**
- * @module @sbom-harbor-ui/dashboard/components/Header
+ * @module sbom-harbor-ui/components/Header
  */
 import Box from '@mui/material/Box'
 import Toolbar from '@mui/material/Toolbar'

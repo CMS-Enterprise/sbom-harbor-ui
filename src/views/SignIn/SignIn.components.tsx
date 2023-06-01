@@ -1,6 +1,6 @@
 /**
  * Styled Components for the SignIn view component.
- * @module @sbom-harbor-ui/dashboard/views/SignIn/SignIn.components
+ * @module sbom-harbor-ui/views/SignIn/SignIn.components
  */
 import { styled } from '@mui/material/styles'
 import Box, { BoxProps } from '@mui/material/Box'

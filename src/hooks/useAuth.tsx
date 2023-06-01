@@ -1,7 +1,7 @@
 /**
  * Custom React Hook to use the AuthContext in a functional component
  *  in order to access the AuthContext's state and dispatch functions.
- * @module @sbom-harbor-ui/dashboard/hooks/useAuth
+ * @module sbom-harbor-ui/hooks/useAuth
  * @exports AuthContext
  * @exports AuthProvider
  * @exports useAuth

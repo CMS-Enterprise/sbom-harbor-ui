@@ -1,6 +1,6 @@
 /**
  * A component that renders a horizontal list of social login buttons.
- * @module @sbom-harbor-ui/dashboard/components/SocialLoginButtons
+ * @module sbom-harbor-ui/components/SocialLoginButtons
  * @see {@link @sbom-harbor-ui/dashboard/components/Header} for usage.
  */
 import { Link } from 'react-router-dom'

@@ -1,6 +1,6 @@
 /**
  * An alert message component.
- * @module @sbom-harbor-ui/dashboard/components/AlertMessage
+ * @module sbom-harbor-ui/components/AlertMessage
  */
 import Alert from '@mui/material/Alert'
 import Box from '@mui/material/Box'

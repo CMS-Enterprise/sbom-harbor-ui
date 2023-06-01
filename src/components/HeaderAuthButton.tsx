@@ -1,7 +1,7 @@
 /**
  * A component used in the app header that renders either a login
  * or logout button depending on the user's authentication status.
- * @module @sbom-harbor-ui/dashboard/components/HeaderAuthButton
+ * @module sbom-harbor-ui/components/HeaderAuthButton
  * @exports HeaderAuthButton
  */
 import { Link as RouterLink } from 'react-router-dom'
