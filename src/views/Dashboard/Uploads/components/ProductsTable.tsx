@@ -1,12 +1,10 @@
 /**
  * A component that renders a table of team members with their details.
- * @module sbom-harbor-ui/views/Dashboard/Team/ProductsTable
+ * @module sbom-harbor-ui/views/Dashboard/Uploads/components/ProductsTable
  */
-import Box from '@mui/material/Box'
 import Card from '@mui/material/Card'
 import Typography from '@mui/material/Typography'
 import { DataGrid, GridColDef } from '@mui/x-data-grid'
-import { TeamMemberRole, TeamMemberTableRow } from '@/types'
 
 type FreshnessChipProps = {
   lastUpload: string
@@ -59,7 +57,7 @@ const columns: GridColDef[] = [
 ]
 
 type InputProps = {
-  products: ProductRow[]
+  products?: ProductRow[]
 }
 
 /**
@@ -68,12 +66,12 @@ type InputProps = {
  * @param {ProductRow[]} props.products - The list of vendor products.
  * @returns {JSX.Element} A component that renders a datagrid table of products.
  */
-const ProductsTable = ({ products }: InputProps) => (
+const ProductsTable = ({ products }: InputProps = { products: [] }) => (
   <Card>
     <DataGrid
       autoHeight
       hideFooter
-      rows={products}
+      rows={products || []}
       columns={columns}
       disableSelectionOnClick
       pagination={true}
