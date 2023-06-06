@@ -3,7 +3,7 @@
  * @module sbom-harbor-ui/router
  * @see {@link @sbom-harbor-ui/dashboard/main} for usage.
  */
-import { createHashRouter } from 'react-router-dom'
+import { createBrowserRouter } from 'react-router-dom'
 import { RouteIds } from '@/types'
 
 // ** Public Views
@@ -30,10 +30,10 @@ import configureCognito from '@/utils/configureCognito'
 /**
  * The hash router for the application that defines routes
  *  and specifies the loaders for routes with dynamic data.
- * @see {@link https://reactrouter.com/web/api/HashRouter HashRouter}
+ * @see {@link https://reactrouter.com/web/api/BrowserRouter BrowserRouter}
  * @see {@link https://reactrouter.com/en/main/route/loader loader}
  */
-const router = createHashRouter([
+const router = createBrowserRouter([
   {
     id: RouteIds.MAIN,
     path: '/',
