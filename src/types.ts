@@ -45,7 +45,6 @@ export type CognitoUserInfo = {
   attributes: {
     email: string
     sub?: string
-    'custom:teams': string
   }
   id?: string
   username: string
