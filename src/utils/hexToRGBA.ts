@@ -1,20 +1,23 @@
+import { hexToRgb } from '@mui/material'
+
 /**
  * Returns Hex color to RGBA color
- * @module sbom-harbor-ui/utils/hex-to-rgba
- * @param {string} hexCode - The hex color
- * @param {number} opacity - The alpha value
+ * @module @sbom-harbor-ui/dashboard/utils/hex-to-rgba
+ * @param {string} hexCode The hex color
+ * @param {number} opacity The alpha value
  * @returns {string} The RGBA color string
  */
 export const hexToRGBA = (hexCode: string, opacity: number) => {
-  let hex = hexCode.replace('#', '')
-
-  if (hex.length === 3) {
-    hex = `${hex[0]}${hex[0]}${hex[1]}${hex[1]}${hex[2]}${hex[2]}`
+  // check if hexCode is valid
+  if (/^#([0-9A-F]{3}){1,2}$/i.test(hexCode) === false) {
+    throw new Error('Invalid hex color')
   }
 
-  const r = parseInt(hex.substring(0, 2), 16)
-  const g = parseInt(hex.substring(2, 4), 16)
-  const b = parseInt(hex.substring(4, 6), 16)
+  // check if opacity is valid
+  if (opacity < 0 || opacity > 1) {
+    throw new Error('Invalid opacity value')
+  }
 
-  return `rgba(${r}, ${g}, ${b}, ${opacity})`
+  const rgb = Array.from(hexToRgb(hexCode).matchAll(/\d+/g))
+  return `rgba(${rgb.join(`, `)}, ${opacity})`
 }

@@ -14,20 +14,29 @@ type UserPropsForInitials = RequireAtLeastOne<
 /**
  * Returns the initials from full name if provided, otherwise
  *  attempts to get initials from the email address and returns that.
- * @param {string} name - User's full name to get initials from (preferred).
- * @param {string} email - User's email to get initials from.
+ * @param {UserPropsForInitials} inputs
+ * @param {string} inputs.name User's full name to get initials from (preferred).
+ * @param {string} inputs.email User's email to get initials from.
  * @returns {string} A string containing the user's initials.
  */
-export const getInitials = ({ name, email }: UserPropsForInitials): string => {
-  if ('name' in { name } && name) {
-    return name
-      .split(/\s/)
-      .reduce((response, word) => (response += word.slice(0, 1)), '')
+const getInitialsCaseInsensitive = ({
+  name,
+  email,
+}: UserPropsForInitials): string => {
+  if ('name' in { name } && name && name.length > 1) {
+    const names = name.split(/\s/)
+    if (names.length > 1) {
+      const first = names[0]
+      const last = names[names.length - 1]
+      return `${first[0]}${last[0]}`
+    }
+    return `${name[0]}`
   }
 
   if ('email' in { email } && email) {
     const id = email.split('@')[0]
-    // if there is a dot in the id, return the first letter of each part
+    // if there is a dot in the id, return the first
+    // letters of the first and last words
     if (id.indexOf('.') !== -1) {
       return id
         .split('.')
@@ -37,6 +46,19 @@ export const getInitials = ({ name, email }: UserPropsForInitials): string => {
     return `${id[0]}${id.length > 1 ? id[1] : ''}`
   }
 
-  // TODO: fix the typing, this shouldn't happen.
   throw new Error('No name or email provided')
 }
+
+/**
+ * Returns the initials in uppercase from full name if provided, otherwise
+ * attempts to get initials from the email address and returns that.
+ * @param {UserPropsForInitials} inputs
+ * @param {string} inputs.name User's full name to get initials from (preferred).
+ * @param {string} inputs.email User's email to get initials from.
+ * @returns {string} A string containing the user's initials in uppercase.
+ */
+const getInitials = (input: UserPropsForInitials): string => {
+  return getInitialsCaseInsensitive(input).toUpperCase()
+}
+
+export default getInitials
