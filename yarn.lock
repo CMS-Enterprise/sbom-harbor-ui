@@ -3943,10 +3943,33 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mui/core-downloads-tracker@npm:^5.13.1":
-  version: 5.13.1
-  resolution: "@mui/core-downloads-tracker@npm:5.13.1"
-  checksum: cc6038c27905477b8f59e0c4200fc6ba413058e131916679ba0fb2790bcca06e707a08c2737306d699a95905bb952f850f3ffa0d2cfdbbeb129ffb9be8fe8c7b
+"@mui/base@npm:5.0.0-beta.4":
+  version: 5.0.0-beta.4
+  resolution: "@mui/base@npm:5.0.0-beta.4"
+  dependencies:
+    "@babel/runtime": ^7.21.0
+    "@emotion/is-prop-valid": ^1.2.1
+    "@mui/types": ^7.2.4
+    "@mui/utils": ^5.13.1
+    "@popperjs/core": ^2.11.8
+    clsx: ^1.2.1
+    prop-types: ^15.8.1
+    react-is: ^18.2.0
+  peerDependencies:
+    "@types/react": ^17.0.0 || ^18.0.0
+    react: ^17.0.0 || ^18.0.0
+    react-dom: ^17.0.0 || ^18.0.0
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
+  checksum: 10dd9d8198f38085a12f27516da6284f773041b3b8e9f419a0c0c5d05c16944f0620ca5c55a08a7a26c88513d340db04276a3130273d8e253ade38cf18ad0f96
+  languageName: node
+  linkType: hard
+
+"@mui/core-downloads-tracker@npm:^5.13.4":
+  version: 5.13.4
+  resolution: "@mui/core-downloads-tracker@npm:5.13.4"
+  checksum: 2d709a3efe2d11e82a6c369b0b47dc2d488f292a3213083102e6afbf009282c18cdb4b263c0cf6194e5c0cdfd4c735e180e25704015003851459b682bb53e2c8
   languageName: node
   linkType: hard
 
@@ -3996,14 +4019,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mui/material@npm:^5.13.1":
-  version: 5.13.1
-  resolution: "@mui/material@npm:5.13.1"
+"@mui/material@npm:^5.13.2":
+  version: 5.13.5
+  resolution: "@mui/material@npm:5.13.5"
   dependencies:
     "@babel/runtime": ^7.21.0
-    "@mui/base": 5.0.0-beta.1
-    "@mui/core-downloads-tracker": ^5.13.1
-    "@mui/system": ^5.13.1
+    "@mui/base": 5.0.0-beta.4
+    "@mui/core-downloads-tracker": ^5.13.4
+    "@mui/system": ^5.13.5
     "@mui/types": ^7.2.4
     "@mui/utils": ^5.13.1
     "@types/react-transition-group": ^4.4.6
@@ -4025,7 +4048,7 @@ __metadata:
       optional: true
     "@types/react":
       optional: true
-  checksum: 0464af86b7d3a786edd1e009846ae578152257dc72bae3451d92e8638d734ab02002840f6cb53b5eb53613b5ab2eb4207f7cfe3d6e1c07a302cee36a4bf48343
+  checksum: 8d45708111f2d118a83e702895850b2db1086eec848e068ec7c7630dd4a79acf571ac29297735e5307f570aa74ebb642cd2e89cfc35d6364c2ec0fadb9cc5eb9
   languageName: node
   linkType: hard
 
@@ -4067,6 +4090,27 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@mui/styled-engine@npm:^5.13.2":
+  version: 5.13.2
+  resolution: "@mui/styled-engine@npm:5.13.2"
+  dependencies:
+    "@babel/runtime": ^7.21.0
+    "@emotion/cache": ^11.11.0
+    csstype: ^3.1.2
+    prop-types: ^15.8.1
+  peerDependencies:
+    "@emotion/react": ^11.4.1
+    "@emotion/styled": ^11.3.0
+    react: ^17.0.0 || ^18.0.0
+  peerDependenciesMeta:
+    "@emotion/react":
+      optional: true
+    "@emotion/styled":
+      optional: true
+  checksum: e99f49755406b55a1595bf5d2727f0c0e3fd9f914dce1ea3b6cac826efe05038f8e4bde52580bd6a5a4c62ad59e5582bdde6c17abc10d80e61a64da168803391
+  languageName: node
+  linkType: hard
+
 "@mui/system@npm:^5.13.1":
   version: 5.13.1
   resolution: "@mui/system@npm:5.13.1"
@@ -4092,6 +4136,34 @@ __metadata:
     "@types/react":
       optional: true
   checksum: 3fbea341326f66dae888b58bd1f47ae89045d0fe53a35a43a46e8afa30503cf8b9bb3fb43b41575be87ea86360aecb750e20f1b8f8d478c91f238ee06d991560
+  languageName: node
+  linkType: hard
+
+"@mui/system@npm:^5.13.5":
+  version: 5.13.5
+  resolution: "@mui/system@npm:5.13.5"
+  dependencies:
+    "@babel/runtime": ^7.21.0
+    "@mui/private-theming": ^5.13.1
+    "@mui/styled-engine": ^5.13.2
+    "@mui/types": ^7.2.4
+    "@mui/utils": ^5.13.1
+    clsx: ^1.2.1
+    csstype: ^3.1.2
+    prop-types: ^15.8.1
+  peerDependencies:
+    "@emotion/react": ^11.5.0
+    "@emotion/styled": ^11.3.0
+    "@types/react": ^17.0.0 || ^18.0.0
+    react: ^17.0.0 || ^18.0.0
+  peerDependenciesMeta:
+    "@emotion/react":
+      optional: true
+    "@emotion/styled":
+      optional: true
+    "@types/react":
+      optional: true
+  checksum: ff966eb5e4cfd2b0390b71c9b7495bcc5d10330efed1b3aa3340ea59d44699bc927f652fa6b20671ecd80c74bb9c3613d50d58b9e8e3f8bbff3309ca51356f11
   languageName: node
   linkType: hard
 
@@ -8518,7 +8590,7 @@ __metadata:
 
 "fsevents@patch:fsevents@^2.3.2#~builtin<compat/fsevents>, fsevents@patch:fsevents@~2.3.2#~builtin<compat/fsevents>":
   version: 2.3.2
-  resolution: "fsevents@patch:fsevents@npm%3A2.3.2#~builtin<compat/fsevents>::version=2.3.2&hash=df0bf1"
+  resolution: "fsevents@patch:fsevents@npm%3A2.3.2#~builtin<compat/fsevents>::version=2.3.2&hash=18f3a7"
   dependencies:
     node-gyp: latest
   conditions: os=darwin
@@ -13255,7 +13327,7 @@ __metadata:
 
 "resolve@patch:resolve@^1.10.0#~builtin<compat/resolve>, resolve@patch:resolve@^1.10.1#~builtin<compat/resolve>, resolve@patch:resolve@^1.19.0#~builtin<compat/resolve>, resolve@patch:resolve@^1.20.0#~builtin<compat/resolve>, resolve@patch:resolve@^1.22.1#~builtin<compat/resolve>":
   version: 1.22.3
-  resolution: "resolve@patch:resolve@npm%3A1.22.3#~builtin<compat/resolve>::version=1.22.3&hash=c3c19d"
+  resolution: "resolve@patch:resolve@npm%3A1.22.3#~builtin<compat/resolve>::version=1.22.3&hash=07638b"
   dependencies:
     is-core-module: ^2.12.0
     path-parse: ^1.0.7
@@ -13268,7 +13340,7 @@ __metadata:
 
 "resolve@patch:resolve@^2.0.0-next.4#~builtin<compat/resolve>":
   version: 2.0.0-next.4
-  resolution: "resolve@patch:resolve@npm%3A2.0.0-next.4#~builtin<compat/resolve>::version=2.0.0-next.4&hash=c3c19d"
+  resolution: "resolve@patch:resolve@npm%3A2.0.0-next.4#~builtin<compat/resolve>::version=2.0.0-next.4&hash=07638b"
   dependencies:
     is-core-module: ^2.9.0
     path-parse: ^1.0.7
@@ -13473,7 +13545,7 @@ __metadata:
     "@hookform/resolvers": ^3.1.0
     "@mui/icons-material": ^5.11.16
     "@mui/lab": ^5.0.0-alpha.130
-    "@mui/material": ^5.13.1
+    "@mui/material": ^5.13.2
     "@mui/system": ^5.13.1
     "@mui/x-data-grid": ^5.17.26
     "@popperjs/core": ^2.11.8
@@ -14692,11 +14764,11 @@ __metadata:
 
 "typescript@patch:typescript@^4.6.4 || ^5.0.0#~builtin<compat/typescript>, typescript@patch:typescript@^5.0.4#~builtin<compat/typescript>":
   version: 5.0.4
-  resolution: "typescript@patch:typescript@npm%3A5.0.4#~builtin<compat/typescript>::version=5.0.4&hash=b5f058"
+  resolution: "typescript@patch:typescript@npm%3A5.0.4#~builtin<compat/typescript>::version=5.0.4&hash=701156"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: d26b6ba97b6d163c55dbdffd9bbb4c211667ebebc743accfeb2c8c0154aace7afd097b51165a72a5bad2cf65a4612259344ff60f8e642362aa1695c760d303ac
+  checksum: 6a1fe9a77bb9c5176ead919cc4a1499ee63e46b4e05bf667079f11bf3a8f7887f135aa72460a4c3b016e6e6bb65a822cb8689a6d86cbfe92d22cc9f501f09213
   languageName: node
   linkType: hard
 
