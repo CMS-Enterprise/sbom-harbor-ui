@@ -57,7 +57,7 @@
     "react-popper": "^2.3.0",
     "react-router-dom": "^6.11.2",
     "uuid": "^9.0.0",
-    "yup": "^1.1.1"
+    "yup": "^1.2.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.6.3",
