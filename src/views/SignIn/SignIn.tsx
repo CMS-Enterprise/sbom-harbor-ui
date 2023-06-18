@@ -5,6 +5,7 @@
 import * as React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useForm, Controller } from 'react-hook-form'
+import { Auth } from 'aws-amplify'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import Box from '@mui/material/Box'
@@ -77,6 +78,15 @@ const LoginPage = () => {
     mode: 'onBlur',
     resolver: yupResolver(schema),
   })
+
+  const handleClickFederatedSignIn = async () => {
+    try {
+      // @ts-ignore
+      await Auth.federatedSignIn({ provider: 'COGNITO' })
+    } catch (error) {
+      console.error('Error signing in with Google', error)
+    }
+  }
 
   const onSubmit = async (data: FormData) => {
     const { email, password } = data
@@ -266,6 +276,15 @@ const LoginPage = () => {
                 </Button>
               </form>
               {loading && <LinearIndeterminate />}
+              <Button
+                fullWidth
+                size="large"
+                variant="outlined"
+                sx={{ mb: 5 }}
+                onClick={handleClickFederatedSignIn}
+              >
+                Login with IDP
+              </Button>
             </Box>
           </BoxWrapper>
         </Box>

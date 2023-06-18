@@ -27,7 +27,7 @@ const INITIAL_STATE = {
 /**
  * @type {AuthValuesType} The initial values provided by AuthContext.
  */
-export const defaultProvider: AuthValuesType = {
+const defaultProvider: AuthValuesType = {
   ...INITIAL_STATE,
 }
 
@@ -56,7 +56,6 @@ export const AuthReducer = (
         ...initialState,
         jwtToken: '',
       }
-
     case AuthActions.LOGIN_FAILURE:
       return {
         ...initialState,
@@ -79,7 +78,6 @@ export function useAuthState() {
   if (context === undefined) {
     throw new Error('useAuthState must be used within a AuthProvider')
   }
-
   return context
 }
 
@@ -88,7 +86,6 @@ export function useAuthDispatch() {
   if (context === undefined) {
     throw new Error('useAuthDispatch must be used within a AuthProvider')
   }
-
   return context
 }
 
@@ -116,8 +113,10 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
    */
   const init = React.useCallback(async () => {
     try {
-      const user = await Auth.currentAuthenticatedUser()
-      const session = await Auth.currentSession()
+      const [user, session] = await Promise.all([
+        Auth.currentAuthenticatedUser(),
+        Auth.currentSession(),
+      ])
 
       if (!user || !session) {
         throw new Error('No user or session')

@@ -2,7 +2,7 @@
  * @module sbom-harbor-ui/api/getUsersSearch
  */
 import { Auth } from 'aws-amplify'
-import { CONFIG } from '@/utils/constants'
+import { CONFIG } from '@/utils/config'
 
 const { USER_API_SEARCH_URL } = CONFIG
 
