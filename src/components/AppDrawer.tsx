@@ -3,7 +3,7 @@
  */
 import { styled } from '@mui/material/styles'
 import MuiDrawer from '@mui/material/Drawer'
-import { MuiDrawerWidth } from '@/utils/theme'
+import { MuiDrawerWidth } from '@/theme/theme'
 
 const AppDrawer = styled(MuiDrawer, {
   shouldForwardProp: (prop) => prop !== 'open',

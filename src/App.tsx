@@ -7,7 +7,7 @@ import { ThemeProvider } from '@mui/material/styles'
 import { AlertProvider } from '@/hooks/useAlert'
 import { AuthProvider } from '@/hooks/useAuth'
 import DialogProvider from '@/hooks/useDialog'
-import theme from '@/utils/theme'
+import theme from '@/theme/theme'
 
 /**
  * Root Layout component that renders the entire application,

@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import StickyFooter from '@/components/Footer'
 import { ThemeProvider } from '@mui/material/styles'
-import theme from '@/utils/theme'
+import theme from '@/theme/theme'
 import { COPYRIGHT_LABEL } from '@/constants'
 
 describe('StickyFooter', () => {
