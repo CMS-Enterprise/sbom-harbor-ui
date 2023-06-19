@@ -16,7 +16,7 @@
     "preview": "vite preview",
     "clean": "rimraf dist",
     "test": "NODE_ENV=test jest --all --coverage --colors --maxWorkers=50%",
-    "test:ci": "NODE_ENV=test jest --all --watchAll=false --ci",
+    "test:ci": "NODE_ENV=test jest --all --watchAll=false --ci --maxWorkers=100%",
     "test:precommit": "NODE_ENV=test jest --coverage --colors --onlyChanged --watch=false --maxWorkers=50%",
     "test:watch": "NODE_ENV=test jest --coverage --onlyChanged --colors --watch",
     "lint": "run-p 'lint:js' 'lint:other'",
