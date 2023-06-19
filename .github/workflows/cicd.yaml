@@ -17,14 +17,8 @@ on:
 jobs:
   test_build_release:
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [19]
-
     env:
       CI: true
-
     steps:
       - name: CHECKOUT
         uses: actions/checkout@v3
@@ -32,7 +26,7 @@ jobs:
       - name: INSTALL - node.js, yarn
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version-file: '.nvmrc'
           cache: 'yarn'
           cache-dependency-path: 'yarn.lock'
 
@@ -51,9 +45,8 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ${{ steps.yarn-cache-path.outputs.dir }}
-          key: node-${{ matrix.node-version }}-yarn-${{ hashFiles('**/yarn.lock', '.yarnrc.yml') }}
-          restore-keys: |
-            node-${{ matrix.node-version }}-yarn-
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock', '.yarnrc.yml') }}
+          restore-keys: ${{ runner.os }}-yarn-
 
       - name: INSTALL - dependencies
         run: yarn install --immutable
@@ -62,7 +55,7 @@ jobs:
         run: yarn lint
 
       - name: TEST
-        run: yarn test
+        run: yarn test:ci
 
       - name: BUILD
         run: yarn build
@@ -70,5 +63,6 @@ jobs:
       # semantic-release will only run on pushes to main (see package.json)
       - name: RELEASE
         run: yarn semantic-release
+        if: github.ref == 'refs/heads/main'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
