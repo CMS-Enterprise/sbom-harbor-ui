@@ -51,10 +51,7 @@ jobs:
       - name: INSTALL - dependencies
         run: yarn install --immutable
 
-      - name: LINT
-        run: yarn lint
-
-      - name: TEST
+      - name: LINT, TEST
         run: yarn ci
 
       - name: BUILD
