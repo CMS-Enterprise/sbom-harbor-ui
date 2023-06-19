@@ -1,5 +1,5 @@
 /**
- * @module sbom-harbor-ui/hooks/SbomUploadInput
+ * @module sbom-harbor-ui/components/SbomUploadInput
  */
 import * as React from 'react'
 import { useLoaderData } from 'react-router-dom'

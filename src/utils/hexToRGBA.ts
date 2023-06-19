@@ -1,8 +1,11 @@
+/**
+ * Returns Hex color to RGBA color
+ * @module sbom-harbor-ui/utils/hexToRGBA
+ */
 import { hexToRgb } from '@mui/material'
 
 /**
  * Returns Hex color to RGBA color
- * @module @sbom-harbor-ui/dashboard/utils/hex-to-rgba
  * @param {string} hexCode The hex color
  * @param {number} opacity The alpha value
  * @returns {string} The RGBA color string

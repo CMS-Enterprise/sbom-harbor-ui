@@ -1,5 +1,6 @@
 /**
- * @module @sbom-harbor-ui/dashboard/actions/loginUserFederated
+ * Action that logs in the current Cognito user using federated sign in.
+ * @module sbom-harbor-ui/actions/loginUserFederated
  */
 import React from 'react'
 import { Auth } from 'aws-amplify'

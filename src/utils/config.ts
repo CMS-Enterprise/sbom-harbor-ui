@@ -1,5 +1,5 @@
 /**
- * @module sbom-harbor-ui/utils/constants
+ * @module sbom-harbor-ui/utils/config
  * @exports CONFIG
  * @exports storageTokenKeyName
  */

@@ -1,5 +1,5 @@
 /**
- * @module sbom-harbor-ui/hooks/DateLocaleString
+ * @module sbom-harbor-ui/components/DateLocaleString
  */
 import Typography from '@mui/material/Typography'
 

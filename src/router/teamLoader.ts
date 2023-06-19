@@ -1,6 +1,6 @@
 /**
  * State loader for react-router data routes that require a user's single team.
- * @module sbom-harbor-ui/loaders/teamLoader
+ * @module sbom-harbor-ui/router/teamLoader
  * @see {@link @sbom-harbor-ui/dashboard/Routes}
  */
 import { defer, Params } from 'react-router-dom'

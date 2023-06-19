@@ -1,5 +1,5 @@
 /**
- * @module sbom-harbor-ui/hooks/SearchInputField
+ * @module sbom-harbor-ui/components/SearchInputField
  */
 import * as React from 'react'
 import FormControl from '@mui/material/FormControl'

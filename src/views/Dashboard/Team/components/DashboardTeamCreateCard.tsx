@@ -1,6 +1,6 @@
 /**
  * A component for rendering a card with a button to create a new team.
- * @module sbom-harbor-ui/views/Dashboard/Team/DashboardTeamCreateCard
+ * @module sbom-harbor-ui/views/Dashboard/Team/components/DashboardTeamCreateCard
  */
 import Button from '@mui/material/Button'
 import Card from '@mui/material/Card'
