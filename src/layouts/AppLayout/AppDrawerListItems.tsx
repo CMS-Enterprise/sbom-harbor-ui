@@ -1,5 +1,5 @@
 /**
- * @module sbom-harbor-ui/views/App/AppDrawerListItems
+ * @module sbom-harbor-ui/layouts/AppLayout/AppDrawerListItems
  */
 import * as React from 'react'
 import DashboardIcon from '@mui/icons-material/Dashboard'

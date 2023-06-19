@@ -1,6 +1,6 @@
 /**
- * Function that makes a request to the Harbor API.
- * @module sbom-harbor-ui/api/harborRequest
+ * Function that makes a request to the Harbor API to upload an SBOM.
+ * @module sbom-harbor-ui/api/uploadSBOM
  */
 import harborRequest from '@/utils/harborRequest'
 

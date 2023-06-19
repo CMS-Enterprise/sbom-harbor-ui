@@ -1,4 +1,5 @@
 /**
+ * Action that logs out the current Cognito user.
  * @module sbom-harbor-ui/actions/logoutUser
  */
 import * as React from 'react'

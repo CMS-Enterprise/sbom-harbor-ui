@@ -1,6 +1,6 @@
 /**
  * State loader for react-router data routes that require user's all teams.
- * @module sbom-harbor-ui/loaders/teamsLoader
+ * @module sbom-harbor-ui/router/teamsLoader
  * @see {@link @sbom-harbor-ui/dashboard/Routes}
  */
 import { defer } from 'react-router-dom'

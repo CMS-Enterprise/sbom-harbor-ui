@@ -1,6 +1,6 @@
 /**
+ * Dispatch action types.
  * @module sbom-harbor-ui/actions/actionTypes
- * @description dispatch action types.
  */
 
 export enum AuthActions {

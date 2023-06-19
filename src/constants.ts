@@ -1,5 +1,6 @@
 /**
- * @module sbom-harbor-ui/constants
+ * Application-wide constants
+ * @module sbom-harbor-ui/views/constants
  */
 
 //* Application Strings

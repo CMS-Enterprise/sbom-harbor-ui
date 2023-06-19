@@ -1,6 +1,6 @@
 /**
  * Component that renders all routes in the application.
- * @module sbom-harbor-ui/router
+ * @module sbom-harbor-ui/router/router
  * @see {@link @sbom-harbor-ui/dashboard/main} for usage.
  */
 import { createBrowserRouter } from 'react-router-dom'

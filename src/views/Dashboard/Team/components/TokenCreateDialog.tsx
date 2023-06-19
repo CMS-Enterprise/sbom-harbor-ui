@@ -1,5 +1,5 @@
 /**
- * @module sbom-harbor-ui/views/Dashboard/Team/TokenCreateDialog
+ * @module sbom-harbor-ui/views/Dashboard/Team/components/TokenCreateDialog
  */
 import * as React from 'react'
 import Box from '@mui/material/Box'

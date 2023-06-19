@@ -1,5 +1,6 @@
 /**
- *
+ * Excludes the id property from an array of objects
+ * @module sbom-harbor-ui/selectors/excludeIdFromArrayValues
  * @param {Array<T>} array
  * @returns {Array<T>}
  */

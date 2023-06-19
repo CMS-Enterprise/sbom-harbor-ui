@@ -1,4 +1,5 @@
 /**
+ * Action that logs in a user with the given email and password
  * @module sbom-harbor-ui/actions/loginUser
  */
 import React from 'react'

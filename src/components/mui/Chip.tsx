@@ -1,6 +1,6 @@
 /**
  * Custom implementation of MuiChip.
- * @module sbom-harbor-ui/components/mui/chip
+ * @module sbom-harbor-ui/components/mui/Chip
  */
 import MuiChip, { ChipProps } from '@mui/material/Chip'
 import useBgColor, { UseBgColorType } from '@/hooks/useBgColor'

@@ -1,4 +1,5 @@
 /**
+ * Type definitions for the application.
  * @module sbom-harbor-ui/types
  */
 import type {

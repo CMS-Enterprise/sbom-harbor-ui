@@ -1,5 +1,6 @@
 /**
  * Reduces an array of items to a map of items by id.
+ * @module sbom-harbor-ui/selectors/reduceArrayToMap
  * @param {Array<T>} array the array of items with ids to be reduced to a map
  * @param {[Object={}]} map accumulator for the reduce function
  * @returns {Record<string, T>} a map of the array items by id
