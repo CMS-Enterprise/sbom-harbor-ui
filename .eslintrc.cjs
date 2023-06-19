@@ -15,6 +15,7 @@ module.exports = {
     'plugin:react-hooks/recommended',
     'plugin:react/jsx-runtime',
     'prettier',
+    'plugin:storybook/recommended',
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -45,8 +46,20 @@ module.exports = {
     'react/jsx-closing-bracket-location': [2, 'tag-aligned'],
     'react/jsx-first-prop-new-line': [2, 'multiline'],
     'react/jsx-indent-props': [2, 2],
-    'react/jsx-indent': [2, 2, { indentLogicalExpressions: true }],
-    'react/jsx-max-props-per-line': [2, { maximum: 1, when: 'multiline' }],
+    'react/jsx-indent': [
+      2,
+      2,
+      {
+        indentLogicalExpressions: true,
+      },
+    ],
+    'react/jsx-max-props-per-line': [
+      2,
+      {
+        maximum: 1,
+        when: 'multiline',
+      },
+    ],
     'react/jsx-uses-react': 'off',
     'react/prop-types': 'off',
     'react/react-in-jsx-scope': 'off',
