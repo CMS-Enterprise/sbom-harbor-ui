@@ -31,6 +31,10 @@ const StyledAvatar = styled(Avatar, {
  * @returns {JSX.Element} A component that renders a table row.
  */
 const UserAvatar = ({ avatarSrc, email, name }: TeamMemberTableRow) => {
+  if (!name && !email && !avatarSrc) {
+    return <StyledAvatar />
+  }
+
   // if there is a source url for the avatar image, render it.
   if (avatarSrc) {
     return <StyledAvatar src={avatarSrc} />
