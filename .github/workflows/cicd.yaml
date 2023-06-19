@@ -55,7 +55,7 @@ jobs:
         run: yarn lint
 
       - name: TEST
-        run: yarn test:ci
+        run: yarn ci
 
       - name: BUILD
         run: yarn build
