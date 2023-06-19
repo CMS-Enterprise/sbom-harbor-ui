@@ -46,6 +46,11 @@
     ]
   },
   "include": ["src", "declaration.d.ts", "config/jest/setupTests.ts"],
-  "exclude": ["**/node_modules"],
+  "exclude": [
+    "**/node_modules",
+    "dist",
+    "**/*.stories.(js|jsx|ts|tsx)",
+    "**/*.mdx"
+  ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
