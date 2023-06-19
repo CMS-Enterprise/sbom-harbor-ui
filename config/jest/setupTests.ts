@@ -1,7 +1,6 @@
 /**
  * @module @cyclone-dx/ui/sbom/utils/setupTests
  */
-jest.mock('aws-amplify')
 import '@testing-library/jest-dom'
 import '@testing-library/jest-dom/extend-expect'
 
