@@ -71,9 +71,11 @@ const FileUploadDialog: React.FC<FileUploadDialogProps> = ({
       onClose={handleClose}
       onDragOver={(event) => event.preventDefault()}
       role="dialog"
+      maxWidth="sm"
+      fullWidth
       {...dialogProps}
     >
-      <DialogTitle>Upload SBOM JSON files</DialogTitle>
+      <DialogTitle variant="h5">Upload SBOM JSON files</DialogTitle>
       <DialogContent>
         <form onSubmit={handleSubmit(onSubmit)}>
           <MultiDropZone
@@ -84,8 +86,15 @@ const FileUploadDialog: React.FC<FileUploadDialogProps> = ({
             uploadedFiles={uploadedFiles}
           />
           <DialogActions>
-            <Button onClick={onClose}>Close</Button>
-            <Button type="submit" variant="contained" color="primary">
+            <Button onClick={onClose} size="large">
+              Cancel
+            </Button>
+            <Button
+              type="submit"
+              variant="contained"
+              color="primary"
+              size="large"
+            >
               Upload
             </Button>
           </DialogActions>

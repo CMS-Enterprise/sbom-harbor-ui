@@ -4,6 +4,8 @@ import { styled } from '@mui/material/styles'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import Collapse from '@mui/material/Collapse'
+import Stack from '@mui/material/Stack'
+import UploadFileIcon from '@mui/icons-material/UploadFile'
 import generateId from '@/utils/generateId'
 import formatBytes from '@/utils/formatBytes'
 import {
@@ -23,21 +25,28 @@ import {
 import UploadFileCell from '@/components/MultiDropzone/UploadFileCell'
 
 const StyledBox = styled(Box)(({ theme }) => ({
-  display: 'flex',
-  flexDirection: 'column',
   alignItems: 'center',
-  padding: theme.spacing(2),
-  border: `2px dashed ${theme.palette.text.primary}`,
+  border: `3px dashed ${theme.palette.primary.main}`,
   borderRadius: theme.shape.borderRadius,
   cursor: 'pointer',
+  display: 'flex',
+  flexDirection: 'column',
   outline: 'none',
+  padding: theme.spacing(4),
   transition: 'border .24s ease-in-out',
   '&.active': {
-    border: `2px dashed ${theme.palette.primary.main}`,
+    border: `2px dashed ${theme.palette.primary.light}`,
   },
   '&.disabled': {
     cursor: 'not-allowed',
     opacity: 0.5,
+  },
+  '& .MuiSvgIcon-fontSizeLarge': {
+    fontSize: theme.typography.fontSize * 5,
+    marginBottom: theme.spacing(2),
+  },
+  '& .MuiDialogTitle-root': {
+    fontWeight: theme.typography.fontWeightMedium,
   },
 }))
 
@@ -126,6 +135,7 @@ const MultiDropZone: React.FC<MultiDropzoneProps> = ({
         {...getRootProps()}
       >
         <input {...getInputProps()} />
+        <UploadFileIcon fontSize="large" />
         <Typography variant="body1">
           {uploading
             ? textOverrides?.currentlyUploadingText ||

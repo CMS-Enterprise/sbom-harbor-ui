@@ -37,8 +37,10 @@ export const Playground = () => {
   )
 
   return (
-    <div>
-      <Button onClick={toggle}>Open Dialog</Button>
+    <>
+      <div>
+        <Button onClick={toggle}>Open Dialog</Button>
+      </div>
       <FileUploadDialog
         open={open}
         onClose={toggle}
@@ -47,7 +49,7 @@ export const Playground = () => {
           maxWidth: 'md',
         }}
       />
-    </div>
+    </>
   )
 }
 
