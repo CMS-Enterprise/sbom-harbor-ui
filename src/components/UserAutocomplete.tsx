@@ -100,7 +100,6 @@ const UserSearchInput = ({
 
   // TODO: filter out illegal characters
   const handleInputChange = React.useCallback(
-    // @ts-ignore TS6133
     (event: React.SyntheticEvent<Element, Event>, newValue: string) => {
       dispatchSetState({ inputValue: newValue })
     },

@@ -1,112 +1,95 @@
-import React, { useState } from 'react'
-import Dialog from '@mui/material/Dialog'
-import DialogTitle from '@mui/material/DialogTitle'
-import DialogContent from '@mui/material/DialogContent'
-import Button from '@mui/material/Button'
-import LinearProgress from '@mui/material/LinearProgress'
-import List from '@mui/material/List'
-import ListItem from '@mui/material/ListItem'
-import ListItemIcon from '@mui/material/ListItemIcon'
-import ListItemText from '@mui/material/ListItemText'
-import { Check as CheckIcon, Close as CloseIcon } from '@mui/icons-material'
+import React, { SyntheticEvent, useCallback, useState } from 'react'
 import { useForm } from 'react-hook-form'
-
-type FileWithProgress = File & {
-  progress?: number
-  success?: boolean
-  error?: string
-}
+import { v4 as uuidv4 } from 'uuid'
+import Button from '@mui/material/Button'
+import Dialog, { DialogProps } from '@mui/material/Dialog'
+import DialogActions from '@mui/material/DialogActions'
+import DialogContent from '@mui/material/DialogContent'
+import DialogTitle from '@mui/material/DialogTitle'
+import MultiDropZone, { UploadedFile } from '@/components/MultiDropzone'
 
 export interface FileUploadDialogProps {
   open: boolean
-  onClose: () => void
+  onClose: (
+    event: SyntheticEvent<Element, Event> | null,
+    reason?: 'backdropClick' | 'escapeKeyDown'
+  ) => void
+  dialogProps?: DialogProps
 }
 
 const FileUploadDialog: React.FC<FileUploadDialogProps> = ({
   open,
   onClose,
+  ...dialogProps
 }) => {
-  const { register, handleSubmit, reset } = useForm()
-  const [files, setFiles] = useState<FileWithProgress[]>([])
+  const { handleSubmit, reset } = useForm()
+  const [uploadedFiles, setUploadedFiles] = useState<UploadedFile[]>([])
+  const [uploading, setUploading] = useState(false)
 
-  const onSubmit = (data: any) => {
-    const uploadedFiles: FileWithProgress[] = Array.from(data.files)
-    setFiles(uploadedFiles)
+  const onSubmit = useCallback((data: any) => {
+    setUploading(true)
+    // TODO: upload files
+    setTimeout(() => {
+      setUploading(false)
+      handleClose(null, 'backdropClick')
+    }, 2000)
+  }, [])
 
-    // TODO: Implement the actual file upload process here. This simulates progress update.
-    uploadedFiles.forEach((file, index) => {
-      const interval = setInterval(() => {
-        setFiles((prevFiles) => {
-          const newFiles = [...prevFiles]
-          if (
-            newFiles[index].progress === undefined ||
-            newFiles[index].progress === 100
-          ) {
-            clearInterval(interval)
-            newFiles[index].progress = 100
-            newFiles[index].success = true // Set to false if the upload failed.
-          } else {
-            newFiles[index].progress = (newFiles[index].progress || 0) + 10
-          }
-          return newFiles
-        })
-      }, 500)
-    })
-    reset()
-  }
+  const handleClose = useCallback(
+    (event: any, reason: 'backdropClick' | 'escapeKeyDown') => {
+      if (reason === 'backdropClick') return
+      reset()
+      setUploadedFiles([])
+      setUploading(false)
+      onClose(event, reason)
+    },
+    [onClose, reset]
+  )
 
-  const handleFileDrop = (event: React.DragEvent) => {
-    event.preventDefault()
-    const droppedFiles: FileWithProgress[] = Array.from(
-      event.dataTransfer.files
+  const handleRemoveFile = useCallback((id: string) => {
+    setUploadedFiles((previousFiles) =>
+      previousFiles.filter((f) => f.id !== id)
     )
-    setFiles((prevFiles) => [...prevFiles, ...droppedFiles])
-  }
+  }, [])
+
+  const handleFileSelect = useCallback((newFiles: File[]) => {
+    const filesToUpload = newFiles.map((f) => {
+      const fileWithProgress = {
+        name: f.name,
+        progress: 0,
+        id: uuidv4(),
+      } as UploadedFile
+      fileWithProgress.progress = 0
+      return fileWithProgress
+    })
+    setUploadedFiles([...filesToUpload])
+  }, [])
 
   return (
     <Dialog
       open={open}
-      onClose={onClose}
+      onClose={handleClose}
       onDragOver={(event) => event.preventDefault()}
-      onDrop={handleFileDrop}
       role="dialog"
+      {...dialogProps}
     >
       <DialogTitle>Upload SBOM JSON files</DialogTitle>
       <DialogContent>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <input type="file" multiple accept=".json" {...register('files')} />
-          <Button type="submit" variant="contained" color="primary">
-            Upload
-          </Button>
+          <MultiDropZone
+            uploading={uploading}
+            multiple={false}
+            onFileSelect={handleFileSelect}
+            onRemoveFile={handleRemoveFile}
+            uploadedFiles={uploadedFiles}
+          />
+          <DialogActions>
+            <Button onClick={onClose}>Close</Button>
+            <Button type="submit" variant="contained" color="primary">
+              Upload
+            </Button>
+          </DialogActions>
         </form>
-        <List>
-          {files.map((file, index) => (
-            <ListItem key={index}>
-              <ListItemText
-                primary={file.name}
-                secondary={
-                  file.error ||
-                  (file.progress !== undefined && `${file.progress}%`)
-                }
-              />
-              {file.success === undefined && (
-                <LinearProgress
-                  variant="determinate"
-                  value={file.progress || 0}
-                />
-              )}
-              {file.success !== undefined && (
-                <ListItemIcon>
-                  {file.success ? (
-                    <CheckIcon color="primary" />
-                  ) : (
-                    <CloseIcon color="error" />
-                  )}
-                </ListItemIcon>
-              )}
-            </ListItem>
-          ))}
-        </List>
       </DialogContent>
     </Dialog>
   )

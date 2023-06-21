@@ -112,7 +112,7 @@ const TeamMembersTable = ({ members }: InputProps) => (
       hideFooter
       rows={members}
       columns={columns}
-      disableSelectionOnClick
+      // disableSelectionOnClick
       pagination={undefined}
     />
   </Card>

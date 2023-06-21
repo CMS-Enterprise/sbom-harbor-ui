@@ -4,8 +4,9 @@
  */
 import React from 'react'
 import { Auth } from 'aws-amplify'
-import { AuthActionType, AuthActions } from '@/actions/actionTypes'
+import { AuthActions } from '@/actions/actionTypes'
 import { LoginParams } from '@/hooks/types'
+import { AuthActionParams } from '@/hooks/useAuth'
 
 type UserData = {
   jwtToken: string
@@ -14,7 +15,7 @@ type UserData = {
 }
 
 export default async function loginUser(
-  dispatch: React.Dispatch<AuthActionType>,
+  dispatch: React.Dispatch<AuthActionParams>,
   payload: LoginParams
 ): Promise<UserData | undefined> {
   try {

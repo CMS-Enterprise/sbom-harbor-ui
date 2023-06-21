@@ -5,12 +5,13 @@ import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import Collapse from '@mui/material/Collapse'
 import generateId from '@/utils/generateId'
+import formatBytes from '@/utils/formatBytes'
 import {
   formatAcceptFileList,
   getErrorMessage,
   getFormattedAcceptObject,
   getUploadStatus,
-} from './utils'
+} from '@/components/MultiDropzone/utils'
 import {
   AcceptType,
   ErrorMessage,
@@ -18,9 +19,8 @@ import {
   TextOverrides,
   UploadedFile,
   UploadStatus,
-} from './types'
-import { formatBytes } from '@/utils/formatBytes'
-import UploadFileCell from './UploadFileCell'
+} from '@/components/MultiDropzone/types'
+import UploadFileCell from '@/components/MultiDropzone/UploadFileCell'
 
 const StyledBox = styled(Box)(({ theme }) => ({
   display: 'flex',
@@ -43,26 +43,35 @@ const StyledBox = styled(Box)(({ theme }) => ({
 
 interface MultiDropzoneProps {
   accept?: AcceptType
-  onFileSelect: (files: File[]) => void
-  uploadedFiles: UploadedFile[]
-  uploading: boolean
-  onRemoveFile: (id: string) => void
   isCondensed?: boolean
   maxFiles?: number
   maxSize?: number
+  multiple?: boolean
+  onFileSelect: (files: File[]) => void
+  onRemoveFile: (id: string) => void
   textOverrides?: TextOverrides
+  uploadedFiles: UploadedFile[]
+  uploading: boolean
 }
+
+const CallToAction: React.FC = () => (
+  <span>
+    Drag and drop files or
+    <Typography variant="body1">Browse</Typography>
+  </span>
+)
 
 const MultiDropZone: React.FC<MultiDropzoneProps> = ({
   accept,
-  uploadedFiles,
-  onFileSelect,
-  uploading,
-  onRemoveFile,
   isCondensed = false,
   maxFiles = 0,
   maxSize,
+  multiple = false,
+  onFileSelect,
+  onRemoveFile,
   textOverrides,
+  uploadedFiles,
+  uploading,
 }) => {
   const [errors, setErrors] = useState<ErrorMessage[]>([])
   const formattedAccept = getFormattedAcceptObject(accept)
@@ -85,7 +94,8 @@ const MultiDropZone: React.FC<MultiDropzoneProps> = ({
 
       setErrors((previousErrors) => [
         ...previousErrors,
-        ...filesRejected.map(({ errors }) => ({
+        ...filesRejected.map(({ file, errors }) => ({
+          file,
           id: generateId(),
           message: getErrorMessage(
             errors[0],
@@ -108,23 +118,25 @@ const MultiDropZone: React.FC<MultiDropzoneProps> = ({
   })
 
   return (
-    <StyledBox
-      className={`${isDragActive ? 'active' : ''} ${
-        uploading ? 'disabled' : ''
-      }`}
-      {...getRootProps()}
-    >
-      <input {...getInputProps()} />
-      <Typography variant="body1">
-        {uploading
-          ? textOverrides?.currentlyUploadingText ||
-            'Please wait while uploading file...'
-          : textOverrides?.instructionsText || 'Choose file or drag & drop'}
-      </Typography>
-      <Typography variant="body2" color="textSecondary">
-        {textOverrides?.supportsText || placeholder}
-      </Typography>
-
+    <>
+      <StyledBox
+        className={`${isDragActive ? 'active' : ''} ${
+          uploading ? 'disabled' : ''
+        }`}
+        {...getRootProps()}
+      >
+        <input {...getInputProps()} />
+        <Typography variant="body1">
+          {uploading
+            ? textOverrides?.currentlyUploadingText ||
+              'Please wait while uploading file...'
+            : textOverrides?.instructionsText ||
+              'Drag and drop files or Browse'}
+        </Typography>
+        <Typography variant="body2" color="textSecondary">
+          {textOverrides?.supportsText || placeholder}
+        </Typography>
+      </StyledBox>
       {errors.map(
         ({ id, message }) =>
           message && (
@@ -162,9 +174,10 @@ const MultiDropZone: React.FC<MultiDropzoneProps> = ({
           {textOverrides?.tooManyFilesError || 'Too many files.'}
         </Typography>
       </Collapse>
-    </StyledBox>
+    </>
   )
 }
 
 export type { FileType, MultiDropzoneProps, UploadedFile, UploadStatus }
+
 export default MultiDropZone

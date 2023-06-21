@@ -1,37 +1,29 @@
 import { Accept, ErrorCode, FileError } from 'react-dropzone'
-import { formatBytes } from '@/utils/formatBytes'
 import {
-  AcceptType,
   DOCUMENT_FILES,
+  IMAGE_FILES,
+  AcceptType,
   FileMimeTypes,
   FileType,
-  IMAGE_FILES,
   TextOverrides,
   UploadStatus,
-} from '../types'
+} from '@/components/MultiDropzone/types'
+import formatBytes from '@/utils/formatBytes'
 
 export const getUploadStatus = (
   progress: number,
   error?: string
 ): UploadStatus => {
-  if (error) {
-    return 'ERROR'
-  }
-
-  if (progress < 100) {
-    return 'UPLOADING'
-  }
-
+  if (error) return 'ERROR'
+  if (progress < 100) return 'UPLOADING'
   return 'COMPLETE'
 }
 
 const formatMimeType = (values: FileType[]): Accept => {
   const formatedValues = {} as Accept
-
-  values.forEach((value) => {
-    formatedValues[FileMimeTypes[value]] = [`.${value}`]
-  })
-
+  values.forEach(
+    (value) => (formatedValues[FileMimeTypes[value]] = [`.${value}`])
+  )
   return formatedValues
 }
 
@@ -39,14 +31,8 @@ export const DOCUMENT_FILES_ACCEPT = formatMimeType(DOCUMENT_FILES)
 export const IMAGE_FILES_ACCEPT = formatMimeType(IMAGE_FILES)
 
 export const getFormattedAcceptObject = (accept: AcceptType = {}): Accept => {
-  if (accept === 'document') {
-    return DOCUMENT_FILES_ACCEPT
-  }
-
-  if (accept === 'image') {
-    return IMAGE_FILES_ACCEPT
-  }
-
+  if (accept === 'document') return DOCUMENT_FILES_ACCEPT
+  if (accept === 'image') return IMAGE_FILES_ACCEPT
   return accept
 }
 

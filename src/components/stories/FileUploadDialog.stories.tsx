@@ -1,8 +1,10 @@
 import { Meta, StoryObj } from '@storybook/react'
-import { useArgs } from '@storybook/client-api'
+import { useArgs, useCallback } from '@storybook/client-api'
+import { Button } from '@mui/material'
 import FileUploadDialog, {
   FileUploadDialogProps,
 } from '@/components/FileUploadDialog'
+import { SyntheticEvent } from 'react'
 
 type Story = StoryObj<FileUploadDialogProps>
 
@@ -11,32 +13,39 @@ export default {
   component: FileUploadDialog,
   argTypes: {
     open: { control: 'boolean' },
-    onClose: { action: 'close' },
+    onClose: {
+      description: 'Callback when the user close the modal',
+      action: true,
+      table: {
+        category: 'Callbacks',
+      },
+    },
   },
 } as Meta<FileUploadDialogProps>
 
-const files = [
-  { name: 'example1.json', progress: 20 },
-  { name: 'example2.json', progress: 100, success: true },
-  {
-    name: 'example3.json',
-    progress: 100,
-    success: false,
-    error: 'Upload failed',
-  },
-]
+export const Playground = () => {
+  const [{ open = false, onClose }, updateArgs] = useArgs()
 
-export const Playground = ({ ...args }) => {
-  const [{ open }, updateArgs] = useArgs()
-  const handleClose = () => updateArgs({ open: !open })
+  const toggle = useCallback(
+    (event: SyntheticEvent<Element, Event> | null, reason?: string) => {
+      if (open) {
+        onClose(event, reason)
+      }
+      updateArgs({ open: !open })
+    },
+    [open, onClose, updateArgs]
+  )
 
   return (
     <div>
+      <Button onClick={toggle}>Open Dialog</Button>
       <FileUploadDialog
         open={open}
-        onClose={handleClose}
-        {...args}
-        // files={files}
+        onClose={toggle}
+        dialogProps={{
+          open,
+          maxWidth: 'md',
+        }}
       />
     </div>
   )

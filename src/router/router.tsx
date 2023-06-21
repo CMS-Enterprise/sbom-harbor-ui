@@ -24,7 +24,7 @@ import NavigateToLogin from '@/components/react-router/NavigateToLogin'
 // ** Loaders, Utils
 import authLoader from '@/router/authLoader'
 import teamLoader from '@/router/teamLoader'
-import teamsLoader from '@/router/teamsLoader'
+// import teamsLoader from '@/router/teamsLoader'
 import productsLoader from '@/router/productsLoader'
 import configureCognito from '@/utils/configureCognito'
 

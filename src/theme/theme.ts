@@ -307,6 +307,13 @@ theme = createTheme(theme, {
       letterSpacing: '1px',
       color: theme.palette.text.secondary,
     },
+    link: {
+      color: theme.palette.primary.main,
+      textDecoration: 'none',
+      '&:hover': {
+        color: theme.palette.primary.light,
+      },
+    },
   },
 })
 

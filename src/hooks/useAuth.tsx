@@ -33,8 +33,8 @@ const defaultProvider: AuthValuesType = {
 
 export interface AuthActionParams {
   type: AuthActions
-  payload: AuthValuesType
-  error: Error | null
+  payload?: AuthValuesType
+  error?: Error | null
 }
 
 export const AuthReducer = (

@@ -73,9 +73,10 @@ const ProductsTable = ({ products }: InputProps = { products: [] }) => (
       hideFooter
       rows={products || []}
       columns={columns}
-      disableSelectionOnClick
+      // disableSelectionOnClick
       pagination={true}
-      pageSize={20}
+      // pageSizeOptions={[5, 10, 20]}
+      autoPageSize
     />
   </Card>
 )
