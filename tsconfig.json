@@ -45,7 +45,7 @@
       "@testing-library/jest-dom"
     ]
   },
-  "include": ["src", "declaration.d.ts", "config/jest/setupTests.ts"],
+  "include": ["src", "declaration.d.ts"],
   "exclude": [
     "**/node_modules",
     "dist",

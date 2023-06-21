@@ -14,6 +14,13 @@ export default defineConfig({
       '@': '/src',
     },
   },
-  plugins: [react(), EnvironmentPlugin('all'), visualizer() as PluginOption],
+  plugins: [
+    EnvironmentPlugin('all'),
+    react(),
+    visualizer({
+      emitFile: true,
+      filename: 'stats.html',
+    }) as PluginOption,
+  ],
   appType: 'spa',
 })
