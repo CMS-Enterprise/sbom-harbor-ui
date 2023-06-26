@@ -23,6 +23,12 @@ declare module '@mui/material/Button' {
   }
 }
 
+declare module '@mui/material/SvgIcon' {
+  interface SvgIconPropsColorOverrides {
+    dark?: true
+  }
+}
+
 // ** Base theme with breakpoints, direction, spacing
 let theme = createTheme({
   spacing: 4,
@@ -1297,6 +1303,9 @@ theme = createTheme(theme, {
           color: theme.palette.primary.main,
           fontWeight: theme.typography.fontWeightRegular,
         },
+        dark: {
+          color: theme.palette.primary.dark,
+        },
       },
     },
     MuiTab: {
@@ -1368,6 +1377,11 @@ theme = createTheme(theme, {
       styleOverrides: {
         root: {
           fontWeight: theme.typography.fontWeightBold,
+          '& a': {
+            fontWeight: theme.typography.fontWeightMedium,
+            color: theme.palette.primary.main,
+            textDecoration: 'none',
+          },
         },
         body1: {
           fontWeight: theme.typography.fontWeightRegular,
