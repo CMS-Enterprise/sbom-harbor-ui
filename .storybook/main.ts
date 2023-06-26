@@ -4,28 +4,33 @@ import path from 'path'
 const config = {
   stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
   addons: [
-    path.dirname(
-      require.resolve(path.join('@storybook/addon-links', 'package.json'))
-    ),
-    path.dirname(
-      require.resolve(path.join('@storybook/addon-essentials', 'package.json'))
-    ),
-    path.dirname(
-      require.resolve(
-        path.join('@storybook/addon-interactions', 'package.json')
-      )
-    ),
+    '@storybook/addon-links',
+    '@storybook/addon-essentials',
+    '@storybook/addon-interactions',
+    '@storybook/addon-styling',
   ],
   framework: {
-    name: "@storybook/react-vite",
+    name: '@storybook/react-vite',
     options: {
       builder: {
-        viteConfigPath: "vite.config.ts",
+        viteConfigPath: 'vite.config.ts',
       },
     },
   },
   docs: {
     autodocs: 'tag',
   },
+  typescript: {
+    check: false,
+    checkOptions: {},
+    reactDocgen: 'react-docgen-typescript',
+    reactDocgenTypescriptOptions: {
+      // speeds up storybook build time
+      allowSyntheticDefaultImports: false,
+      // speeds up storybook build time
+      esModuleInterop: false,
+    },
+  },
 }
+
 export default config
