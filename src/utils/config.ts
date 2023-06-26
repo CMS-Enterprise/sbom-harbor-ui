@@ -3,7 +3,7 @@
  * @exports CONFIG
  * @exports storageTokenKeyName
  */
-type AppConfig = {
+export type AppConfig = {
   AWS_REGION: string | 'us-east-1'
   CF_DOMAIN: string
 
