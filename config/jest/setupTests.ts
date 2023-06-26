@@ -1,6 +1,13 @@
 /**
  * @module @cyclone-dx/ui/sbom/utils/setupTests
  */
+// global mocks
+jest.mock('web-vitals')
+
+// enable mocking of fetch requests
+import { enableFetchMocks } from 'jest-fetch-mock'
+enableFetchMocks()
+
 import '@testing-library/jest-dom'
 import '@testing-library/jest-dom/extend-expect'
 
