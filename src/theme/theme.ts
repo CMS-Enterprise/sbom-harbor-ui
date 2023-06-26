@@ -8,8 +8,24 @@ import { createTheme } from '@mui/material/styles'
 
 export const MuiDrawerWidth = 200
 
-// ** Base theme with breakpoints, direction, shape.borderRadius
+declare module '@mui/material/styles' {
+  interface Palette {
+    dark?: Palette['primary']
+  }
+  interface PaletteOptions {
+    dark?: PaletteOptions['primary']
+  }
+}
+
+declare module '@mui/material/Button' {
+  interface ButtonPropsColorOverrides {
+    dark?: true
+  }
+}
+
+// ** Base theme with breakpoints, direction, spacing
 let theme = createTheme({
+  spacing: 4,
   breakpoints: {
     keys: ['xs', 'sm', 'md', 'lg', 'xl'],
     values: {
@@ -22,8 +38,13 @@ let theme = createTheme({
     unit: 'px',
   },
   direction: 'ltr',
+})
+
+//* Spacing
+theme = createTheme({
   shape: {
-    borderRadius: 8,
+    // hack around the typing for border radius being wrong
+    borderRadius: +`${theme.spacing(2)}`.replace('px', ''),
   },
 })
 
@@ -42,8 +63,8 @@ theme = createTheme(theme, {
 theme = createTheme(theme, {
   palette: {
     primary: {
-      light: '#787EFF',
-      main: '#666CFF',
+      light: '#5B70AD',
+      main: '#051094',
       dark: '#5A5FE0',
       contrastText: theme.palette.common.white,
     },
@@ -94,7 +115,7 @@ theme = createTheme(theme, {
       A700: '#303030',
     },
     text: {
-      primary: 'rgba(76, 78, 100, 0.87)',
+      primary: 'rgba(0, 0, 0, 1)',
       secondary: 'rgba(76, 78, 100, 0.68)',
       disabled: 'rgba(76, 78, 100, 0.38)',
     },
@@ -127,28 +148,20 @@ theme = createTheme(theme, {
 // ** Typography
 theme = createTheme(theme, {
   typography: {
-    fontFamily: [
-      'Inter',
-      'sans-serif',
-      '-apple-system',
-      'BlinkMacSystemFont',
-      '"Segoe UI"',
-      'Roboto',
-      '"Helvetica Neue"',
-      'Arial',
-      'sans-serif',
-      '"Apple Color Emoji"',
-      '"Segoe UI Emoji"',
-      '"Segoe UI Symbol"',
-    ].join(','),
+    fontFamily:
+      '"OpenSans",Inter,sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol"',
+    fonts: {
+      base: '-apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
+      mono: 'ui-monospace, "Cascadia Mono", "Segoe UI Mono", "Liberation Mono", Menlo, Monaco, Consolas, monospace',
+    },
     htmlFontSize: 16,
     fontSize: 14,
     fontWeightLight: 300,
     fontWeightRegular: 400,
-    fontWeightMedium: 500,
+    fontWeightMedium: 600,
     fontWeightBold: 700,
     h1: {
-      fontFamily: `Lato,${theme.typography.fontFamily}`,
+      fontFamily: theme.typography.fontFamily,
       fontWeight: theme.typography.fontWeightBold,
       fontSize: '3.5rem',
       lineHeight: 1.167,
@@ -165,7 +178,7 @@ theme = createTheme(theme, {
       },
     },
     h2: {
-      fontFamily: `Lato,${theme.typography.fontFamily}`,
+      fontFamily: theme.typography.fontFamily,
       fontWeight: theme.typography.fontWeightBold,
       fontSize: '2.375rem',
       lineHeight: 1.2,
@@ -182,7 +195,7 @@ theme = createTheme(theme, {
       },
     },
     h3: {
-      fontFamily: `Lato,${theme.typography.fontFamily}`,
+      fontFamily: theme.typography.fontFamily,
       fontWeight: theme.typography.fontWeightBold,
       fontSize: '2rem',
       lineHeight: 1.167,
@@ -199,7 +212,7 @@ theme = createTheme(theme, {
       },
     },
     h4: {
-      fontFamily: `Lato,${theme.typography.fontFamily}`,
+      fontFamily: theme.typography.fontFamily,
       fontWeight: theme.typography.fontWeightBold,
       fontSize: '1.5625rem',
       lineHeight: 1.235,
@@ -216,7 +229,7 @@ theme = createTheme(theme, {
       },
     },
     h5: {
-      fontFamily: `Lato,${theme.typography.fontFamily}`,
+      fontFamily: theme.typography.fontFamily,
       fontWeight: theme.typography.fontWeightBold,
       fontSize: '1.25rem',
       lineHeight: 1.334,
@@ -233,7 +246,7 @@ theme = createTheme(theme, {
       },
     },
     h6: {
-      fontFamily: `Lato,${theme.typography.fontFamily}`,
+      fontFamily: theme.typography.fontFamily,
       fontWeight: theme.typography.fontWeightBold,
       fontSize: '1.125rem',
       lineHeight: 1.6,
@@ -306,6 +319,13 @@ theme = createTheme(theme, {
       textTransform: 'uppercase',
       letterSpacing: '1px',
       color: theme.palette.text.secondary,
+    },
+    link: {
+      color: theme.palette.primary.main,
+      textDecoration: 'none',
+      '&:hover': {
+        color: theme.palette.primary.light,
+      },
     },
   },
 })
@@ -584,7 +604,10 @@ theme = createTheme(theme, {
     MuiButton: {
       styleOverrides: {
         root: {
-          fontWeight: theme.typography.fontWeightMedium,
+          fontSize: theme.typography.htmlFontSize,
+          fontFamily: theme.typography.fontFamily,
+          fontWeight: theme.typography.fontWeightRegular,
+          textTransform: 'capitalize',
           borderRadius: theme.shape.borderRadius,
           lineHeight: 1.715,
           padding: '0.4375rem 0.75rem',
@@ -654,6 +677,10 @@ theme = createTheme(theme, {
             lineHeight: 1.6,
             padding: '0.5rem 1.5625rem',
           },
+        },
+        // custom Button variant for a dark background color
+        dark: {
+          backgroundColor: theme.palette.primary.dark,
         },
       },
     },
@@ -903,16 +930,22 @@ theme = createTheme(theme, {
       styleOverrides: {
         paper: {
           boxShadow: theme.shadows[6],
+          borderRadius: theme.shape.borderRadius * 1.5,
+          border: `1px solid ${theme.palette.primary.dark}`,
         },
       },
     },
     MuiDialogActions: {
       styleOverrides: {
         root: {
-          padding: '1.25rem',
+          marginTop: '2rem',
+          paddingRight: '0',
           '& .MuiButton-text': {
-            paddingLeft: '0.625rem',
-            paddingRight: '0.625rem',
+            paddingLeft: theme.spacing(1),
+            paddingRight: theme.spacing(1),
+          },
+          '&>:not(:first-of-type)': {
+            marginLeft: theme.spacing(4),
           },
         },
       },
@@ -927,7 +960,10 @@ theme = createTheme(theme, {
     MuiDialogTitle: {
       styleOverrides: {
         root: {
-          padding: '1.25rem',
+          fontFamily: theme.typography.fontFamily,
+          fontWeight: theme.typography.fontWeightMedium,
+          padding: theme.spacing(3),
+          marginBottom: theme.spacing(3),
         },
       },
     },
@@ -1252,6 +1288,14 @@ theme = createTheme(theme, {
         track: {
           borderRadius: '1rem',
           opacity: 0.5,
+        },
+      },
+    },
+    MuiSvgIcon: {
+      styleOverrides: {
+        root: {
+          color: theme.palette.primary.main,
+          fontWeight: theme.typography.fontWeightRegular,
         },
       },
     },

@@ -20,6 +20,7 @@ describe('Theme Unit Tests', () => {
       divider: expect.any(String),
       background: expect.any(Object),
       action: expect.any(Object),
+      // dark: expect.any(Object),
     })
   })
 
