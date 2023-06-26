@@ -1,12 +1,11 @@
 import React, { useCallback, useState } from 'react'
 import { useDropzone, FileRejection } from 'react-dropzone'
+import { v4 as uuidv4 } from 'uuid'
 import { styled } from '@mui/material/styles'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import Collapse from '@mui/material/Collapse'
-import Stack from '@mui/material/Stack'
 import UploadFileIcon from '@mui/icons-material/UploadFile'
-import generateId from '@/utils/generateId'
 import formatBytes from '@/utils/formatBytes'
 import {
   formatAcceptFileList,
@@ -105,7 +104,7 @@ const MultiDropZone: React.FC<MultiDropzoneProps> = ({
         ...previousErrors,
         ...filesRejected.map(({ file, errors }) => ({
           file,
-          id: generateId(),
+          id: uuidv4(),
           message: getErrorMessage(
             errors[0],
             { fileList, maxSize },
