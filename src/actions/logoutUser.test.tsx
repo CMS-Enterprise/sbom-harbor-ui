@@ -3,13 +3,6 @@ import { Auth } from 'aws-amplify'
 import logoutUser from '@/actions/logoutUser'
 import { AuthActions } from '@/actions/actionTypes'
 
-// Mock AWS Amplify Auth
-jest.mock('aws-amplify', () => ({
-  Auth: {
-    signOut: jest.fn(),
-  },
-}))
-
 // Helper function to provide a mock dispatch function for our tests
 function useMockDispatch() {
   const dispatch = jest.fn()

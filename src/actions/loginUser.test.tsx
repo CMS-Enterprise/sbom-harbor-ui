@@ -11,13 +11,6 @@ type SignInMock = jest.Mock
 type CurrentSessionMock = jest.Mock
 type User = CognitoUser & { attributes: { email: string } }
 
-jest.mock('aws-amplify', () => ({
-  Auth: {
-    signIn: jest.fn() as SignInMock,
-    currentSession: jest.fn() as CurrentSessionMock,
-  },
-}))
-
 const mockDispatch = jest.fn()
 
 describe('loginUser action', () => {

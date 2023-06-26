@@ -2,6 +2,7 @@
  * @module @cyclone-dx/ui/sbom/utils/setupTests
  */
 // global mocks
+jest.mock('aws-amplify')
 jest.mock('web-vitals')
 
 // enable mocking of fetch requests
