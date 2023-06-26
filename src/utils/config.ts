@@ -29,7 +29,7 @@ const apiUrl = `${process.env.VITE_CF_DOMAIN}/api`
  * Set global configuration for the application provided by webpack (craco) at build time.
  * @see {@link @sbom-harbor-ui/dashboard/craco.config.js}.
  */
-export const CONFIG = {
+const CONFIG = {
   AWS_REGION: process.env.VITE_AWS_REGION,
   CF_DOMAIN: process.env.VITE_CF_DOMAIN,
 
@@ -47,3 +47,5 @@ export const CONFIG = {
   USER_API_URL: `${apiUrl}/v1/user`,
   USER_API_SEARCH_URL: `${apiUrl}/v1/user/search`,
 } as AppConfig
+
+export default CONFIG
