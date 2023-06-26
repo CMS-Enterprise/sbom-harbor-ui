@@ -17,8 +17,7 @@ export const DEFAULT_CELL_UPLOADED_TEXT = 'Uploaded'
 // The default text shown when the file is uploading.
 export const DEFAULT_CELL_UPLOADING_TEXT = 'Uploading...'
 // The default text shown when the file upload fails.
-export const DEFAULT_CELL_ERROR_TEXT =
-  'Something went wrong. Try uploading again.'
+export const DEFAULT_CELL_ERROR_TEXT = 'Something went wrong. Try again.'
 
 //* Constants for the file types.
 const SOURCE_CODE_FILES: FileType[] = ['json']

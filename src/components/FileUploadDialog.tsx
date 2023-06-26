@@ -216,7 +216,6 @@ const FileUploadDialog: React.FC<FileUploadDialogProps> = ({
           uploadedFiles: [],
         },
       })
-
       onClose(event, reason)
     },
     [state.uploading]
@@ -244,6 +243,7 @@ const FileUploadDialog: React.FC<FileUploadDialogProps> = ({
             uploadedFiles: uploadedFiles.map((f) => ({
               ...f,
               progress: 100,
+              uploaded: true,
             })),
             uploading: false,
           },
@@ -284,6 +284,7 @@ const FileUploadDialog: React.FC<FileUploadDialogProps> = ({
             ...uploadedFiles,
             ...newFiles.map((f) => {
               const fileWithProgress = {
+                ...f,
                 name: f.name,
                 progress: 0,
                 id: uuidv4(),
@@ -326,6 +327,7 @@ const FileUploadDialog: React.FC<FileUploadDialogProps> = ({
             onFileSelect={handleFileSelect}
             onRemoveFile={handleRemoveFile}
             uploadedFiles={uploadedFiles}
+            maxFiles={1}
             textOverrides={{
               supportsText: 'Supports CycloneDX JSON files',
             }}

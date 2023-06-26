@@ -7,6 +7,7 @@ import { UploadedFile } from '@/components/MultiDropzone/MultiDropzone'
 import FileUploadDialog, {
   FileUploadDialogProps,
 } from '@/components/FileUploadDialog'
+import { getErrorMessage } from '../MultiDropzone/utils'
 
 type Story = StoryObj<FileUploadDialogProps>
 
@@ -154,6 +155,7 @@ export const WithoutFiles: Story = {
 export const WithFileToUpload: Story = {
   args: {
     ...defaultValues,
+    open: true,
     uploadedFiles: [{ id: uuidv4(), name: 'sbom.json', progress: 0 }],
   },
 }
@@ -161,7 +163,27 @@ export const WithFileToUpload: Story = {
 export const WithFileUploading: Story = {
   args: {
     ...defaultValues,
+    open: true,
     uploading: true,
     uploadedFiles: [{ id: uuidv4(), name: 'sbom.json', progress: 50 }],
+  },
+}
+
+export const WithFileSizeError: Story = {
+  args: {
+    ...defaultValues,
+    open: true,
+    uploading: false,
+    uploadedFiles: [
+      {
+        id: uuidv4(),
+        name: 'sbom.json',
+        progress: 50,
+        error: getErrorMessage(
+          { code: 'file-too-large', message: 'File too large' },
+          { fileList: 'JSON', maxSize: 1000000 }
+        ),
+      },
+    ],
   },
 }

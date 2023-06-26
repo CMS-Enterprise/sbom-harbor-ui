@@ -136,7 +136,14 @@ const MultiDropZone: React.FC<MultiDropzoneProps> = ({
   uploadedFiles,
   uploading,
 }) => {
-  const [errors, setErrors] = useState<ErrorMessage[]>([])
+  const [errors, setErrors] = useState<ErrorMessage[]>(() => {
+    return uploadedFiles
+      .filter((file) => file.error)
+      .map((file) => ({
+        id: file.id || uuidv4(),
+        message: file.error || '',
+      }))
+  })
   const formattedAccept = getFormattedAcceptObject(accept)
   const fileList = formatAcceptFileList(formattedAccept)
   const maxSizePlaceholder =
@@ -181,7 +188,7 @@ const MultiDropZone: React.FC<MultiDropzoneProps> = ({
         console.error(currentErrors)
       }
     },
-    [fileList, maxSize, onFileSelect, textOverrides]
+    [fileList, maxSize, textOverrides]
   )
 
   const handleRemoveFile = useCallback(
@@ -223,23 +230,6 @@ const MultiDropZone: React.FC<MultiDropzoneProps> = ({
           {textOverrides?.supportsText || placeholder}
         </Typography>
       </StyledBox>
-      {errors.map(
-        ({ id, message }) =>
-          message && (
-            <UploadFileCell
-              uploadStatus={UploadStatus.ERROR}
-              file={{
-                error: message,
-                id,
-                name: message,
-                progress: 0,
-              }}
-              key={id}
-              onRemoveFile={() => removeError(id)}
-              uploading={false}
-            />
-          )
-      )}
 
       {uploadedFiles.length > 0 && (
         <Box mt={2}>
@@ -256,9 +246,11 @@ const MultiDropZone: React.FC<MultiDropzoneProps> = ({
       )}
 
       <Collapse in={isOverMaxFiles}>
-        <Typography variant="body2" color="error">
-          {textOverrides?.tooManyFilesError || DEFAULT_TOO_MANY_FILES_ERROR}
-        </Typography>
+        {isOverMaxFiles && (
+          <Typography variant="body2" color="error">
+            {textOverrides?.tooManyFilesError || DEFAULT_TOO_MANY_FILES_ERROR}
+          </Typography>
+        )}
       </Collapse>
     </>
   )

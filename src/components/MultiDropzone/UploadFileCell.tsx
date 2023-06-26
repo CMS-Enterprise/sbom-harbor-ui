@@ -91,13 +91,21 @@ const UploadFileCell: React.FC<UploadFileCellProps> = ({
     <Box sx={{ my: 1, display: 'flex', alignItems: 'center' }}>
       <Box sx={{ display: 'flex', alignItems: 'center', flexGrow: 1, w: 100 }}>
         <Box sx={{ flexGrow: 1, ml: 1 }}>
-          <Typography variant="body1">
-            {uploading && mapDisplayText[uploadStatus]}
-            {name}
+          <Typography variant="body1">{name}</Typography>
+          <Typography variant="body2" color="text.secondary">
+            {!hasError &&
+              uploading &&
+              progress < 100 &&
+              mapDisplayText[uploadStatus]}
+            {hasError && mapDisplayText[uploadStatus]}
           </Typography>
           {isUploading && showProgressBar && (
             <Box sx={{ mt: 1 }}>
-              <LinearProgress variant="determinate" value={progress} />
+              <LinearProgress
+                variant="determinate"
+                value={progress}
+                data-testid="linear-progress"
+              />
             </Box>
           )}
         </Box>
@@ -112,15 +120,27 @@ const UploadFileCell: React.FC<UploadFileCellProps> = ({
               height: 48,
             }}
           >
-            {showLoadingSpinner && <CircularProgress />}
+            {showLoadingSpinner && (
+              <CircularProgress data-testid="circular-progress" />
+            )}
           </Box>
         ) : (
           <Box>
             {isComplete && <CheckIcon />}
             {isUploading && fileIcon}
             {!isUploading && (
-              <IconButton disabled={uploading} onClick={handleRemoveFile}>
-                {hasError ? <ErrorIcon /> : !isComplete ? <DeleteIcon /> : null}
+              <IconButton
+                role="button"
+                aria-label="file-action"
+                disabled={uploading}
+                onClick={handleRemoveFile}
+                color={hasError ? 'error' : 'primary'}
+              >
+                {hasError ? (
+                  <ErrorIcon color="error" />
+                ) : !isComplete ? (
+                  <DeleteIcon />
+                ) : null}
               </IconButton>
             )}
           </Box>

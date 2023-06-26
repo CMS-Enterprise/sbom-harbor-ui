@@ -1300,7 +1300,6 @@ theme = createTheme(theme, {
     MuiSvgIcon: {
       styleOverrides: {
         root: {
-          color: theme.palette.primary.main,
           fontWeight: theme.typography.fontWeightRegular,
         },
         dark: {
