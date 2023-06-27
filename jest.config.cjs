@@ -3,6 +3,7 @@ module.exports = {
   roots: ['<rootDir>/src'],
   collectCoverageFrom: [
     'src/**/*.{js,jsx,ts,tsx}',
+    '!src/**/*.stories.(js|jsx|ts|tsx)',
     '!src/**/*.d.ts',
     '!src/mocks/**',
   ],
