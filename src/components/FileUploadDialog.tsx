@@ -19,9 +19,9 @@ enum CloseReason {
   ESCAPE_KEY_DOWN = 'escapeKeyDown',
 }
 
-type OnCloseReason = 'backdropClick' | 'escapeKeyDown' | undefined
+export type OnCloseReason = 'backdropClick' | 'escapeKeyDown' | undefined
 
-type OnCloseEvent =
+export type OnCloseEvent =
   | React.BaseSyntheticEvent<Event, EventTarget, EventTarget>
   | unknown
 
@@ -309,15 +309,7 @@ const FileUploadDialog: React.FC<FileUploadDialogProps> = ({
   }, [])
 
   return (
-    <Dialog
-      open={open}
-      onClose={handleClose}
-      onDragOver={handleDragOver}
-      role="dialog"
-      maxWidth="sm"
-      fullWidth
-      {...dialogProps}
-    >
+    <>
       <DialogTitle variant="h5">Upload SBOM JSON files</DialogTitle>
       <DialogContent>
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -333,7 +325,7 @@ const FileUploadDialog: React.FC<FileUploadDialogProps> = ({
             }}
           />
           <DialogActions>
-            <Button onClick={onClose} disabled={uploading} size="large">
+            <Button onClick={handleClose} disabled={uploading} size="large">
               Cancel
             </Button>
             <Button
@@ -348,7 +340,7 @@ const FileUploadDialog: React.FC<FileUploadDialogProps> = ({
           </DialogActions>
         </form>
       </DialogContent>
-    </Dialog>
+    </>
   )
 }
 
