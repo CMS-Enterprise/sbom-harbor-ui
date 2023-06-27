@@ -2,7 +2,7 @@
  * Factory to create a function that will make a request to the Harbor API
  * @module sbom-harbor-ui/utils/harborRequest
  */
-import { CONFIG } from '@/utils/config'
+import CONFIG from '@/utils/config'
 import sanitizeUrl from '@/utils/sanitizeUrl'
 
 type HarborRequestParams = {

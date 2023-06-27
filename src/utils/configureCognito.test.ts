@@ -5,13 +5,6 @@
 import { Amplify } from 'aws-amplify'
 import configureCognito from '@/utils/configureCognito'
 
-// Mock the Amplify module to spy on the Auth.configure method
-jest.mock('aws-amplify', () => ({
-  Amplify: {
-    configure: jest.fn(),
-  },
-}))
-
 beforeEach(() => jest.resetAllMocks())
 
 afterAll(() => jest.clearAllMocks())

@@ -2,8 +2,6 @@ import { AuthActions } from '@/actions/actionTypes'
 import loginUserFederated from '@/actions/loginUserFederated'
 import { Auth } from 'aws-amplify'
 
-jest.mock('aws-amplify')
-
 describe('loginUserFederated', () => {
   let mockDispatch: jest.Mock
 

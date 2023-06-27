@@ -3,7 +3,7 @@
  */
 import * as React from 'react'
 import { useAuthState } from '@/hooks/useAuth'
-import { CONFIG } from '@/utils/config'
+import CONFIG from '@/utils/config'
 import { TeamEntity } from '@/types'
 
 type DataState = {

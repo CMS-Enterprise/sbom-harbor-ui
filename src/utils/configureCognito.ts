@@ -4,7 +4,7 @@
  * @see {@link @sbom-harbor-ui/dashboard/router/routes.tsx}
  */
 import { Amplify } from 'aws-amplify'
-import { CONFIG } from '@/utils/config'
+import CONFIG from '@/utils/config'
 
 export function configureCognito(): null {
   const options = {
