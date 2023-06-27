@@ -2,23 +2,26 @@
  * A component that renders a table of team members with their details.
  * @module sbom-harbor-ui/views/Dashboard/Uploads/components/ProductsTable
  */
+import { v4 as uuidv4 } from 'uuid'
 import Card from '@mui/material/Card'
-import Typography from '@mui/material/Typography'
-import { DataGrid, GridColDef } from '@mui/x-data-grid'
+import { DataGrid, type GridColDef } from '@mui/x-data-grid'
+import {
+  formatLastUploadDate,
+  mapLastUploadToFreshness,
+} from '@/views/Dashboard/Uploads/utils'
 
-type FreshnessChipProps = {
-  lastUpload: string
-  freshness: number
-}
-
-type ProductRow = {
+export interface Product {
+  id: string
   name: string
   vendor: string
-  lastUpload: string
-  freshness: number
+  lastUpload: TDateISO | undefined
 }
 
-type RenderCellProps = {
+interface ProductRow extends Product {
+  freshness?: number
+}
+
+interface RenderCellProps {
   row: ProductRow
 }
 
@@ -29,54 +32,56 @@ type RenderCellProps = {
  */
 const columns: GridColDef[] = [
   {
-    field: 'productName',
-    headerName: 'Product Name',
+    field: 'id',
+    headerName: 'ID',
+    valueGetter: ({ id }) => id,
   },
-  {
-    field: 'vendor',
-    headerName: 'Vendor',
-  },
-  // TODO: Add a chip component for freshness
+  { field: 'name', headerName: 'Product Name' },
+  { field: 'vendor', headerName: 'Vendor' },
   {
     field: 'freshness',
     headerName: 'SBOM Freshness',
-    renderCell: ({ row }: RenderCellProps) => (
-      <Typography variant="body2" sx={{ color: 'text.primary' }}>
-        {row.freshness}
-      </Typography>
-    ),
+    renderCell: ({ row: { lastUpload } }: RenderCellProps) =>
+      mapLastUploadToFreshness(lastUpload),
   },
   {
     field: 'lastUpload',
     headerName: 'Last SBOM Upload',
-    renderCell: ({ row: { lastUpload } }: RenderCellProps) => {
-      const datelastUpload = new Date(lastUpload).toLocaleDateString()
-      return <Typography variant="body2">{datelastUpload}</Typography>
-    },
+    renderCell: ({ row: { lastUpload } }: RenderCellProps) =>
+      formatLastUploadDate(lastUpload),
   },
 ]
 
-type InputProps = {
+export type ProductsTableProps = {
   products?: ProductRow[]
+  getRowId?: (row: ProductRow) => string
+  showId?: boolean
 }
 
 /**
  * A component that renders a table of vendor products with their details.
- * @param {InputProps} props Input props for the ProductsTable component.
+ * @param {ProductsTableProps} props Input props for the ProductsTable component.
  * @param {ProductRow[]} props.products - The list of vendor products.
  * @returns {JSX.Element} A component that renders a datagrid table of products.
  */
-const ProductsTable = ({ products }: InputProps = { products: [] }) => (
+const ProductsTable = ({
+  products = [],
+  getRowId = ({ id }: ProductRow) => id || uuidv4(),
+  showId = false,
+}: ProductsTableProps) => (
   <Card>
     <DataGrid
-      autoHeight
-      hideFooter
-      rows={products || []}
+      rows={products}
       columns={columns}
-      // disableSelectionOnClick
-      pagination={true}
-      // pageSizeOptions={[5, 10, 20]}
-      autoPageSize
+      autoHeight
+      getRowId={getRowId}
+      initialState={{
+        columns: {
+          columnVisibilityModel: {
+            id: showId,
+          },
+        },
+      }}
     />
   </Card>
 )
