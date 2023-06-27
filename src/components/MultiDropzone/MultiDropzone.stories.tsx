@@ -5,7 +5,7 @@ import MultiDropzone from '@/components/MultiDropzone/MultiDropzone'
 type Story = StoryObj<typeof MultiDropzone>
 
 export default {
-  title: 'Components/MultiDropzone',
+  title: 'Upload-UI/Components/MultiDropzone',
   component: MultiDropzone,
   argTypes: {
     uploadedFiles: {
