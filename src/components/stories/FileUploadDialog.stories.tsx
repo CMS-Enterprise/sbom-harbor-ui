@@ -20,7 +20,7 @@ const defaultValues = {
 }
 
 export default {
-  title: 'Components/FileUploadDialog',
+  title: 'Upload-UI/FileUploadDialog',
   component: FileUploadDialog,
   argTypes: {
     open: {
