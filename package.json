@@ -46,7 +46,6 @@
     "@mui/icons-material": "^5.11.16",
     "@mui/lab": "^5.0.0-alpha.134",
     "@mui/material": "^5.13.6",
-    "@mui/system": "^5.13.6",
     "@mui/x-data-grid": "^6.9.0",
     "@popperjs/core": "^2.11.8",
     "aws-amplify": "^5.3.1",
