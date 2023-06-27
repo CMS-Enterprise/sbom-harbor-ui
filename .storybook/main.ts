@@ -17,6 +17,9 @@ const config = {
       },
     },
   },
+  core: {
+    disableTelemetry: true,
+  },
   docs: {
     autodocs: 'tag',
   },
