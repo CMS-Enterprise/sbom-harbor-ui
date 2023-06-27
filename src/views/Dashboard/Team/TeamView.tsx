@@ -21,8 +21,17 @@ import { Project, Team, TeamMemberRole } from '@/types'
  * @returns {JSX.Element} A component that renders a team.
  */
 const TeamView = (): JSX.Element => {
-  // @ts-ignore
-  const { data } = useLoaderData()
+  const { data } = useLoaderData() as {
+    data: Team & {
+      membersTableRows: {
+        id: string
+        email: string
+        isTeamLead: boolean
+        role: TeamMemberRole
+        username: string
+      }[]
+    }
+  }
 
   return (
     <Paper variant="outlined" sx={{ p: 4 }}>

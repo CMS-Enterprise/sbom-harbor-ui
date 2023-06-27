@@ -15,7 +15,7 @@ import {
   DataGrid,
   GridActionsCell,
   GridActionsCellItem,
-  GridColumns,
+  GridColDef,
   GridRowId,
   GridRowParams,
 } from '@mui/x-data-grid'
@@ -50,7 +50,7 @@ type TokenRow = {
   loading: boolean
 } & Token
 
-type RenderCellProps = {
+type GridRenderCellParams = {
   row: Token
 }
 
@@ -259,13 +259,15 @@ const TokensTable = ({ teamId, tokens }: InputProps) => {
   /**
    * The column definitions for the TokensTable DataGrid.
    */
-  const columns = React.useMemo<GridColumns<TokenRow>>(
+  const columns = React.useMemo<GridColDef[]>(
     () => [
       {
         flex: 0.35,
         field: 'name',
         headerName: 'Description',
-        renderCell: ({ row: { name, id } }: RenderCellProps): JSX.Element => (
+        renderCell: ({
+          row: { name, id },
+        }: GridRenderCellParams): JSX.Element => (
           <Typography variant="body2">{name || id}</Typography>
         ),
       },
@@ -273,7 +275,9 @@ const TokensTable = ({ teamId, tokens }: InputProps) => {
         flex: 0.125,
         field: 'created',
         headerName: 'Created',
-        renderCell: ({ row: { created } }: RenderCellProps): JSX.Element => (
+        renderCell: ({
+          row: { created },
+        }: GridRenderCellParams): JSX.Element => (
           <DateLocaleString date={new Date(created)} />
         ),
         defaultSort: 'desc',
@@ -282,7 +286,9 @@ const TokensTable = ({ teamId, tokens }: InputProps) => {
         flex: 0.125,
         field: 'expires',
         headerName: 'Expires',
-        renderCell: ({ row: { expires } }: RenderCellProps): JSX.Element => (
+        renderCell: ({
+          row: { expires },
+        }: GridRenderCellParams): JSX.Element => (
           <DateLocaleString date={new Date(expires)} />
         ),
       },
@@ -290,7 +296,9 @@ const TokensTable = ({ teamId, tokens }: InputProps) => {
         flex: 0.125,
         field: 'expired',
         headerName: 'Expired?',
-        renderCell: ({ row: { expires } }: RenderCellProps): JSX.Element => {
+        renderCell: ({
+          row: { expires },
+        }: GridRenderCellParams): JSX.Element => {
           const isExpired = new Date() > new Date(expires)
           return (
             <Typography
@@ -306,7 +314,9 @@ const TokensTable = ({ teamId, tokens }: InputProps) => {
         flex: 0.125,
         field: 'enabled',
         headerName: 'Enabled?',
-        renderCell: ({ row: { enabled } }: RenderCellProps): JSX.Element => (
+        renderCell: ({
+          row: { enabled },
+        }: GridRenderCellParams): JSX.Element => (
           <Typography
             variant="caption"
             sx={{ color: !enabled ? 'red' : 'green', width: '100%' }}
@@ -320,7 +330,7 @@ const TokensTable = ({ teamId, tokens }: InputProps) => {
         type: 'actions',
         width: 80,
         cellClassName: 'MuiDataGrid-cell--full-width ',
-        renderCell: (params): JSX.Element => {
+        renderCell: (params: any): JSX.Element => {
           if (params.row.loading) {
             params.focusElementRef = null
             return (
@@ -368,7 +378,6 @@ const TokensTable = ({ teamId, tokens }: InputProps) => {
           columns={columns}
           rows={rows}
           autoHeight
-          disableSelectionOnClick
           getRowClassName={({ row: { loading = false } = {} }) =>
             `row-loading-${loading}`
           }
