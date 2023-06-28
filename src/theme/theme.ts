@@ -945,6 +945,10 @@ theme = createTheme(theme, {
         columnHeader: {
           padding: `${theme.spacing(1.5)} ${theme.spacing(3.5)}`,
 
+          '&:focus': {
+            outline: 'none',
+          },
+
           '& .MuiDataGrid-iconButtonContainer, & .MuiDataGrid-menuIcon': {
             '& .MuiSvgIcon-root': {
               color: theme.palette.common.white,
@@ -956,12 +960,16 @@ theme = createTheme(theme, {
           color: theme.palette.text.primary,
           padding: `${theme.spacing(0.5)} calc(${theme.spacing(3.5)} + 2px)`,
 
-          '&:first-child': {
+          '&:focus': {
+            outline: 'none',
+          },
+
+          '&:first-of-type': {
             paddingLeft: theme.spacing(3.5),
           },
 
-          '&:last-child': {
-            paddingRight: theme.spacing(3.5),
+          '&:nth-last-of-type(2)': {
+            paddingRight: theme.spacing(2),
           },
 
           '&[data-field="action"]': {

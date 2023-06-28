@@ -20,13 +20,12 @@ const defaultValues = {
 }
 
 export default {
-  title: 'Upload-UI/FileUploadDialog',
+  title: 'Upload-UI/Components/FileUploadDialog',
   component: FileUploadDialog,
   argTypes: {
     open: {
       control: 'boolean',
       defaultValue: false,
-      options: [true, false],
     },
     onClose: {
       description: 'Callback when the user close the modal',
@@ -40,7 +39,6 @@ export default {
     uploading: {
       control: 'boolean',
       defaultValue: false,
-      options: [true, false],
     },
     onUploadingChange: {
       description: 'Callback when the user upload a file',
@@ -68,17 +66,14 @@ export default {
     disableEscapeKeyDown: {
       control: false,
       defaultValue: false,
-      options: [true, false],
     },
     fullScreen: {
       control: 'boolean',
       defaultValue: false,
-      options: [true, false],
     },
     fullWidth: {
       control: 'boolean',
       defaultValue: true,
-      options: [true, false],
     },
     maxWidth: {
       control: 'radio',
