@@ -73,7 +73,7 @@ describe('ProductsTable', () => {
   })
 
   it('generates a unique id when id is not present in the row data', () => {
-    // @ts-expect-error
+    // @ts-expect-error ts(2741)
     const product: Product = {
       name: 'Product 1',
       vendor: 'Vendor 1',

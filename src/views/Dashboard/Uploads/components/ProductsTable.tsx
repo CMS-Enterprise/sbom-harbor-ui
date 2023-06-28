@@ -68,7 +68,6 @@ const ProductsTable = ({
    */
   const handleOpenDialog = useCallback(
     // TODO: use onUploadedFilesChange prop to get and update the files to upload
-    // @ts-expect-error
     (row: ProductRow) => {
       setOpen(true)
       openDialog({
