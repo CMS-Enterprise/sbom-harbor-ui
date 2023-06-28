@@ -6,7 +6,7 @@ import React, { Dispatch, useCallback, useMemo, useReducer } from 'react'
 import { useForm } from 'react-hook-form'
 import { v4 as uuidv4 } from 'uuid'
 import Button from '@mui/material/Button'
-import { DialogProps } from '@mui/material/Dialog'
+import Dialog, { DialogProps } from '@mui/material/Dialog'
 import DialogActions from '@mui/material/DialogActions'
 import DialogContent from '@mui/material/DialogContent'
 import DialogTitle from '@mui/material/DialogTitle'
@@ -19,7 +19,7 @@ enum CloseReason {
   ESCAPE_KEY_DOWN = 'escapeKeyDown',
 }
 
-export type OnCloseReason = 'backdropClick' | 'escapeKeyDown' | undefined
+export type OnCloseReason = 'backdropClick' | 'escapeKeyDown'
 
 export type OnCloseEvent =
   | React.BaseSyntheticEvent<Event, EventTarget, EventTarget>
@@ -27,7 +27,7 @@ export type OnCloseEvent =
 
 export interface FileUploadDialogProps extends DialogProps {
   open: boolean
-  onClose: (event: OnCloseEvent, reason?: OnCloseReason) => void
+  onClose?: (event: OnCloseEvent, reason: OnCloseReason) => void
   uploadedFiles?: UploadedFile[]
   onUploadedFilesChange?: (files: UploadedFile[]) => void
   uploading?: boolean
@@ -61,7 +61,7 @@ const DEFAULT_STATE = {
  * Component that renders a Material UI dialog for uploading SBOM JSON files.
  * @param {FileUploadDialogProps} props
  * @param {boolean} props.open - Whether the dialog is open
- * @param {(event: OnCloseEvent, reason?: OnCloseReason) => void} props.onClose - Callback
+ * @param {[(event: OnCloseEvent, reason: OnCloseReason) => void]} props.onClose - Callback
  *   to handle the close event.
  * @param {UploadedFile[]} props.uploadedFiles - The list of files that've been uploaded
  * @param {(files: UploadedFile[]) => void} props.onUploadedFilesChange - Callback
@@ -73,11 +73,13 @@ const DEFAULT_STATE = {
  * @returns {React.FC<FileUploadDialogProps>} - The FileUploadDialog component
  */
 const FileUploadDialog: React.FC<FileUploadDialogProps> = ({
+  open = false,
   onClose,
   uploadedFiles: controlledUploadedFiles,
   onUploadedFilesChange,
   uploading: controlledUploading,
   onUploadingChange,
+  ...dialogProps
 }) => {
   // Get the handleSubmit and reset functions from react-hook-form
   const { handleSubmit, reset } = useForm()
@@ -96,7 +98,7 @@ const FileUploadDialog: React.FC<FileUploadDialogProps> = ({
       if (onUploadingChange) onUploadingChange(uploading)
       if (onUploadedFilesChange) onUploadedFilesChange(uploadedFiles)
     },
-    []
+    [isControlled, onUploadedFilesChange, onUploadingChange]
   )
 
   /**
@@ -194,11 +196,11 @@ const FileUploadDialog: React.FC<FileUploadDialogProps> = ({
 
   /**
    * Handles the onClose event from the Dialog component.
-   * @param {React.BaseSyntheticEvent} event - The event that triggered the close
-   * @param {'backdropClick' | 'escapeKeyDown'} reason - The reason for the close
+   * @param {OnCloseEvent} event - The event that triggered the close
+   * @param {OnCloseReason} reason - The reason for the close
    */
   const handleClose = useCallback(
-    (event: OnCloseEvent, reason?: OnCloseReason) => {
+    (event: OnCloseEvent, reason: OnCloseReason) => {
       // return early to prevent closing if the user clicked on the backdrop
       if (reason === CloseReason.BACKDROP_CLICK) return
       // return early if the user is currently uploading files
@@ -212,9 +214,9 @@ const FileUploadDialog: React.FC<FileUploadDialogProps> = ({
           uploadedFiles: [],
         },
       })
-      onClose(event, reason)
+      onClose?.(event, reason)
     },
-    [state.uploading]
+    [onClose, reset, state.uploading]
   )
 
   /**
@@ -295,17 +297,8 @@ const FileUploadDialog: React.FC<FileUploadDialogProps> = ({
     [state, uploadedFiles]
   )
 
-  /**
-   * Handles the onDragOver event from the Dialog component.
-   * @param {React.DragEvent} event - The drag event
-   */
-  const handleDragOver = useCallback((event: React.DragEvent) => {
-    event.preventDefault()
-    event.stopPropagation()
-  }, [])
-
   return (
-    <>
+    <Dialog {...dialogProps} open={open} onClose={handleClose}>
       <DialogTitle variant="h5">Upload SBOM JSON files</DialogTitle>
       <DialogContent>
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -321,7 +314,13 @@ const FileUploadDialog: React.FC<FileUploadDialogProps> = ({
             }}
           />
           <DialogActions>
-            <Button onClick={handleClose} disabled={uploading} size="large">
+            <Button
+              onClick={() => {
+                handleClose({}, CloseReason.ESCAPE_KEY_DOWN)
+              }}
+              disabled={uploading}
+              size="large"
+            >
               Cancel
             </Button>
             <Button
@@ -336,7 +335,7 @@ const FileUploadDialog: React.FC<FileUploadDialogProps> = ({
           </DialogActions>
         </form>
       </DialogContent>
-    </>
+    </Dialog>
   )
 }
 
