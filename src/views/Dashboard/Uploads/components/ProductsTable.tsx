@@ -2,16 +2,14 @@
  * A component that renders a table of team members with their details.
  * @module sbom-harbor-ui/views/Dashboard/Uploads/components/ProductsTable
  */
-import { useCallback, useMemo } from 'react'
+import { useCallback, useMemo, useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
-import Button from '@mui/material/Button'
 import Card from '@mui/material/Card'
+import IconButton from '@mui/material/IconButton'
+import UploadFileIcon from '@mui/icons-material/UploadFile'
 import { DataGrid, type GridColDef } from '@mui/x-data-grid'
+import FileUploadDialog from '@/components/FileUploadDialog'
 import { useDialog } from '@/hooks/useDialog'
-import FileUploadDialog, {
-  OnCloseEvent,
-  OnCloseReason,
-} from '@/components/FileUploadDialog'
 import {
   formatLastUploadDate,
   mapLastUploadToFreshness,
@@ -51,41 +49,40 @@ const ProductsTable = ({
   showId = false,
   products = [],
 }: ProductsTableProps) => {
-  const [openDialog, setDialog] = useDialog()
+  const [open, setOpen] = useState(false)
+  const { openDialog, closeDialog } = useDialog()
 
   /**
    * The callback function that is called when the dialog is closed.
    * @param {OnCloseEvent} event - The event that triggered the dialog close.
    * @param {OnCloseReason} reason - The reason that the dialog was closed.
    */
-  const handleCloseDialog = useCallback(
-    (event: OnCloseEvent, reason: OnCloseReason) => {
-      setDialog({
-        children: <></>,
-        props: {
-          open: false,
-        },
-      })
-    },
-    []
-  )
+  const handleCloseDialog = useCallback(() => {
+    closeDialog()
+  }, [])
 
   /**
    * The callback function that is called when the upload button is clicked.
    * @param {ProductRow} row - The row that the upload button was clicked for.
    * @todo Implement the upload functionality.
    */
-  const handleOpenDialog = useCallback((row: ProductRow) => {
-    openDialog({
-      children: <FileUploadDialog open={true} onClose={handleCloseDialog} />,
-      props: {
-        open: true,
-        onClose: handleCloseDialog,
-        maxWidth: 'md',
-        fullWidth: true,
-      },
-    })
-  }, [])
+  const handleOpenDialog = useCallback(
+    // TODO: use onUploadedFilesChange prop to get and update the files to upload
+    // @ts-expect-error
+    (row: ProductRow) => {
+      setOpen(true)
+      openDialog({
+        children: <FileUploadDialog open={open} onClose={handleCloseDialog} />,
+        props: {
+          open,
+          onClose: handleCloseDialog,
+          maxWidth: 'md',
+          fullWidth: true,
+        },
+      })
+    },
+    [handleCloseDialog, openDialog]
+  )
 
   /**
    * The configuration object for the columns of the products table,
@@ -99,40 +96,59 @@ const ProductsTable = ({
         headerName: 'ID',
         valueGetter: ({ id }) => id,
       },
-      { field: 'name', headerName: 'Product Name' },
-      { field: 'vendor', headerName: 'Vendor' },
+      {
+        field: 'name',
+        headerName: 'Product Name',
+        flex: 1.5,
+      },
+      {
+        field: 'vendor',
+        headerName: 'Vendor',
+        flex: 1.5,
+      },
       {
         field: 'freshness',
-        headerName: 'SBOM Freshness',
+        headerName: 'Freshness',
+        flex: 1.25,
+        align: 'center',
+        headerAlign: 'center',
         renderCell: ({ row: { lastUpload } }: RenderCellProps) =>
           mapLastUploadToFreshness(lastUpload),
       },
       {
         field: 'lastUpload',
-        headerName: 'Last SBOM Upload',
+        headerName: 'Last Upload',
+        flex: 1.25,
+        align: 'center',
+        headerAlign: 'center',
         renderCell: ({ row: { lastUpload } }: RenderCellProps) =>
           formatLastUploadDate(lastUpload),
       },
       {
         field: 'action',
-        headerName: 'Action',
+        headerName: '',
+        align: 'right',
+        flex: 0,
         sortable: false,
-        width: 125,
-        renderCell: (params) => (
-          <Button
-            variant="contained"
+        disableColumnFilter: true,
+        disableColumnMenu: true,
+        disableColumnSelector: true,
+        renderCell: (params: RenderCellProps) => (
+          <IconButton
+            aria-controls="upload-dialog"
+            aria-haspopup="true"
+            aria-label="Upload"
             color="primary"
-            size="small"
             onClick={() => {
               handleOpenDialog(params.row)
             }}
           >
-            Upload
-          </Button>
+            <UploadFileIcon />
+          </IconButton>
         ),
       },
     ],
-    []
+    [handleOpenDialog]
   )
 
   return (
@@ -142,6 +158,7 @@ const ProductsTable = ({
         columns={columns}
         autoHeight
         getRowId={getRowId}
+        rowSelection={false}
         initialState={{
           columns: {
             columnVisibilityModel: {
