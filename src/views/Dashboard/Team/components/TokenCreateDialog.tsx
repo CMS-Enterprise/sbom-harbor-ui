@@ -52,7 +52,7 @@ type InputProps = {
 const TokenCreateDialog = ({ setOpen, teamId, onTokenAdded }: InputProps) => {
   const { jwtToken } = useAuthState()
   const { setAlert } = useAlert()
-  const [openDialog] = useDialog()
+  const { openDialog } = useDialog()
   const [loading, setLoading] = React.useState(false)
 
   /**
