@@ -28,7 +28,6 @@ describe('MultiDropzone', () => {
         uploading={false}
       />
     )
-    // Create a mock DataTransfer object
     const file = new File(['hello'], 'hello.png', { type: 'image/png' })
     const dataTransfer = {
       files: [file],
@@ -41,7 +40,6 @@ describe('MultiDropzone', () => {
       ],
       types: ['Files'],
     }
-    // Fire the drop event
     act(() => {
       fireEvent.drop(
         screen.getByLabelText('Drag and Drop File Selection'),
@@ -98,12 +96,10 @@ describe('MultiDropzone', () => {
         uploading={false}
       />
     )
-
     // Create a mock file larger than maxSize
     const file = new File([new Array(1024).join('a')], 'hello.png', {
       type: 'image/png',
     })
-
     // Create a mock DataTransfer object with file larger than maxSize
     const dataTransfer = {
       files: [file],
@@ -116,14 +112,14 @@ describe('MultiDropzone', () => {
       ],
       types: ['json'],
     }
-
-    // Fire the drop event
-    fireEvent.drop(
-      screen.getByLabelText('Drag and Drop File Selection'),
-      dataTransfer
-    )
-
-    // Check that the error message is displayed
-    expect(screen.getByText(/File is too large./i)).toBeInTheDocument()
+    act(() => {
+      fireEvent.drop(
+        screen.getByLabelText('Drag and Drop File Selection'),
+        dataTransfer
+      )
+      waitFor(() => {
+        expect(screen.getByText(/File is too large./i)).toBeInTheDocument()
+      })
+    })
   })
 })

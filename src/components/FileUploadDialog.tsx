@@ -73,19 +73,17 @@ const DEFAULT_STATE = {
  * @returns {React.FC<FileUploadDialogProps>} - The FileUploadDialog component
  */
 const FileUploadDialog: React.FC<FileUploadDialogProps> = ({
-  open,
   onClose,
   uploadedFiles: controlledUploadedFiles,
   onUploadedFilesChange,
   uploading: controlledUploading,
   onUploadingChange,
-  ...dialogProps
 }) => {
   // Get the handleSubmit and reset functions from react-hook-form
   const { handleSubmit, reset } = useForm()
 
   // Determine if the component is controlled
-  const isControlled = controlledUploadedFiles !== undefined // <- Determine if the component is controlled
+  const isControlled = controlledUploadedFiles !== undefined
 
   /**
    * Callback to call the update functions for the controlled props.
@@ -207,8 +205,6 @@ const FileUploadDialog: React.FC<FileUploadDialogProps> = ({
       if (state.uploading) return
       // otherwise, reset the form and close the dialog
       reset()
-      // setUploadedFiles([])
-      // setUploading(false)
       dispatch({
         type: ActionType.CANCEL_UPLOAD,
         payload: {
