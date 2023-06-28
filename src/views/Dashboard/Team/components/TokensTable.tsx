@@ -69,7 +69,7 @@ type TokenUpdatePayload = {
 const TokensTable = ({ teamId, tokens }: InputProps) => {
   const { setAlert } = useAlert()
   const { jwtToken } = useAuthState()
-  const [openDialog] = useDialog()
+  const { openDialog } = useDialog()
 
   // set the initial state of the rows to the tokens passed in as props.
   const [rows, setRows] = React.useState<TokenRow[]>(() =>
