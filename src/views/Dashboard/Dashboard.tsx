@@ -20,14 +20,16 @@ const DashboardContainer = (): JSX.Element => {
   return (
     <Box>
       <React.Suspense fallback={<Fallback />}>
-        <Typography variant="h5" sx={{ mb: 2 }}>
+        <Typography variant="h4" sx={{ mb: 2 }}>
           My Products
         </Typography>
         <Await
           resolve={data}
           errorElement={<div>Could not load teams 😬</div>}
           // eslint-disable-next-line react/no-children-prop
-          children={(resolvedData) => <ProductsTable products={resolvedData} />}
+          children={(resolvedData) => (
+            <ProductsTable products={resolvedData} showId={false} />
+          )}
         />
       </React.Suspense>
     </Box>
