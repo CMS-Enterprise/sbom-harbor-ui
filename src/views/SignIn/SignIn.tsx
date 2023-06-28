@@ -6,6 +6,7 @@ import * as React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useForm, Controller } from 'react-hook-form'
 import { Auth } from 'aws-amplify'
+import { type FederatedSignInOptions } from '@aws-amplify/auth/lib/types'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import Box from '@mui/material/Box'
@@ -81,8 +82,9 @@ const LoginPage = () => {
 
   const handleClickFederatedSignIn = async () => {
     try {
-      // @ts-ignore
-      await Auth.federatedSignIn({ provider: 'COGNITO' })
+      await Auth.federatedSignIn({
+        provider: 'COGNITO',
+      } as FederatedSignInOptions)
     } catch (error) {
       console.error('Error signing in with Google', error)
     }
@@ -92,7 +94,8 @@ const LoginPage = () => {
     const { email, password } = data
     setLoading(true)
     try {
-      // @ts-ignore
+      // FIXME: correct type error in loginUser action
+      // @ts-expect-error
       await loginUser(dispatch, { email, password })
       setLoading(false)
       navigate('/app')
