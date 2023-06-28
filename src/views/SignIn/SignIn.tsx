@@ -95,7 +95,7 @@ const LoginPage = () => {
     setLoading(true)
     try {
       // FIXME: correct type error in loginUser action
-      // @ts-expect-error
+      // @ts-expect-error ts(2345)
       await loginUser(dispatch, { email, password })
       setLoading(false)
       navigate('/app')
