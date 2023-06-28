@@ -1,4 +1,3 @@
-import { RouterProviderProps } from 'react-router-dom'
 import { type AppConfig } from '@/utils/config'
 
 /**

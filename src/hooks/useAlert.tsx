@@ -1,7 +1,7 @@
 /**
  * @module sbom-harbor-ui/hooks/useAlert
  */
-import * as React from 'react'
+import { createContext, useCallback, useContext, useState } from 'react'
 import { AlertColor } from '@mui/material/Alert'
 import { DEFAULT_ALERT_TIMEOUT } from '@/constants'
 
@@ -18,64 +18,94 @@ export type AlertState = {
   severity: AlertColor
 }
 
-const INITIAL_STATE = {
-  isVisible: false,
-  message: '',
-  severity: 'info' as AlertColor,
-}
-
-export const AlertContext = React.createContext<{
+export type AlertContextType = {
   state: AlertState
   clearAlert: () => void
   setAlert: (values: AlertProps) => void
   setData: (values: AlertState) => void
-}>({
+}
+
+const INITIAL_STATE = {
+  isVisible: false,
+  message: '',
+  severity: 'info' as AlertColor,
+} as AlertState
+
+const defaultContext: AlertContextType = {
   state: INITIAL_STATE,
-  setData: () => ({}),
-  setAlert: () => ({}),
-  clearAlert: () => ({}),
-})
+  setData: () => null,
+  setAlert: () => null,
+  clearAlert: () => null,
+}
+
+export const AlertContext = createContext<AlertContextType>(defaultContext)
+
+export type AlertProviderOverrideProps = {
+  initialState?: AlertState
+  contextOverrides?: Partial<AlertContextType>
+}
+
+export type AlertProviderProps = {
+  children: JSX.Element
+} & AlertProviderOverrideProps
 
 export const AlertProvider = ({
   children,
   initialState = INITIAL_STATE,
-}: {
-  children: JSX.Element
-  initialState?: AlertState
-}) => {
-  const [state, setState] = React.useState<AlertState>(initialState)
+  contextOverrides = {},
+}: AlertProviderProps) => {
+  const [state, setState] = useState<AlertState>(initialState)
+  const isControlled = Object.keys(contextOverrides).length > 0
+  const [timeoutId, setTimeoutId] = useState<NodeJS.Timeout | null>(null)
 
-  const clearAlert = () => {
+  const clearAlert = useCallback(() => {
+    if (isControlled && contextOverrides?.clearAlert) {
+      contextOverrides.clearAlert?.()
+    }
     setState({
-      ...state,
-      isVisible: false,
-      message: '',
-      severity: 'info' as AlertColor,
+      ...INITIAL_STATE,
     })
-  }
+    if (timeoutId) {
+      clearTimeout(timeoutId)
+      setTimeoutId(null)
+    }
+  }, [timeoutId])
 
-  const setAlert = ({
-    severity = 'info',
-    message = '',
-    autoHide = true,
-    timeout = DEFAULT_ALERT_TIMEOUT,
-  }: AlertProps) => {
-    setState({
-      ...state,
-      isVisible: true,
-      message,
-      severity,
-    })
-    if (!autoHide) return
-    setTimeout(clearAlert, timeout)
-  }
+  const setAlert = useCallback(
+    ({
+      autoHide = true,
+      message = state.message || '',
+      severity = state.severity || 'info',
+      timeout = DEFAULT_ALERT_TIMEOUT,
+    }: AlertProps) => {
+      if (isControlled && contextOverrides?.setAlert) {
+        contextOverrides.setAlert?.({
+          autoHide,
+          message,
+          severity,
+          timeout,
+        })
+      }
+      setState({
+        isVisible: true,
+        message,
+        severity,
+      })
+      if (!autoHide) return
+      setTimeoutId(setTimeout(clearAlert, timeout))
+    },
+    [state.message, state.severity, timeoutId]
+  )
 
-  const setData = (values: AlertState) => {
+  const setData = useCallback((values: AlertState) => {
+    if (isControlled && contextOverrides?.setData) {
+      contextOverrides.setData?.(values)
+    }
     setState((prevData: AlertState) => ({
       ...prevData,
       ...values,
     }))
-  }
+  }, [])
 
   return (
     <AlertContext.Provider value={{ state, setData, setAlert, clearAlert }}>
@@ -84,6 +114,6 @@ export const AlertProvider = ({
   )
 }
 
-export const useAlert = () => React.useContext(AlertContext)
+export const useAlert = () => useContext(AlertContext)
 
 export default useAlert
