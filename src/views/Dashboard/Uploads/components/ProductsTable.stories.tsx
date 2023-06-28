@@ -6,13 +6,19 @@ import ProductsTable, {
 type Story = StoryObj<ProductsTableProps>
 
 export default {
-  title: 'Upload-UI/ProductsTable',
+  title: 'Upload-UI/Components/ProductsTable',
   component: ProductsTable,
   argTypes: {
     products: {
       control: {
         type: 'object',
         defaultValue: [],
+      },
+    },
+    showId: {
+      control: {
+        type: 'boolean',
+        defaultValue: false,
       },
     },
   },
@@ -42,4 +48,5 @@ export const WithRows: Story = {
       },
     ],
   },
+  argTypes: {},
 }

@@ -8,8 +8,10 @@ import Card from '@mui/material/Card'
 import IconButton from '@mui/material/IconButton'
 import UploadFileIcon from '@mui/icons-material/UploadFile'
 import { DataGrid, type GridColDef } from '@mui/x-data-grid'
-import FileUploadDialog from '@/components/FileUploadDialog'
-import { useDialog } from '@/hooks/useDialog'
+import FileUploadDialog, {
+  OnCloseEvent,
+  OnCloseReason,
+} from '@/components/FileUploadDialog'
 import {
   formatLastUploadDate,
   mapLastUploadToFreshness,
@@ -50,16 +52,18 @@ const ProductsTable = ({
   products = [],
 }: ProductsTableProps) => {
   const [open, setOpen] = useState(false)
-  const { openDialog, closeDialog } = useDialog()
 
   /**
    * The callback function that is called when the dialog is closed.
    * @param {OnCloseEvent} event - The event that triggered the dialog close.
    * @param {OnCloseReason} reason - The reason that the dialog was closed.
    */
-  const handleCloseDialog = useCallback(() => {
-    closeDialog()
-  }, [])
+  const handleCloseDialog = useCallback(
+    (event: OnCloseEvent, reason: OnCloseReason) => {
+      setOpen(false)
+    },
+    []
+  )
 
   /**
    * The callback function that is called when the upload button is clicked.
@@ -70,17 +74,8 @@ const ProductsTable = ({
     // TODO: use onUploadedFilesChange prop to get and update the files to upload
     (row: ProductRow) => {
       setOpen(true)
-      openDialog({
-        children: <FileUploadDialog open={open} onClose={handleCloseDialog} />,
-        props: {
-          open,
-          onClose: handleCloseDialog,
-          maxWidth: 'md',
-          fullWidth: true,
-        },
-      })
     },
-    [handleCloseDialog, openDialog]
+    []
   )
 
   /**
@@ -94,6 +89,7 @@ const ProductsTable = ({
         field: 'id',
         headerName: 'ID',
         valueGetter: ({ id }) => id,
+        hideable: true,
       },
       {
         field: 'name',
@@ -109,8 +105,6 @@ const ProductsTable = ({
         field: 'freshness',
         headerName: 'Freshness',
         flex: 1.25,
-        align: 'center',
-        headerAlign: 'center',
         renderCell: ({ row: { lastUpload } }: RenderCellProps) =>
           mapLastUploadToFreshness(lastUpload),
       },
@@ -118,8 +112,6 @@ const ProductsTable = ({
         field: 'lastUpload',
         headerName: 'Last Upload',
         flex: 1.25,
-        align: 'center',
-        headerAlign: 'center',
         renderCell: ({ row: { lastUpload } }: RenderCellProps) =>
           formatLastUploadDate(lastUpload),
       },
@@ -165,6 +157,15 @@ const ProductsTable = ({
             },
           },
         }}
+        columnVisibilityModel={{
+          id: showId,
+        }}
+      />
+      <FileUploadDialog
+        open={open}
+        onClose={handleCloseDialog}
+        maxWidth="md"
+        fullWidth
       />
     </Card>
   )
