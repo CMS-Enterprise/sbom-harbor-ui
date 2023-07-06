@@ -24,7 +24,7 @@ import NavigateToLogin from '@/components/react-router/NavigateToLogin'
 // ** Loaders, Utils
 import authLoader from '@/router/authLoader'
 import teamLoader from '@/router/teamLoader'
-import teamsLoader from '@/router/teamsLoader'
+import productsLoader from '@/router/productsLoader'
 import configureCognito from '@/utils/configureCognito'
 
 /**
@@ -55,10 +55,6 @@ const router = createBrowserRouter([
         element: <SignOut />,
       },
       {
-        path: '*',
-        element: <NavigateToLogin />,
-      },
-      {
         path: 'app/*',
         id: RouteIds.AUTHED_APP,
         element: <AppLayout />,
@@ -68,7 +64,7 @@ const router = createBrowserRouter([
           {
             index: true,
             id: RouteIds.DASHBOARD,
-            loader: teamsLoader,
+            loader: productsLoader,
             element: <Dashboard />,
             errorElement: <ErrorBoundary />,
           },
@@ -108,6 +104,10 @@ const router = createBrowserRouter([
             ],
           },
         ],
+      },
+      {
+        path: '*',
+        element: <NavigateToLogin />,
       },
     ],
   },
