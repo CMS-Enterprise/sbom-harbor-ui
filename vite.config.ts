@@ -15,5 +15,10 @@ export default defineConfig({
     },
   },
   plugins: [react(), EnvironmentPlugin('all'), visualizer() as PluginOption],
+  server: {
+    watch: {
+      ignored: ['**/coverage/**'],
+    },
+  },
   appType: 'spa',
 })
