@@ -13495,6 +13495,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"jest-date-mock@npm:^1.0.8":
+  version: 1.0.8
+  resolution: "jest-date-mock@npm:1.0.8"
+  checksum: 7b012870440b0df742d0b651435b91625dbbf02d916633a0c70c7deb5d5087f9aadc59847602312368826325909e70e95cd412896a0c9ee1d5ac382000bf5ef9
+  languageName: node
+  linkType: hard
+
 "jest-diff@npm:^29.5.0":
   version: 29.5.0
   resolution: "jest-diff@npm:29.5.0"
@@ -17918,6 +17925,7 @@ __metadata:
     eslint-plugin-storybook: ^0.6.12
     husky: ^8.0.0
     jest: ^29.5.0
+    jest-date-mock: ^1.0.8
     jest-environment-jsdom: ^29.5.0
     jest-environment-node: ^29.5.0
     jest-fetch-mock: ^3.0.3
