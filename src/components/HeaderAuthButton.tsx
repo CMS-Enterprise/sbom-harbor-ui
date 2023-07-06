@@ -20,7 +20,13 @@ const ButtonContainerBox = styled(Box)({ mr: 2, ml: 2, pr: 2, pl: 2 })
  */
 const LoginButton = (): JSX.Element => (
   <ButtonBox>
-    <Button component={RouterLink} to="/login" color="inherit" role="button">
+    <Button
+      component={RouterLink}
+      to="/login"
+      color="primary"
+      variant="contained"
+      role="button"
+    >
       Login
     </Button>
   </ButtonBox>
@@ -33,7 +39,13 @@ const LoginButton = (): JSX.Element => (
 const LogoutButton = (): JSX.Element => {
   return (
     <ButtonBox>
-      <Button component={RouterLink} to="/logout" color="inherit" role="button">
+      <Button
+        component={RouterLink}
+        to="/logout"
+        color="primary"
+        variant="contained"
+        role="button"
+      >
         Logout
       </Button>
     </ButtonBox>
@@ -42,8 +54,9 @@ const LogoutButton = (): JSX.Element => {
 
 /**
  * A component that conditionally renders a login or a logout button based on
- * the auth state. If auth state is not yet known, renders an empty container.
+ *  the auth state. If auth state is not yet known, renders an empty container.
  * @returns {JSX.Element} Component containing a login or logout button.
+ * @todo Fix the flashing of the login button when the user is already logged in.
  */
 const HeaderAuthButton = (): JSX.Element => {
   const { jwtToken } = useAuthState()
