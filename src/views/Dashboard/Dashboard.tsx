@@ -35,4 +35,5 @@ const DashboardContainer = (): JSX.Element => {
     </Box>
   )
 }
+
 export default DashboardContainer

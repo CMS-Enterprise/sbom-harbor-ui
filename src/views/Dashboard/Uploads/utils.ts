@@ -24,6 +24,7 @@ export const formatLastUploadDate = (lastUpload?: TDateISO): string => {
  * Map the last upload date to a freshness score.
  * @param {TDateISO} lastUpload - The last upload date.
  * @returns {number} The freshness score.
+ * @todo bucket freshness scores show a color-coded freshness score in pills
  */
 export const mapLastUploadToFreshness = (lastUpload?: TDateISO): number => {
   if (!lastUpload) return -1
