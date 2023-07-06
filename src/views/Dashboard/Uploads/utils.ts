@@ -4,20 +4,14 @@
  */
 
 import getDaysSince from '@/utils/getDaysSince'
+import validateDate from '@/utils/validateDate'
 
 /**
  * Format the last upload ISOString as a locale string or 'N/A' if no date is provided.
  * @param {TDateISO} lastUpload - The last upload date.
  */
 export const formatLastUploadDate = (lastUpload?: TDateISO): string => {
-  if (typeof lastUpload === 'undefined') {
-    return 'N/A'
-  }
-  const date = new Date(lastUpload)
-  if (isNaN(date.getTime())) {
-    throw new Error('Invalid date object')
-  }
-  return date.toLocaleDateString()
+  return validateDate(lastUpload)?.toLocaleDateString() || 'N/A'
 }
 
 /**
@@ -27,6 +21,9 @@ export const formatLastUploadDate = (lastUpload?: TDateISO): string => {
  * @todo bucket freshness scores show a color-coded freshness score in pills
  */
 export const mapLastUploadToFreshness = (lastUpload?: TDateISO): number => {
-  if (!lastUpload) return -1
-  return getDaysSince(new Date(lastUpload))
+  const date = validateDate(lastUpload)
+  if (!date || typeof date === 'undefined') {
+    return -1
+  }
+  return getDaysSince(date)
 }

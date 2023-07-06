@@ -2,7 +2,7 @@
  * Returns the number of days since the given date.
  * @module sbom-harbor-ui/utils/getDaysSince
  * @param {Date} date - The date to compare to.
- * @returns The number of days since the given date.
+ * @returns {number} The number of days since the given date.
  */
 const getDaysSince = (date: Date): number => {
   // throw an error if the date is invalid
