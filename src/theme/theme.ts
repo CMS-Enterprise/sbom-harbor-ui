@@ -23,6 +23,12 @@ declare module '@mui/material/Button' {
   }
 }
 
+declare module '@mui/material/SvgIcon' {
+  interface SvgIconPropsColorOverrides {
+    dark?: true
+  }
+}
+
 // ** Base theme with breakpoints, direction, spacing
 let theme = createTheme({
   spacing: 4,
@@ -149,7 +155,7 @@ theme = createTheme(theme, {
 theme = createTheme(theme, {
   typography: {
     fontFamily:
-      '"OpenSans",Inter,sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol"',
+      "'Open Sans',--apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol'",
     fonts: {
       base: '-apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
       mono: 'ui-monospace, "Cascadia Mono", "Segoe UI Mono", "Liberation Mono", Menlo, Monaco, Consolas, monospace',
@@ -160,6 +166,11 @@ theme = createTheme(theme, {
     fontWeightRegular: 400,
     fontWeightMedium: 600,
     fontWeightBold: 700,
+  },
+})
+
+theme = createTheme(theme, {
+  typography: {
     h1: {
       fontFamily: theme.typography.fontFamily,
       fontWeight: theme.typography.fontWeightBold,
@@ -213,11 +224,8 @@ theme = createTheme(theme, {
     },
     h4: {
       fontFamily: theme.typography.fontFamily,
-      fontWeight: theme.typography.fontWeightBold,
-      fontSize: '1.5625rem',
-      lineHeight: 1.235,
-      letterSpacing: '0.25px',
-      color: theme.palette.text.primary,
+      fontWeight: theme.typography.fontWeightMedium,
+      color: theme.palette.primary.main,
       [theme.breakpoints.up('sm')]: {
         fontSize: '1.8219rem',
       },
@@ -926,6 +934,62 @@ theme = createTheme(theme, {
         },
       },
     },
+    MuiDataGrid: {
+      styleOverrides: {
+        root: {},
+        columnHeaders: {
+          backgroundColor: theme.palette.primary.light,
+          color: theme.palette.common.white,
+          fontWeight: theme.typography.fontWeightMedium,
+        },
+        columnHeader: {
+          padding: `${theme.spacing(1.5)} ${theme.spacing(3.5)}`,
+
+          '&:focus': {
+            outline: 'none',
+          },
+
+          '& .MuiDataGrid-iconButtonContainer, & .MuiDataGrid-menuIcon': {
+            '& .MuiSvgIcon-root': {
+              color: theme.palette.common.white,
+              fill: theme.palette.common.white,
+            },
+          },
+        },
+        cell: {
+          color: theme.palette.text.primary,
+          padding: `${theme.spacing(0.5)} calc(${theme.spacing(3.5)} + 2px)`,
+
+          '&:focus': {
+            outline: 'none',
+          },
+
+          '&:first-of-type': {
+            paddingLeft: theme.spacing(3.5),
+          },
+
+          '&:nth-last-of-type(2)': {
+            paddingRight: theme.spacing(2),
+          },
+
+          '&[data-field="action"]': {
+            '&:focus': {
+              outline: 'none',
+            },
+          },
+        },
+        row: {
+          backgroundColor: theme.palette.background.paper,
+
+          '&.Mui-selected': {
+            backgroundColor: theme.palette.background.paper,
+          },
+        },
+        footer: {
+          backgroundColor: theme.palette.background.paper,
+        },
+      },
+    },
     MuiDialog: {
       styleOverrides: {
         paper: {
@@ -1029,10 +1093,10 @@ theme = createTheme(theme, {
     MuiFormGroup: {
       styleOverrides: {
         root: {
-          '& .MuiFormControlLabel-root:first-child': {
+          '& .MuiFormControlLabel-root:first-of-type': {
             paddingTop: '0.625rem',
           },
-          '& .MuiFormControlLabel-root:last-child': {
+          '& .MuiFormControlLabel-root:last-of-type': {
             paddingBottom: '0.625rem',
           },
         },
@@ -1294,8 +1358,10 @@ theme = createTheme(theme, {
     MuiSvgIcon: {
       styleOverrides: {
         root: {
-          color: theme.palette.primary.main,
           fontWeight: theme.typography.fontWeightRegular,
+        },
+        dark: {
+          color: theme.palette.primary.dark,
         },
       },
     },
@@ -1304,6 +1370,42 @@ theme = createTheme(theme, {
         root: {
           '&.Mui-selected': {
             color: '#3f51b5',
+          },
+        },
+      },
+    },
+    MuiTablePagination: {
+      styleOverrides: {
+        root: {
+          '& .MuiTablePagination-selectLabel': {
+            color: theme.palette.text.primary,
+          },
+          '& .MuiTablePagination-select': {
+            color: theme.palette.text.primary,
+          },
+          '& .MuiTablePagination-actions': {
+            color: theme.palette.text.primary,
+
+            '& .MuiIconButton-root': {
+              color: theme.palette.text.primary,
+            },
+          },
+          '& .MuiTablePagination-caption': {
+            color: theme.palette.text.primary,
+          },
+          '& .MuiTablePagination-displayedRows': {
+            color: theme.palette.text.primary,
+          },
+          '& .MuiSelect-select': {
+            border: '1px solid rgba(0, 0, 0, 0.12)',
+            borderRadius: theme.shape.borderRadius,
+            padding: `${theme.spacing(0.5)} ${theme.spacing(1.5)}`,
+            paddingTop: `${theme.spacing(0.25)}`,
+            paddingBottom: `${theme.spacing(0.25)}`,
+
+            '&.MuiSelect-select': {
+              paddingRight: '1.5rem',
+            },
           },
         },
       },
@@ -1367,13 +1469,53 @@ theme = createTheme(theme, {
     MuiTypography: {
       styleOverrides: {
         root: {
+          fontFamily: theme.typography.fontFamily,
           fontWeight: theme.typography.fontWeightBold,
+          '& a': {
+            fontWeight: theme.typography.fontWeightMedium,
+            color: theme.palette.primary.main,
+            textDecoration: 'none',
+          },
         },
         body1: {
-          fontWeight: theme.typography.fontWeightRegular,
+          fontSize: theme.typography.body1.fontSize,
+          fontWeight: theme.typography.body1.fontWeight,
+          lineHeight: theme.typography.body1.lineHeight,
         },
         body2: {
-          fontWeight: theme.typography.fontWeightRegular,
+          fontSize: theme.typography.body2.fontSize,
+          fontWeight: theme.typography.body2.fontWeight,
+          lineHeight: theme.typography.body2.lineHeight,
+        },
+        h1: {
+          fontSize: theme.typography.h1.fontSize,
+          fontWeight: theme.typography.h1.fontWeight,
+          lineHeight: theme.typography.h1.lineHeight,
+        },
+        h2: {
+          fontSize: theme.typography.h2.fontSize,
+          fontWeight: theme.typography.h2.fontWeight,
+          lineHeight: theme.typography.h2.lineHeight,
+        },
+        h3: {
+          fontSize: theme.typography.h3.fontSize,
+          fontWeight: theme.typography.h3.fontWeight,
+          lineHeight: theme.typography.h3.lineHeight,
+        },
+        h4: {
+          fontSize: theme.typography.h4.fontSize,
+          fontWeight: theme.typography.h4.fontWeight,
+          lineHeight: theme.typography.h4.lineHeight,
+        },
+        h5: {
+          fontSize: theme.typography.h5.fontSize,
+          fontWeight: theme.typography.h5.fontWeight,
+          lineHeight: theme.typography.h5.lineHeight,
+        },
+        h6: {
+          fontSize: theme.typography.h6.fontSize,
+          fontWeight: theme.typography.h6.fontWeight,
+          lineHeight: theme.typography.h6.lineHeight,
         },
       },
     },
