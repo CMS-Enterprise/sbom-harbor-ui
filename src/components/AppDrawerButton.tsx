@@ -6,6 +6,7 @@ import Link from '@mui/material/Link'
 import ListItemButton from '@mui/material/ListItemButton'
 import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
+import { GridSeparatorIcon } from '@mui/x-data-grid'
 
 /**
  * A single menu button in the list inside of the AppDrawer.
@@ -24,8 +25,9 @@ const AppDrawerButton = ({
   icon?: JSX.Element
 }) => (
   <Link to={to} component={RouterLink}>
-    <ListItemButton sx={{ margin: 'auto' }}>
+    <ListItemButton sx={{ margin: 'auto', border: '0' }}>
       {icon && <ListItemIcon>{icon}</ListItemIcon>}
+      <GridSeparatorIcon sx={{ visibility: 'hidden' }} />
       <ListItemText primary={label} />
     </ListItemButton>
   </Link>
