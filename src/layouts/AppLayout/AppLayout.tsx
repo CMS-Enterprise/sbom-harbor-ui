@@ -2,37 +2,26 @@
  * The layout for rendering the authenticated user's layout.
  * @module sbom-harbor-ui/layouts/AppLayout/AppLayout
  */
-// ** React Imports
-import * as React from 'react'
+import { useState } from 'react'
 import { Await, Outlet, useAsyncValue, useLoaderData } from 'react-router-dom'
-
-// ** MUI Components
 import Box from '@mui/material/Box'
 import Container from '@mui/material/Container'
 import Divider from '@mui/material/Divider'
 import IconButton from '@mui/material/IconButton'
 import List from '@mui/material/List'
 import Toolbar from '@mui/material/Toolbar'
-import Typography from '@mui/material/Typography'
-
-// ** Icons
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft'
 import MenuIcon from '@mui/icons-material/Menu'
-
-// ** App Imports
+import { AuthContext } from '@/hooks/useAuth'
 import AlertMessage from '@/components/AlertMessage'
 import AppBar from '@/components/AppBar'
 import AppDrawer from '@/components/AppDrawer'
 import AuthButton from '@/components/HeaderAuthButton'
-
-// ** Local Imports
-import MenuListItems from './AppDrawerListItems'
-
-import { AuthContext } from '@/hooks/useAuth'
+import MenuListItems from '@/layouts/AppLayout/AppDrawerListItems'
 
 const AppContent = (): JSX.Element => {
   const jwtToken = useAsyncValue() as string
-  const [drawerOpen, setDrawerOpen] = React.useState(true)
+  const [drawerOpen, setDrawerOpen] = useState(true)
   const toggleDrawer = () => setDrawerOpen(!drawerOpen)
 
   return (
@@ -41,19 +30,25 @@ const AppContent = (): JSX.Element => {
         data-testid="app"
         sx={{
           display: 'flex',
+          width: '100%',
+          marginRight: 0,
           backgroundColor: (theme) =>
             theme.palette.mode === 'light'
               ? theme.palette.grey[100]
               : theme.palette.grey[900],
-          flexGrow: 1,
           height: '100vh',
-          overflow: 'hidden',
+          overflow: 'clip',
         }}
       >
         <AlertMessage />
 
         {/* top nav bar */}
-        <AppBar position="absolute" open={drawerOpen} color="secondary">
+        <AppBar
+          position="absolute"
+          open={drawerOpen}
+          color="transparent"
+          elevation={0}
+        >
           <Toolbar>
             <IconButton
               edge="start"
@@ -67,15 +62,7 @@ const AppContent = (): JSX.Element => {
             >
               <MenuIcon />
             </IconButton>
-            <Typography
-              component="span"
-              variant="h6"
-              color="inherit"
-              noWrap
-              sx={{ flexGrow: 1 }}
-            >
-              Dashboard
-            </Typography>
+            <Box sx={{ flexGrow: 1 }} />
             <AuthButton />
           </Toolbar>
         </AppBar>
@@ -90,9 +77,11 @@ const AppContent = (): JSX.Element => {
               filter: `brightness(80%)`,
             }}
           >
-            <IconButton onClick={toggleDrawer}>
-              <ChevronLeftIcon />
-            </IconButton>
+            {drawerOpen && (
+              <IconButton onClick={toggleDrawer}>
+                <ChevronLeftIcon />
+              </IconButton>
+            )}
           </Toolbar>
           <Divider />
 
@@ -103,9 +92,8 @@ const AppContent = (): JSX.Element => {
         {/* main content outlet for child routes */}
         <Container
           component="main"
-          fixed
-          maxWidth="lg"
-          sx={{ mt: 8, pt: 4, overflow: 'scroll' }}
+          maxWidth={false}
+          sx={{ mt: 8, mr: 0, ml: 0, pt: 4, overflow: 'scroll' }}
         >
           {/* @ts-ignore */}
           <Outlet />
