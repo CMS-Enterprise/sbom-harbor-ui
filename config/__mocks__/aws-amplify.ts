@@ -13,6 +13,24 @@ const users: {
 }
 
 export const Auth = {
+  currentAuthenticatedUser: jest.fn().mockImplementation(
+    () =>
+      new Promise((resolve) => {
+        const currentUser = {
+          username: 'abc123',
+          email: 'demo@test.com',
+          accessToken: '123cvb123',
+          name: 'John Rambo',
+          phone: '+46761022312',
+          phoneVerified: false,
+          attributes: {
+            sub: 'abc123',
+          },
+        }
+
+        return resolve(currentUser)
+      })
+  ),
   currentSession: jest.fn().mockImplementation(() => {
     const session = {
       accessToken: {
@@ -24,6 +42,7 @@ export const Auth = {
           sub: 'abc123',
         },
       },
+      getAccessToken: () => ({ getJwtToken: () => '123456' }),
     }
     return Promise.resolve(session)
   }),
@@ -60,8 +79,8 @@ export const Auth = {
       })
   ),
   signUp: jest.fn().mockImplementation(
-    ({ username, pass, attributes }) =>
-      new Promise((resolve, reject) => {
+    ({ username, _pass, attributes }) =>
+      new Promise((resolve) => {
         const newUser = {
           username: 'abcdfg123',
           email: username,
@@ -91,24 +110,6 @@ export const Auth = {
           name: 'CodeMismatchException',
           message: 'Invalid verification code provided, please try again.',
         })
-      })
-  ),
-  currentAuthenticatedUser: jest.fn().mockImplementation(
-    () =>
-      new Promise((resolve, reject) => {
-        const currentUser = {
-          username: 'abc123',
-          email: 'demo@test.com',
-          accessToken: '123cvb123',
-          name: 'John Rambo',
-          phone: '+46761022312',
-          phoneVerified: false,
-          attributes: {
-            sub: 'abc123',
-          },
-        }
-
-        return resolve(currentUser)
       })
   ),
   updateUserAttributes: jest.fn(),

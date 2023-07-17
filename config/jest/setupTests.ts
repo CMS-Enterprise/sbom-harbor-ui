@@ -12,12 +12,12 @@ enableFetchMocks()
 import '@testing-library/jest-dom'
 import '@testing-library/jest-dom/extend-expect'
 
-// mock environment variables for the global app config during tests
 if (process.env.NODE_ENV === 'test') {
-  process.env.AWS_REGION = 'us-east-1'
-  process.env.CF_DOMAIN = 'https://localhost:3000/'
-  process.env.USER_POOL_ID = 'us-east-1_123456789'
-  process.env.USER_POOL_CLIENT_ID = '1234567890123456789012'
+  // mock environment variables for the global app config during tests
+  process.env.VITE_AWS_REGION = 'us-east-1'
+  process.env.VITE_CF_DOMAIN = 'https://localhost:3000/'
+  process.env.VITE_USER_POOL_ID = 'us-east-1_123456789'
+  process.env.VITE_USER_POOL_CLIENT_ID = '1234567890123456789012'
 }
 
 window.matchMedia = (query) => ({
