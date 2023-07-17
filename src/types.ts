@@ -55,6 +55,20 @@ export type UserDataType =
       })
   | null
 
+//* Forms
+//*--------------------------------------------------------/
+
+export type FormField = {
+  name: string
+  label?: string
+  type: string
+  required?: boolean
+  disabled?: boolean
+  multiline?: boolean
+  value?: string | number | boolean | null
+  component: React.ElementType
+}
+
 //* Teams
 //*--------------------------------------------------------/
 
