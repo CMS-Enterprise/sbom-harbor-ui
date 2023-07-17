@@ -80,10 +80,10 @@ describe('src/main.tsx', () => {
       // require main to run the IIFE inside an isolated module
       require('@/main')
       // expect the config to be logged to the console at the debug level
-      expect(mockConsoleDebug).toHaveBeenCalledWith(
-        'Welcome to the Harbor!',
-        CONFIG
-      )
+      expect(mockConsoleDebug).toHaveBeenCalledWith('Welcome to the Harbor!', {
+        ...CONFIG,
+        NODE_ENV: 'development',
+      })
       // import global mock of web-vitals to verify that the on* functions were called
       const { onCLS, onFID, onFCP, onINP, onLCP, onTTFB } = await import(
         'web-vitals'
