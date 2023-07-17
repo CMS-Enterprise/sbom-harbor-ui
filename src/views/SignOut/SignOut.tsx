@@ -5,7 +5,7 @@
  */
 import * as React from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useAuthDispatch } from '@/hooks/useAuth'
+import useAuthDispatch from '@/store/auth/useAuthDispatch'
 import logoutUser from '@/actions/logoutUser'
 
 /**

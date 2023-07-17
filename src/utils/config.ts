@@ -1,3 +1,5 @@
+import { sanitizeUrlString } from '@/utils/sanitizeUrl'
+
 /**
  * @module sbom-harbor-ui/utils/config
  * @exports CONFIG
@@ -23,13 +25,15 @@ export type AppConfig = {
 }
 
 // parse `CONFIG` from environment variables
-const apiUrl = `${process.env.VITE_CF_DOMAIN}/api`
+const apiUrl = sanitizeUrlString(`${process.env.VITE_CF_DOMAIN}/api`)
 
 /**
  * Set global configuration for the application provided by webpack (craco) at build time.
  * @see {@link @sbom-harbor-ui/dashboard/craco.config.js}.
  */
 const CONFIG = {
+  NODE_ENV: process.env.NODE_ENV,
+
   AWS_REGION: process.env.VITE_AWS_REGION,
   CF_DOMAIN: process.env.VITE_CF_DOMAIN,
 
@@ -42,10 +46,10 @@ const CONFIG = {
 
   // API URLs
   API_URL: apiUrl,
-  TEAM_API_URL: `${apiUrl}/v1/team`,
-  TEAMS_API_URL: `${apiUrl}/v1/teams`,
-  USER_API_URL: `${apiUrl}/v1/user`,
-  USER_API_SEARCH_URL: `${apiUrl}/v1/user/search`,
+  TEAM_API_URL: sanitizeUrlString(`${apiUrl}/v1/team`),
+  TEAMS_API_URL: sanitizeUrlString(`${apiUrl}/v1/teams`),
+  USER_API_URL: sanitizeUrlString(`${apiUrl}/v1/user`),
+  USER_API_SEARCH_URL: sanitizeUrlString(`${apiUrl}/v1/user/search`),
 } as AppConfig
 
 export default CONFIG

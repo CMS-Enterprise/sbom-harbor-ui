@@ -24,7 +24,7 @@ import updateToken from '@/api/updateToken'
 import DateLocaleString from '@/components/DateLocaleString'
 import useAlert from '@/hooks/useAlert'
 import { useDialog } from '@/hooks/useDialog'
-import { useAuthState } from '@/hooks/useAuth'
+import useAuthState from '@/store/auth/useAuthState'
 import { Token } from '@/types'
 import TokenCreateDialog from './TokenCreateDialog'
 

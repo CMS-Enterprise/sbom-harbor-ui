@@ -1,9 +1,14 @@
 import { render, screen } from '@testing-library/react'
 import { BrowserRouter } from 'react-router-dom'
-import { useAuthState } from '@/hooks/useAuth'
+import useAuthState from '@/store/auth/useAuthState'
 import HeaderAuthButton from '@/components/HeaderAuthButton'
 
-jest.mock('@/hooks/useAuth')
+jest.mock('@/store/auth/useAuthDispatch')
+jest.mock('@/store/auth/useAuthState')
+jest.mock('@/store/auth/AuthDispatchContext')
+jest.mock('@/store/auth/AuthStateContext')
+jest.mock('@/store/auth/AuthProvider')
+jest.mock('@/store/auth/AuthReducer')
 
 describe('HeaderAuthButton', () => {
   afterEach(() => {

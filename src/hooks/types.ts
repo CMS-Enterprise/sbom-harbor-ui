@@ -13,12 +13,3 @@ export type LoginParams = {
   email: string
   password: string
 }
-
-/**
- * @typedef {Object} AuthValuesType - Parameters for the login hook.
- * @property {string} jwtToken - The user's jwtToken
- * @see {@link @sbom-harbor-ui/dashboard/hooks/useAuth}
- */
-export type AuthValuesType = {
-  jwtToken: string
-}

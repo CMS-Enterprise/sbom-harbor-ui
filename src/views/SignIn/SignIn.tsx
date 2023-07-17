@@ -27,7 +27,7 @@ import EyeOutline from 'mdi-material-ui/EyeOutline'
 import EyeOffOutline from 'mdi-material-ui/EyeOffOutline'
 import loginUser from '@/actions/loginUser'
 import LinearIndeterminate from '@/components/mui/LinearLoadingBar'
-import { useAuthDispatch } from '@/hooks/useAuth'
+import useAuthDispatch from '@/store/auth/useAuthDispatch'
 import useAlert from '@/hooks/useAlert'
 import BlankLayout from '@/layouts/BlankLayout'
 import {

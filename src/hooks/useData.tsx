@@ -2,7 +2,7 @@
  * @module sbom-harbor-ui/hooks/useData
  */
 import * as React from 'react'
-import { useAuthState } from '@/hooks/useAuth'
+import useAuthState from '@/store/auth/useAuthState'
 import CONFIG from '@/utils/config'
 import { TeamEntity } from '@/types'
 

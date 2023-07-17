@@ -4,8 +4,8 @@
  */
 import { Outlet } from 'react-router-dom'
 import { ThemeProvider } from '@mui/material/styles'
+import AuthProvider from '@/store/auth/AuthProvider'
 import { AlertProvider } from '@/hooks/useAlert'
-import { AuthProvider } from '@/hooks/useAuth'
 import DialogProvider from '@/hooks/useDialog'
 import theme from '@/theme/theme'
 
