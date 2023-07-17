@@ -34,6 +34,8 @@ import {
   getUploadStatus,
 } from '@/components/MultiDropzone/utils'
 import formatBytes from '@/utils/formatBytes'
+import Button from '@mui/material/Button'
+import Container from '@mui/material/Container'
 
 /**
  * The styled container that's the target for the drag and drop functionality.
@@ -72,18 +74,26 @@ const StyledBox = styled(Box)(({ theme }) => ({
  * @returns {React.FC} - The default CallToAction component
  */
 const DefaultCTA: React.FC = () => (
-  <span>
-    Drag and drop files or{' '}
-    <Typography
-      variant="body1"
-      color="primary"
-      fontWeight={500}
-      component="a"
-      href="#"
+  <span
+    style={{
+      alignItems: 'center',
+      display: 'inline-flex',
+    }}
+  >
+    <span style={{ lineHeight: 2 }}>Drag and drop files or</span>
+    <Button
       aria-label="Browse for Files"
+      color="primary"
+      size="small"
+      sx={{
+        p: 0,
+        lineHeight: 2,
+        minHeight: '100%',
+        width: 'auto',
+      }}
     >
       Browse
-    </Typography>
+    </Button>
   </span>
 )
 
