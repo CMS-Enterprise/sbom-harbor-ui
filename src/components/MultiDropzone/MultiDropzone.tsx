@@ -7,6 +7,7 @@ import { useDropzone, FileRejection } from 'react-dropzone'
 import { v4 as uuidv4 } from 'uuid'
 import { styled } from '@mui/material/styles'
 import Box from '@mui/material/Box'
+import Button from '@mui/material/Button'
 import Collapse from '@mui/material/Collapse'
 import Typography from '@mui/material/Typography'
 import UploadFileIcon from '@mui/icons-material/UploadFile'
@@ -34,8 +35,6 @@ import {
   getUploadStatus,
 } from '@/components/MultiDropzone/utils'
 import formatBytes from '@/utils/formatBytes'
-import Button from '@mui/material/Button'
-import Container from '@mui/material/Container'
 
 /**
  * The styled container that's the target for the drag and drop functionality.
