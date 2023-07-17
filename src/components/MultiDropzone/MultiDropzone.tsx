@@ -242,7 +242,7 @@ const MultiDropZone: React.FC<MultiDropzoneProps> = ({
 
       {errors.length > 0 && (
         <Box mt={2}>
-          {errors.map(({ id, message, ...rest }) => (
+          {errors.map(({ id, message }) => (
             <Typography key={id} variant="body2" color="error">
               {message}
             </Typography>
