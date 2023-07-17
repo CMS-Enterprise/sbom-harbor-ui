@@ -91,9 +91,10 @@ export const getErrorMessage = (
 ): string => {
   switch (code) {
     case ErrorCode.FileInvalidType:
-      return `${textOverrides?.fileTypeError || 'File type must be one of'}${
-        fileList ? ' ' + fileList : ''
-      }.`
+      return `${
+        textOverrides?.fileTypeError ||
+        'Only the following file types are accepted:'
+      } ${fileList || 'NONE'}.`
     case ErrorCode.FileTooLarge:
       return `${
         textOverrides?.fileTooLargeError ||

@@ -192,7 +192,7 @@ const MultiDropZone: React.FC<MultiDropzoneProps> = ({
         ),
       }))
       // add new errors to the list of errors
-      setErrors((previousErrors) => [...previousErrors, ...currentErrors])
+      setErrors(() => [...currentErrors])
       // log any new errors to console
       if (currentErrors.length > 0) {
         console.error(currentErrors)
@@ -240,6 +240,16 @@ const MultiDropZone: React.FC<MultiDropzoneProps> = ({
           {textOverrides?.supportsText || placeholder}
         </Typography>
       </StyledBox>
+
+      {errors.length > 0 && (
+        <Box mt={2}>
+          {errors.map(({ id, message, ...rest }) => (
+            <Typography key={id} variant="body2" color="error">
+              {message}
+            </Typography>
+          ))}
+        </Box>
+      )}
 
       {uploadedFiles.length > 0 && (
         <Box mt={2}>

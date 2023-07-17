@@ -93,7 +93,7 @@ describe('MultiDropzone utils', () => {
       }
       const params = { fileList: 'jpg, png', maxSize: 20000 }
       expect(getErrorMessage(error, params)).toBe(
-        'File type must be one of jpg, png.'
+        'Only the following file types are accepted: jpg, png.'
       )
     })
 
@@ -167,7 +167,9 @@ describe('MultiDropzone utils', () => {
         message: 'Invalid file type',
       }
       const params = { fileList: '', maxSize: 20000 }
-      expect(getErrorMessage(error, params)).toBe('File type must be one of.')
+      expect(getErrorMessage(error, params)).toBe(
+        'Only the following file types are accepted: NONE.'
+      )
     })
 
     it('returns default error message if error code does not match', () => {

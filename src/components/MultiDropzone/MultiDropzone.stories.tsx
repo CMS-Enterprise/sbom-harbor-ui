@@ -64,6 +64,9 @@ export const Playground = ({ ...args }) => {
       uploadedFiles={uploadedFiles}
       onRemoveFile={onRemoveFile}
       onFileSelect={onFileSelect}
+      accept={{
+        json: ['.json'],
+      }}
     />
   )
 }
