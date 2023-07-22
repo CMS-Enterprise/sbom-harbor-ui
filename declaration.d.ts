@@ -16,41 +16,6 @@ declare module '*.css' {
   export default classes
 }
 
-/**
- * Generalizable way to require at least one of a set of properties is provided.
- * @see https://stackoverflow.com/a/49725198/1526037
- * @author KPD (https://stackoverflow.com/users/2077574/kpd)
- */
-type RequireAtLeastOne<T, Keys extends keyof T = keyof T> = Pick<
-  T,
-  Exclude<keyof T, Keys>
-> &
-  {
-    [K in Keys]-?: Required<Pick<T, K>> & Partial<Pick<T, Exclude<Keys, K>>>
-  }[Keys]
-
-/**
- * Partial but not absolute way to require that one and only one is provided.
- * @see https://stackoverflow.com/a/49725198/1526037
- * @author KPD (https://stackoverflow.com/users/2077574/kpd)
- */
-type RequireOnlyOne<T, Keys extends keyof T = keyof T> = Pick<
-  T,
-  Exclude<keyof T, Keys>
-> &
-  {
-    [K in Keys]-?: Required<Pick<T, K>> &
-      Partial<Record<Exclude<Keys, K>, undefined>>
-  }[Keys]
-
-/**
- * Generic Error Callback type
- */
-type ErrorCallbackType = (err: Error) => void
-
-/**
- * Date Interface
- */
 interface Date {
   /**
    * Give a more precise return type to the method `toISOString()`:

@@ -224,3 +224,38 @@ export type ThemeColor =
   | 'success'
 
 export type ThemeSkin = 'filled' | 'light' | 'light-static'
+
+//* Misc
+//*--------------------------------------------------------/
+
+/**
+ * Generalizable way to require at least one of a set of properties is provided.
+ * @see https://stackoverflow.com/a/49725198/1526037
+ * @author KPD (https://stackoverflow.com/users/2077574/kpd)
+ */
+export type RequireAtLeastOne<T, Keys extends keyof T = keyof T> = Pick<
+  T,
+  Exclude<keyof T, Keys>
+> &
+  {
+    [K in Keys]-?: Required<Pick<T, K>> & Partial<Pick<T, Exclude<Keys, K>>>
+  }[Keys]
+
+/**
+ * Partial but not absolute way to require that one and only one is provided.
+ * @see https://stackoverflow.com/a/49725198/1526037
+ * @author KPD (https://stackoverflow.com/users/2077574/kpd)
+ */
+export type RequireOnlyOne<T, Keys extends keyof T = keyof T> = Pick<
+  T,
+  Exclude<keyof T, Keys>
+> &
+  {
+    [K in Keys]-?: Required<Pick<T, K>> &
+      Partial<Record<Exclude<Keys, K>, undefined>>
+  }[Keys]
+
+/**
+ * Generic Error Callback type
+ */
+export type ErrorCallbackType = (err: Error) => void

@@ -45,7 +45,7 @@
       "@testing-library/jest-dom"
     ]
   },
-  "include": ["src", "declaration.d.ts"],
+  "include": ["src", "declaration.d.ts", "global.d.ts"],
   "exclude": [
     "**/node_modules",
     "dist",

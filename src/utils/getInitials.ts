@@ -3,6 +3,8 @@
  * @module sbom-harbor-ui/utils/get-initials
  */
 
+import { RequireAtLeastOne } from '@/types'
+
 type UserPropsForInitials = RequireAtLeastOne<
   {
     name?: string
