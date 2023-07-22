@@ -944,6 +944,7 @@ theme = createTheme(theme, {
         },
         columnHeader: {
           padding: `${theme.spacing(1.5)} ${theme.spacing(3.5)}`,
+          textTransform: 'capitalize',
 
           '&:focus': {
             outline: 'none',
@@ -987,6 +988,9 @@ theme = createTheme(theme, {
         },
         footer: {
           backgroundColor: theme.palette.background.paper,
+        },
+        overlayWrapper: {
+          minHeight: theme.spacing(7),
         },
       },
     },
