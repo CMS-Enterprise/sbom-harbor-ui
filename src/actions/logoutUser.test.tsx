@@ -1,4 +1,4 @@
-import { act } from '@testing-library/react-hooks'
+import { act } from '@testing-library/react'
 import { Auth } from 'aws-amplify'
 import logoutUser from '@/actions/logoutUser'
 import { AuthActions } from '@/actions/actionTypes'
