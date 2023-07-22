@@ -1,20 +1,25 @@
 /**
+ * Custom hook to copy text to clipboard.
  * @module sbom-harbor-ui/hooks/useCopyToClipboard
  */
-import * as React from 'react'
+import { useState } from 'react'
 
-type CopiedValue = string | null
-type CopyFn = (text: string) => Promise<boolean> // Return success
-type ClearFn = () => void
+export type CopiedValue = string | null
+export type CopyFn = (text: string) => Promise<boolean> // Return success
+export type ClearFn = () => void
 
+/**
+ * Hook to copy text to clipboard.
+ * @returns {[CopiedValue, CopyFn, ClearFn]} [copiedText, copy, clear]
+ */
 function useCopyToClipboard(): [CopiedValue, CopyFn, ClearFn] {
-  const [copiedText, setCopiedText] = React.useState<CopiedValue>(null)
+  const [copiedText, setCopiedText] = useState<CopiedValue>(null)
 
   const clear = () => setCopiedText(null)
 
   const copy: CopyFn = async (text) => {
     if (!navigator?.clipboard) {
-      console.warn('Clipboard not supported')
+      // Clipboard not supported
       return false
     }
 
@@ -24,7 +29,6 @@ function useCopyToClipboard(): [CopiedValue, CopyFn, ClearFn] {
       setCopiedText(text)
       return true
     } catch (error) {
-      console.warn('Copy failed', error)
       setCopiedText(null)
       return false
     }
