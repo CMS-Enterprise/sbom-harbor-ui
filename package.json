@@ -59,6 +59,7 @@
     "react-dropzone": "^14.2.3",
     "react-hook-form": "^7.45.2",
     "react-popper": "^2.3.0",
+    "react-query": "^3.39.3",
     "react-router-dom": "^6.14.2",
     "uuid": "^9.0.0",
     "yup": "^1.2.0"

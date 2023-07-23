@@ -3,11 +3,14 @@
  * @module sbom-harbor-ui/App
  */
 import { Outlet } from 'react-router-dom'
+import { QueryClient, QueryClientProvider } from 'react-query'
 import { ThemeProvider } from '@mui/material/styles'
 import { AlertProvider } from '@/hooks/useAlert'
 import { AuthProvider } from '@/hooks/useAuth'
 import DialogProvider from '@/hooks/useDialog'
 import theme from '@/theme/theme'
+
+const queryClient = new QueryClient()
 
 /**
  * Root Layout component that renders the entire application,
@@ -17,13 +20,15 @@ import theme from '@/theme/theme'
 const App = (): JSX.Element => (
   <main data-testid="main">
     <ThemeProvider theme={theme}>
-      <AuthProvider>
-        <AlertProvider>
-          <DialogProvider>
-            <Outlet />
-          </DialogProvider>
-        </AlertProvider>
-      </AuthProvider>
+      <QueryClientProvider client={queryClient}>
+        <AuthProvider>
+          <AlertProvider>
+            <DialogProvider>
+              <Outlet />
+            </DialogProvider>
+          </AlertProvider>
+        </AuthProvider>
+      </QueryClientProvider>
     </ThemeProvider>
   </main>
 )
