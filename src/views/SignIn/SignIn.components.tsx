@@ -16,22 +16,43 @@ export const LoginIllustrationWrapper = styled(Box)<BoxProps>(({ theme }) => ({
   },
 }))
 
-export const RightWrapper = styled(Box)<BoxProps>(({ theme }) => ({
+export const RightWrapper = styled(Box, {
+  shouldForwardProp: (prop) => prop !== 'hidden',
+})<BoxProps>(({ theme, hidden }) => ({
   width: '100%',
   marginLeft: 'auto',
   marginRight: theme.spacing(16),
   [theme.breakpoints.up('md')]: {
-    maxWidth: 400,
+    maxWidth: `min(450px, 40vw)`,
   },
   [theme.breakpoints.up('lg')]: {
-    maxWidth: 450,
+    maxWidth: 500,
   },
+  ...(!hidden && { borderLeft: `1px solid ${theme.palette.divider}` }),
 }))
 
 export const BoxWrapper = styled(Box)<BoxProps>(({ theme }) => ({
-  width: '100%',
+  [theme.breakpoints.down('sm')]: {
+    padding: theme.spacing(4),
+  },
+}))
+
+export const CenteredFlexBox = styled(Box)<BoxProps>(({ theme }) => ({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  [theme.breakpoints.down('xs')]: {
+    flexDirection: 'column',
+  },
+}))
+
+export const VerticalCenteredFlexBox = styled(Box)<BoxProps>(({ theme }) => ({
   [theme.breakpoints.down('md')]: {
-    maxWidth: 400,
+    position: 'absolute',
+    top: '50%',
+    transform: 'translateY(-50%)',
+    margin: 'auto',
+    padding: theme.spacing(4),
   },
 }))
 
@@ -39,7 +60,6 @@ export const FormControlLabel = styled(
   MuiFormControlLabel
 )<FormControlLabelProps>(({ theme }) => ({
   '& .MuiFormControlLabel-label': {
-    fontSize: '0.875rem',
-    color: theme.palette.text.secondary,
+    fontSize: theme.typography.body2.fontSize,
   },
 }))
