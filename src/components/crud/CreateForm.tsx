@@ -9,6 +9,7 @@ import Dialog from '@mui/material/Dialog'
 import DialogTitle from '@mui/material/DialogTitle'
 import DialogContent from '@mui/material/DialogContent'
 import DialogActions from '@mui/material/DialogActions'
+import InputBase from '@mui/material/InputBase'
 import Stack from '@mui/material/Stack'
 import { FormField } from '@/types'
 
@@ -93,7 +94,7 @@ const CreateForm: React.FC<CreateFormProps> = ({
       <DialogContent>
         <Box component="form" onSubmit={handleSubmit(onSubmit)} role="form">
           <Stack spacing={4} sx={{ pt: 1 }}>
-            {schema.map(({ component: Component, ...field }) => {
+            {schema.map(({ component: Component = InputBase, ...field }) => {
               // dynamically register the fields
               const { ref: inputRef, ...inputProps } = register(field.name, {
                 required: 'This field is required',

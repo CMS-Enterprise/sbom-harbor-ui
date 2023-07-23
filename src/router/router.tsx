@@ -15,6 +15,7 @@ import AppLayout from '@/layouts/AppLayout/AppLayout'
 import Dashboard from '@/views/Dashboard/Dashboard'
 import TeamForm from '@/views/Dashboard/Team/TeamForm'
 import TeamView from '@/views/Dashboard/Team/TeamView'
+import Vendors from '@/views/Vendors/Vendors'
 
 // ** Components
 import App from '@/App'
@@ -25,6 +26,7 @@ import NavigateToLogin from '@/components/react-router/NavigateToLogin'
 import authLoader from '@/router/authLoader'
 import teamLoader from '@/router/teamLoader'
 import productsLoader from '@/router/productsLoader'
+import vendorsLoader from '@/router/vendorsLoader'
 import configureCognito from '@/utils/configureCognito'
 
 /**
@@ -66,6 +68,13 @@ const router = createBrowserRouter([
             id: RouteIds.DASHBOARD,
             loader: productsLoader,
             element: <Dashboard />,
+            errorElement: <ErrorBoundary />,
+          },
+          {
+            id: RouteIds.VENDORS,
+            path: 'vendors',
+            loader: vendorsLoader,
+            element: <Vendors />,
             errorElement: <ErrorBoundary />,
           },
           {

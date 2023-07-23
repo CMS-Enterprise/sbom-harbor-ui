@@ -7,6 +7,9 @@ import type {
   CognitoUser,
   CognitoUserSession,
 } from 'amazon-cognito-identity-js'
+import InputBase, { InputBaseProps } from '@mui/material/InputBase'
+import { ElementType } from 'react'
+import { TextField } from '@mui/material'
 
 //* Application Types
 //*--------------------------------------------------------/
@@ -21,6 +24,7 @@ export enum RouteIds {
   TEAM_EDIT = 'team-edit',
   TEAM_NEW = 'team-new',
   TEAM_VIEW = 'team-view',
+  VENDORS = 'vendors',
 }
 
 //* User (Cognito)
@@ -61,12 +65,16 @@ export type UserDataType =
 export type FormField = {
   name: string
   label?: string
-  type: string
-  required?: boolean
-  disabled?: boolean
-  multiline?: boolean
-  value?: string | number | boolean | null
-  component: React.ElementType
+  type: InputBaseProps['type']
+  required?: InputBaseProps['required']
+  disabled?: InputBaseProps['disabled']
+  multiline?: InputBaseProps['multiline']
+  value?: InputBaseProps['value']
+  component?:
+    | typeof TextField
+    | typeof InputBase
+    | React.FC<HTMLInputElement>
+    | JSX.ElementType
 }
 
 //* Teams
