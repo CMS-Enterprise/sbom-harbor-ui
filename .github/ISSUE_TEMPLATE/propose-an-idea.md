@@ -12,7 +12,8 @@ assignees: ''
 The primary audience for this request is the SaaS Governance team that manually receives SBOMs. In addition, other teams (including Harbor developers) will also be uploading and viewing SBOMs.
 
 **What’s the Value**
-Initial method to see existing SBOMs in Harbor.
+
+<!-- Describe the value of implementing the proposed idea. -->
 
 **Details**
 More to come.
