@@ -165,7 +165,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
    *  the user state to null and clears local storage.
    */
   /* eslint-disable react-hooks/exhaustive-deps */
-  React.useEffect(() => {
+  React.useLayoutEffect(() => {
     init()
   }, [matchProtectedRoute])
   /* eslint-enable react-hooks/exhaustive-deps */
