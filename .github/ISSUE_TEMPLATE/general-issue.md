@@ -1,9 +1,10 @@
 ---
-name: 'General issue'
-about: Suggest an idea for this project
+name: General issue
+about: Record an issue for the project.
 title: ''
 labels: ''
 assignees: ''
+
 ---
 
 **Description**
