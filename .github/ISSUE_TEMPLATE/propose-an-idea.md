@@ -19,4 +19,4 @@ assignees: ''
 <!-- Provide more context and details for the proposal. -->
 
 **Definition of Done**
-Definition of the outcomes, that once achieved, mean the work for the proposed idea has been completed.
+<!-- Specify the outcomes that, once achieved, mean the work for the proposed idea has been completed. -->
