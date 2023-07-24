@@ -1,11 +1,11 @@
 ---
 name: Propose an Idea
-about: Used to document discussion around proposed ideas when deciding whether to   approve
+about:
+  Used to document discussion around proposed ideas when deciding whether to   approve
   them for the roadmap.
 title: ''
 labels: ''
 assignees: ''
-
 ---
 
 **Target Audience**

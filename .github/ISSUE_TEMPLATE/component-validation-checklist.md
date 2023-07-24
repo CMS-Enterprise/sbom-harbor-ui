@@ -4,7 +4,6 @@ about: To be completed before a component or pattern can be marked as "Ready".
 title: ''
 labels: ''
 assignees: ''
-
 ---
 
 # Component validation checklist

@@ -4,7 +4,6 @@ about: Record an issue for the project.
 title: ''
 labels: ''
 assignees: ''
-
 ---
 
 **Description**
