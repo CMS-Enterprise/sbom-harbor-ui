@@ -4,7 +4,7 @@ about:
   Used to document discussion around proposed ideas when deciding whether to   approve
   them for the roadmap.
 title: ''
-labels: ''
+labels: 'proposed'
 assignees: ''
 ---
 
