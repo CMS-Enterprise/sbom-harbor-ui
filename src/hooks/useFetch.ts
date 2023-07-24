@@ -1,8 +1,13 @@
 /**
  * @module sbom-harbor-ui/hooks/useFetch
  */
-import * as React from 'react'
+import { useEffect, useState } from 'react'
 
+/**
+ * Custom hook to fetch data from an API.
+ * @param {string} url - URL to fetch
+ * @returns {object} - An object containing the data, error, and loading state
+ */
 const useFetch = (
   url: string
 ): {
@@ -10,11 +15,11 @@ const useFetch = (
   error: Error | null
   data: unknown
 } => {
-  const [data, setData] = React.useState(null)
-  const [error, setError] = React.useState<Error | null>(null)
-  const [loading, setLoading] = React.useState(false)
+  const [data, setData] = useState(null)
+  const [error, setError] = useState<Error | null>(null)
+  const [loading, setLoading] = useState(false)
 
-  React.useEffect(() => {
+  useEffect(() => {
     ;(async function () {
       try {
         setLoading(true)
