@@ -1,7 +1,7 @@
 ---
 name: Propose an Idea
 about:
-  Used to document discussion around proposed ideas when deciding whether to   approve
+  Propose an idea for a change to the project to be considered for the project roadmap
   them for the roadmap.
 title: ''
 labels: 'proposed'
