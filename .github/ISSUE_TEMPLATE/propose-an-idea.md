@@ -1,8 +1,7 @@
 ---
 name: Propose an Idea
 about:
-  Propose an idea for a change to the project to be considered for the project roadmap
-  them for the roadmap.
+  Propose an idea for a change to the project to be considered for the project roadmap.
 title: ''
 labels: 'proposed'
 assignees: ''
