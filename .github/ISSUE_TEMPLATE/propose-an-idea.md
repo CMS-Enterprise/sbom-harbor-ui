@@ -16,7 +16,7 @@ assignees: ''
 <!-- Describe the value of implementing the proposed idea. -->
 
 **Details**
-More to come.
+<!-- Provide more context and details for the proposal. -->
 
 **Definition of Done**
 Definition of the outcomes, that once achieved, mean the work for the proposed idea has been completed.
