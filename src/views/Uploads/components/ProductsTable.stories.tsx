@@ -1,7 +1,7 @@
 import type { StoryObj, Meta } from '@storybook/react'
 import ProductsTable, {
   ProductsTableProps,
-} from '@/views/Dashboard/Uploads/components/ProductsTable'
+} from '@/views/Uploads/components/ProductsTable'
 
 type Story = StoryObj<ProductsTableProps>
 

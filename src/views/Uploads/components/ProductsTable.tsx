@@ -15,7 +15,7 @@ import FileUploadDialog, {
 import {
   formatLastUploadDate,
   mapLastUploadToFreshness,
-} from '@/views/Dashboard/Uploads/utils'
+} from '@/views/Uploads/utils'
 
 export interface Product {
   id: string

@@ -4,7 +4,7 @@
  * @see {@link @sbom-harbor-ui/dashboard/Routes}
  */
 import { defer, Params } from 'react-router-dom'
-import { Product } from '@/views/Dashboard/Uploads/components/ProductsTable'
+import { Product } from '@/views/Uploads/components/ProductsTable'
 import getJWT from '@/utils/getJWT'
 
 const productsLoader = ({

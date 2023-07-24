@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react'
 import ProductsTable, {
   Product,
   ProductsTableProps,
-} from '@/views/Dashboard/Uploads/components/ProductsTable'
+} from '@/views/Uploads/components/ProductsTable'
 import { v4 as uuidv4 } from 'uuid'
 
 const defaultProps: ProductsTableProps = {

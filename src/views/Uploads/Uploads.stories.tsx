@@ -2,7 +2,7 @@ import type { StoryObj, Meta, Decorator } from '@storybook/react'
 import {
   Product,
   ProductsTableProps,
-} from '@/views/Dashboard/Uploads/components/ProductsTable'
+} from '@/views/Uploads/components/ProductsTable'
 import DashboardComponent from '@/views/Dashboard/Dashboard'
 import { createMemoryRouter, RouterProvider, defer } from 'react-router-dom'
 

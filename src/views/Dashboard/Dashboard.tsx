@@ -11,7 +11,7 @@ import Typography from '@mui/material/Typography'
 import Fallback from '@/components/SimpleLoadingFallback'
 import ProductsTable, {
   Product,
-} from '@/views/Dashboard/Uploads/components/ProductsTable'
+} from '@/views/Uploads/components/ProductsTable'
 
 const DashboardContainer = (): JSX.Element => {
   // hook for getting the route loader data

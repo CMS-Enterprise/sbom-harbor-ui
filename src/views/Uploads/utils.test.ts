@@ -2,7 +2,7 @@ import { advanceTo, clear } from 'jest-date-mock'
 import {
   formatLastUploadDate,
   mapLastUploadToFreshness,
-} from '@/views/Dashboard/Uploads/utils'
+} from '@/views/Uploads/utils'
 
 describe('formatLastUploadDate', () => {
   it('returns "N/A" when lastUpload is undefined', () => {
