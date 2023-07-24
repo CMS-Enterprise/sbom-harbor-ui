@@ -3,20 +3,21 @@
  * @module sbom-harbor-ui/utils/getJWT
  */
 import { Auth } from 'aws-amplify'
+import AuthError from '@/errors/AuthError'
 
 /**
  * Get the Cognito JWT Token from the current session.
  * @returns {Promise<string>} The Cognito JWT Token.
  */
-const getJWT = (): Promise<string> =>
-  Auth.currentSession().then((session) => {
-    const jwtToken = session.getAccessToken().getJwtToken()
+const getJWT = async (): Promise<string> => {
+  const session = await Auth.currentSession()
+  const jwtToken = session.getAccessToken().getJwtToken()
 
-    if (!jwtToken) {
-      throw new Response('Invalid Session', { status: 401 })
-    }
+  if (!jwtToken) {
+    throw new AuthError().toResponse()
+  }
 
-    return jwtToken
-  })
+  return jwtToken
+}
 
 export default getJWT
