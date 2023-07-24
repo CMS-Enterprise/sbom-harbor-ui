@@ -9,7 +9,7 @@ assignees: ''
 ---
 
 **Target Audience**
-The primary audience for this request is the SaaS Governance team that manually receives SBOMs. In addition, other teams (including Harbor developers) will also be uploading and viewing SBOMs.
+<!-- Describe the target audience for this change to the project. -->
 
 **What’s the Value**
 
