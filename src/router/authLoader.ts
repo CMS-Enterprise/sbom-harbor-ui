@@ -8,7 +8,7 @@ import getJWT from '@/utils/getJWT'
 
 const authLoader = async () => {
   return defer({
-    jwtToken: getJWT(),
+    jwtToken: await getJWT(),
   })
 }
 
