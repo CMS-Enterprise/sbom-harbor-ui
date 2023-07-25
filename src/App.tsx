@@ -18,19 +18,17 @@ const queryClient = new QueryClient()
  * @returns {JSX.Element}
  */
 const App = (): JSX.Element => (
-  <main data-testid="main">
-    <ThemeProvider theme={theme}>
-      <QueryClientProvider client={queryClient}>
-        <AuthProvider>
-          <AlertProvider>
-            <DialogProvider>
-              <Outlet />
-            </DialogProvider>
-          </AlertProvider>
-        </AuthProvider>
-      </QueryClientProvider>
-    </ThemeProvider>
-  </main>
+  <ThemeProvider theme={theme}>
+    <QueryClientProvider client={queryClient}>
+      <AuthProvider>
+        <AlertProvider>
+          <DialogProvider>
+            <Outlet />
+          </DialogProvider>
+        </AlertProvider>
+      </AuthProvider>
+    </QueryClientProvider>
+  </ThemeProvider>
 )
 
 export default App

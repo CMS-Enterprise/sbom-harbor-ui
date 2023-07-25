@@ -4,16 +4,20 @@
  * @see {@link @sbom-harbor-ui/dashboard/index} for where this is imported.
  * @see https://material-ui.com/customization/themes/ for documentation.
  */
-import { createTheme } from '@mui/material/styles'
+import { DrawerProps } from '@mui/material/Drawer'
+import { createTheme, alpha } from '@mui/material/styles'
 
 export const MuiDrawerWidth = 200
 
 declare module '@mui/material/styles' {
   interface Palette {
     dark?: Palette['primary']
+    background: Palette['background']
   }
+
   interface PaletteOptions {
     dark?: PaletteOptions['primary']
+    background?: PaletteOptions['background']
   }
 }
 
@@ -128,6 +132,7 @@ theme = createTheme(theme, {
     background: {
       paper: theme.palette.common.white,
       default: '#F7F7F9',
+      selected: alpha(theme.palette.common.black, 0.04),
     },
     action: {
       active: 'rgba(76, 78, 100, 0.54)',
@@ -1063,14 +1068,66 @@ theme = createTheme(theme, {
       },
     },
     MuiDrawer: {
+      defaultProps: {
+        anchor: 'left',
+        role: 'navigation',
+        variant: 'permanent',
+      },
+      shouldForwardProp: (prop: keyof DrawerProps) => prop !== 'open',
       styleOverrides: {
-        root: {
-          '&.MuiPaper-root': {
-            boxShadow: theme.shadows[6],
+        root: ({ ownerState }: { ownerState: Partial<DrawerProps> }) => ({
+          '& .MuiDrawer-paper': {
+            boxSizing: 'border-box',
+            position: 'relative',
+            width: MuiDrawerWidth,
+            whiteSpace: 'nowrap',
+            transition: theme.transitions.create('width', {
+              easing: theme.transitions.easing.sharp,
+              duration: theme.transitions.duration.enteringScreen,
+            }),
+            ...(!ownerState.open && {
+              transition: theme.transitions.create('width', {
+                easing: theme.transitions.easing.sharp,
+                duration: theme.transitions.duration.leavingScreen,
+              }),
+              width: theme.spacing(7),
+              [theme.breakpoints.up('sm')]: {
+                width: theme.spacing(9),
+              },
+            }),
           },
-        },
+          '& .MuiList-root': {
+            '& .MuiListItem-root': {
+              '& .MuiListItemIcon-root': {
+                '& .MuiSvgIcon-root': {
+                  width: theme.spacing(3),
+                  [theme.breakpoints.up('sm')]: {
+                    width: theme.spacing(5),
+                  },
+                },
+              },
+            },
+          },
+          '& .MuiToolbar-root': {
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'flex-end',
+            ...(!ownerState.open && {
+              justifyContent: 'center',
+            }),
+          },
+        }),
         paper: {
           boxShadow: theme.shadows[6],
+          backgroundColor:
+            theme.palette.mode === 'light'
+              ? theme.palette.grey[200]
+              : theme.palette.grey[900],
+        },
+        docked: {
+          '& .MuiToolbar-root': {
+            width: 'auto',
+          },
         },
       },
     },
@@ -1126,6 +1183,10 @@ theme = createTheme(theme, {
           '&.Mui-disabled': {
             color: theme.palette.text.disabled,
           },
+
+          '& .MuiSvgIcon-root': {
+            textAlign: 'center',
+          },
         },
         sizeSmall: {
           padding: '0.5rem',
@@ -1171,11 +1232,19 @@ theme = createTheme(theme, {
         },
       },
     },
+    MuiLink: {
+      styleOverrides: {
+        root: {
+          textDecoration: 'none',
+        },
+      },
+    },
     MuiList: {
       styleOverrides: {
         root: {
           '& .MuiListItem-root.Mui-selected': {
-            backgroundColor: 'rgba(0, 0, 0, 0.04)',
+            // @ts-expect-error
+            backgroundColor: theme.palette.background.selected,
           },
         },
       },
@@ -1187,32 +1256,34 @@ theme = createTheme(theme, {
             color: theme.palette.text.disabled,
           },
           '&.Mui-selected': {
-            backgroundColor: 'rgba(0, 0, 0, 0.04)',
+            // @ts-expect-error
+            backgroundColor: theme.palette.background.selected,
           },
         },
-        gutters: {
-          paddingLeft: '1.25rem',
-          paddingRight: '1.25rem',
-          [theme.breakpoints.up('sm')]: {
-            paddingLeft: '1.875rem',
-            paddingRight: '1.875rem',
-          },
-          [theme.breakpoints.up('md')]: {
-            paddingLeft: '2.5rem',
-            paddingRight: '2.5rem',
-          },
-          [theme.breakpoints.up('lg')]: {
-            paddingLeft: '3.75rem',
-            paddingRight: '3.75rem',
-          },
-          [theme.breakpoints.up('xl')]: {
-            paddingLeft: '5rem',
-            paddingRight: '5rem',
-          },
-        },
+        // gutters: {
+        //   paddingLeft: '1.25rem',
+        //   paddingRight: '1.25rem',
+        //   [theme.breakpoints.up('sm')]: {
+        //     paddingLeft: '1.875rem',
+        //     paddingRight: '1.875rem',
+        //   },
+        //   [theme.breakpoints.up('md')]: {
+        //     paddingLeft: '2.5rem',
+        //     paddingRight: '2.5rem',
+        //   },
+        //   [theme.breakpoints.up('lg')]: {
+        //     paddingLeft: '3.75rem',
+        //     paddingRight: '3.75rem',
+        //   },
+        //   [theme.breakpoints.up('xl')]: {
+        //     paddingLeft: '5rem',
+        //     paddingRight: '5rem',
+        //   },
+        // },
         button: {
           '&:hover': {
-            backgroundColor: 'rgba(0, 0, 0, 0.04)',
+            // @ts-expect-error
+            backgroundColor: theme.palette.background.selected,
           },
         },
       },
@@ -1220,17 +1291,17 @@ theme = createTheme(theme, {
     MuiListItemIcon: {
       styleOverrides: {
         root: {
-          minWidth: 'unset',
-          marginRight: '0.625rem',
-          marginLeft: '-0.625rem',
+          // minWidth: 'unset',
+          // marginRight: '0.625rem',
+          // marginLeft: '-0.625rem',
         },
       },
     },
     MuiListItemText: {
       styleOverrides: {
         root: {
-          marginBottom: '0.625rem',
-          marginTop: '0.625rem',
+          // marginBottom: '0.625rem',
+          // marginTop: '0.625rem',
         },
         primary: {
           fontWeight: theme.typography.fontWeightMedium,
@@ -1255,7 +1326,8 @@ theme = createTheme(theme, {
             color: theme.palette.text.disabled,
           },
           '&.Mui-selected': {
-            backgroundColor: 'rgba(0, 0, 0, 0.04)',
+            // @ts-expect-error
+            backgroundColor: theme.palette.background.selected,
           },
         },
       },
@@ -1470,6 +1542,7 @@ theme = createTheme(theme, {
         },
       },
     },
+
     MuiTypography: {
       styleOverrides: {
         root: {

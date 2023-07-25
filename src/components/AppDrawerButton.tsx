@@ -1,12 +1,17 @@
 /**
- * @module sbom-harbor-ui/views/App/AppDrawerListItems
+ * @module sbom-harbor-ui/components/AppDrawerButton
  */
 import { Link as RouterLink } from 'react-router-dom'
 import Link from '@mui/material/Link'
 import ListItemButton from '@mui/material/ListItemButton'
 import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
-import { GridSeparatorIcon } from '@mui/x-data-grid'
+
+interface IAppDrawerButton {
+  label: string
+  to: string
+  icon?: JSX.Element
+}
 
 /**
  * A single menu button in the list inside of the AppDrawer.
@@ -15,19 +20,10 @@ import { GridSeparatorIcon } from '@mui/x-data-grid'
  * @param {JSX.Element} icon The SVG icon to display next to the label.
  * @returns {JSX.Element} The menu button list item.
  */
-const AppDrawerButton = ({
-  label,
-  to,
-  icon,
-}: {
-  label: string
-  to: string
-  icon?: JSX.Element
-}) => (
+const AppDrawerButton: React.FC<IAppDrawerButton> = ({ label, to, icon }) => (
   <Link to={to} component={RouterLink}>
     <ListItemButton sx={{ margin: 'auto', border: '0' }}>
       {icon && <ListItemIcon>{icon}</ListItemIcon>}
-      <GridSeparatorIcon sx={{ visibility: 'hidden' }} />
       <ListItemText primary={label} />
     </ListItemButton>
   </Link>

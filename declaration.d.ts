@@ -43,6 +43,14 @@ type RequireOnlyOne<T, Keys extends keyof T = keyof T> = Pick<
       Partial<Record<Exclude<Keys, K>, undefined>>
   }[Keys]
 
+type Only<T, U> = {
+  [P in keyof T]: T[P]
+} & {
+  [P in keyof U]?: never
+}
+
+type Either<T, U> = Only<T, U> | Only<U, T>
+
 /**
  * Generic Error Callback type
  */

@@ -1,5 +1,5 @@
-import { render, screen } from '@testing-library/react'
-import { BrowserRouter } from 'react-router-dom'
+import { screen } from '@testing-library/react'
+import { render } from '@/test-utils'
 import SvgIcon from '@mui/material/SvgIcon'
 import AppDrawerButton from '@/components/AppDrawerButton'
 
@@ -15,11 +15,7 @@ describe('AppDrawerButton', () => {
   }
 
   beforeEach(() => {
-    render(
-      <BrowserRouter>
-        <AppDrawerButton {...mockProps} />
-      </BrowserRouter>
-    )
+    render(<AppDrawerButton {...mockProps} />)
   })
 
   it('should render the button with the given label', () => {
