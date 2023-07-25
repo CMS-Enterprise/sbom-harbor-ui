@@ -40,9 +40,12 @@ export const WithRows: Story = {
   args: {
     products: [
       {
-        id: '1',
+        id: '94728984-2e82-4657-ae39-749707f8ac20',
         name: 'Product 1',
-        vendor: 'Vendor 1',
+        vendor: {
+          id: '7f29c75c-8d8d-4d9b-9c19-e1c12d90d814',
+          name: 'Vendor 1',
+        },
         lastUpload: '2021-10-01T00:00:00.000Z',
         freshness: 1,
       },

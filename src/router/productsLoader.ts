@@ -4,7 +4,7 @@
  * @see {@link @sbom-harbor-ui/dashboard/Routes}
  */
 import { defer, Params } from 'react-router-dom'
-import { Product } from '@/views/Uploads/components/ProductsTable'
+import { Product } from '@/types'
 import getJWT from '@/utils/getJWT'
 
 const productsLoader = ({
@@ -18,10 +18,13 @@ const productsLoader = ({
     data: getJWT().then(() => {
       return [
         {
-          id: '1',
+          id: '93efbb3e-beb0-4229-9a3c-d452a2f36e38',
           name: 'Test Product',
-          vendor: 'Test Vendor',
-          lastUpload: new Date().toISOString(),
+          vendor: {
+            id: 'f7fa92e0-4e3f-4674-b9f8-100b1c2d1bd9',
+            name: 'ABC Software Solutions',
+          },
+          lastUpload: '2023-07-25T03:47:12.798Z',
         },
       ] as Product[]
     }),

@@ -9,9 +9,8 @@ import { Await, useLoaderData } from 'react-router-dom'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import Fallback from '@/components/SimpleLoadingFallback'
-import ProductsTable, {
-  Product,
-} from '@/views/Uploads/components/ProductsTable'
+import ProductsTable from '@/views/Uploads/components/ProductsTable'
+import { Product } from '@/types'
 
 const DashboardContainer = (): JSX.Element => {
   // hook for getting the route loader data

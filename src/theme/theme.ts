@@ -940,6 +940,9 @@ theme = createTheme(theme, {
       },
     },
     MuiDataGrid: {
+      defaultProps: {
+        autoHeight: true,
+      },
       styleOverrides: {
         root: {},
         columnHeaders: {

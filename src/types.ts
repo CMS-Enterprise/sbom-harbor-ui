@@ -8,8 +8,7 @@ import type {
   CognitoUserSession,
 } from 'amazon-cognito-identity-js'
 import InputBase, { InputBaseProps } from '@mui/material/InputBase'
-import { ElementType } from 'react'
-import { TextField } from '@mui/material'
+import TextField from '@mui/material/TextField'
 
 //* Application Types
 //*--------------------------------------------------------/
@@ -24,7 +23,9 @@ export enum RouteIds {
   TEAM_EDIT = 'team-edit',
   TEAM_NEW = 'team-new',
   TEAM_VIEW = 'team-view',
+  PRODUCTS = 'products',
   VENDORS = 'vendors',
+  VENDOR_VIEW = 'vendor-view',
 }
 
 //* User (Cognito)
@@ -75,6 +76,33 @@ export type FormField = {
     | typeof InputBase
     | React.FC<HTMLInputElement>
     | JSX.ElementType
+}
+
+//* Vendors & Products
+//*--------------------------------------------------------/
+
+export interface Vendor {
+  id: string
+  name: string
+  description?: string
+  contact?: string
+  email?: string
+  phone?: string
+  address?: string
+  city?: string
+  state?: string
+  zip?: string
+  country?: string
+  website?: string
+  notes?: string
+  products: Omit<Product, 'vendor'>[]
+}
+
+export interface Product {
+  id: string
+  name: string
+  lastUpload: TDateISO | undefined
+  vendor: Omit<Vendor, 'products'>
 }
 
 //* Teams

@@ -3,26 +3,19 @@
  * @module sbom-harbor-ui/views/Dashboard/Uploads/components/ProductsTable
  */
 import { useCallback, useMemo, useState } from 'react'
+import { Link as RouterLink } from 'react-router-dom'
 import { v4 as uuidv4 } from 'uuid'
 import Card from '@mui/material/Card'
 import IconButton from '@mui/material/IconButton'
+import Link from '@mui/material/Link'
 import UploadFileIcon from '@mui/icons-material/UploadFile'
 import { DataGrid, type GridColDef } from '@mui/x-data-grid'
-import FileUploadDialog, {
-  OnCloseEvent,
-  OnCloseReason,
-} from '@/components/FileUploadDialog'
+import FileUploadDialog from '@/components/FileUploadDialog'
 import {
   formatLastUploadDate,
   mapLastUploadToFreshness,
 } from '@/views/Uploads/utils'
-
-export interface Product {
-  id: string
-  name: string
-  vendor: string
-  lastUpload: TDateISO | undefined
-}
+import { Product } from '@/types'
 
 interface ProductRow extends Product {
   freshness?: number
@@ -58,12 +51,9 @@ const ProductsTable = ({
    * @param {OnCloseEvent} event - The event that triggered the dialog close.
    * @param {OnCloseReason} reason - The reason that the dialog was closed.
    */
-  const handleCloseDialog = useCallback(
-    (event: OnCloseEvent, reason: OnCloseReason) => {
-      setOpen(false)
-    },
-    []
-  )
+  const handleCloseDialog = useCallback(() => {
+    setOpen(false)
+  }, [])
 
   /**
    * The callback function that is called when the upload button is clicked.
@@ -100,6 +90,16 @@ const ProductsTable = ({
         field: 'vendor',
         headerName: 'Vendor',
         flex: 1.5,
+        type: 'string',
+        renderCell: ({
+          row: {
+            vendor: { id, name },
+          },
+        }: RenderCellProps) => (
+          <Link to={`/app/vendors/${id}`} component={RouterLink}>
+            {name}
+          </Link>
+        ),
       },
       {
         field: 'freshness',
@@ -117,9 +117,9 @@ const ProductsTable = ({
       },
       {
         field: 'action',
-        headerName: '',
+        headerName: 'Actions',
+        flex: 0.75,
         align: 'right',
-        flex: 0,
         sortable: false,
         disableColumnFilter: true,
         disableColumnMenu: true,

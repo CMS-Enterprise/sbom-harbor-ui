@@ -2,6 +2,7 @@
 import * as React from 'react'
 import { DataGrid, GridColDef, GridRowId, GridRowModel } from '@mui/x-data-grid'
 import { FormField } from '@/types'
+import Card from '@mui/material/Card'
 import IconButton from '@mui/material/IconButton'
 import DeleteIcon from '@mui/icons-material/Delete'
 import toTitleCase from '@/utils/toTitleCase'
@@ -12,7 +13,7 @@ export interface ListProps {
   deleteItem: (id: string) => void
 }
 
-const List: React.FC<ListProps> = ({ items, schema, deleteItem }) => {
+const List: React.FC<ListProps> = ({ items = [], schema, deleteItem }) => {
   const handleDelete = (id: GridRowId) => {
     deleteItem(id as string)
   }
@@ -50,12 +51,14 @@ const List: React.FC<ListProps> = ({ items, schema, deleteItem }) => {
   ]
 
   return (
-    <DataGrid
-      // getRowId={(row: FormField) => row.name}
-      rows={items}
-      columns={columns}
-      pagination
-    />
+    <Card>
+      <DataGrid
+        // getRowId={(row: FormField) => row.name}
+        rows={items}
+        columns={columns}
+        pagination
+      />
+    </Card>
   )
 }
 

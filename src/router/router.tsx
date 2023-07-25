@@ -6,6 +6,11 @@
 import { createBrowserRouter } from 'react-router-dom'
 import { RouteIds } from '@/types'
 
+// ** Components
+import App from '@/App'
+import ErrorBoundary from '@/components/ErrorBoundary'
+import NavigateToLogin from '@/components/react-router/NavigateToLogin'
+
 // ** Public Views
 import SignIn from '@/views/SignIn/SignIn'
 import SignOut from '@/views/SignOut/SignOut'
@@ -15,19 +20,21 @@ import AppLayout from '@/layouts/AppLayout/AppLayout'
 import Dashboard from '@/views/Dashboard/Dashboard'
 import TeamForm from '@/views/Dashboard/Team/TeamForm'
 import TeamView from '@/views/Dashboard/Team/TeamView'
+import Products from '@/views/Products/Products'
 import Vendors from '@/views/Vendors/Vendors'
-
-// ** Components
-import App from '@/App'
-import ErrorBoundary from '@/components/ErrorBoundary'
-import NavigateToLogin from '@/components/react-router/NavigateToLogin'
+import Vendor from '@/views/Vendors/Vendor'
 
 // ** Loaders, Utils
+import configureCognito from '@/utils/configureCognito'
 import authLoader from '@/router/authLoader'
 import teamLoader from '@/router/teamLoader'
 import productsLoader from '@/router/productsLoader'
+import vendorLoader from '@/router/vendorLoader'
 import vendorsLoader from '@/router/vendorsLoader'
-import configureCognito from '@/utils/configureCognito'
+import { QueryClient } from 'react-query'
+
+// Declare the React Query Client
+const queryClient = new QueryClient()
 
 /**
  * The hash router for the application that defines routes
@@ -71,10 +78,24 @@ const router = createBrowserRouter([
             errorElement: <ErrorBoundary />,
           },
           {
+            id: RouteIds.VENDOR_VIEW,
+            path: 'vendors/:vendorId',
+            loader: vendorLoader(queryClient),
+            element: <Vendor />,
+            errorElement: <ErrorBoundary />,
+          },
+          {
             id: RouteIds.VENDORS,
             path: 'vendors',
-            loader: vendorsLoader,
+            loader: vendorsLoader(queryClient),
             element: <Vendors />,
+            errorElement: <ErrorBoundary />,
+          },
+          {
+            id: RouteIds.PRODUCTS,
+            path: 'products',
+            loader: productsLoader,
+            element: <Products />,
             errorElement: <ErrorBoundary />,
           },
           {
