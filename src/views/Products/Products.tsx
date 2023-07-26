@@ -2,7 +2,7 @@
  * @module sbom-harbor-ui/views/Products/Products
  */
 import React, { Suspense, useCallback } from 'react'
-import { useQuery } from 'react-query'
+import { useQuery } from '@tanstack/react-query'
 import Typography from '@mui/material/Typography'
 import LinearIndeterminate from '@/components/mui/LinearLoadingBar'
 import List from '@/components/crud/List'
@@ -34,15 +34,13 @@ const fetchProducts = async (): Promise<Product[]> => {
  * @todo refactor this to a routeLoader with react-query
  */
 const ProductsContainer: React.FC<void> = (): JSX.Element => {
-  const { data: products = [], isLoading } = useQuery(
-    ['products', 'list'],
-    fetchProducts,
-    {
-      staleTime: Infinity,
-      refetchOnWindowFocus: false,
-      suspense: true,
-    }
-  )
+  const { data: products = [], isLoading } = useQuery({
+    queryKey: ['products', 'list'],
+    queryFn: fetchProducts,
+    staleTime: Infinity,
+    refetchOnWindowFocus: false,
+    suspense: true,
+  })
 
   /**
    * Handles deletion of a product and removes it from the products list.

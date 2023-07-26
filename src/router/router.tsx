@@ -31,7 +31,7 @@ import teamLoader from '@/router/teamLoader'
 import productsLoader from '@/router/productsLoader'
 import vendorLoader from '@/router/vendorLoader'
 import vendorsLoader from '@/router/vendorsLoader'
-import { QueryClient } from 'react-query'
+import { QueryClient } from '@tanstack/react-query'
 
 // Declare the React Query Client
 const queryClient = new QueryClient()

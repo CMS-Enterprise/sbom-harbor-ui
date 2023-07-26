@@ -2,7 +2,7 @@
  * State loader for react-router data routes that require a list of vendors.
  * @module sbom-harbor-ui/router/vendorLoader
  */
-import { QueryClient } from 'react-query'
+import { QueryClient } from '@tanstack/react-query'
 import { Params } from 'react-router-dom'
 import { Vendor } from '@/types'
 import getJWT from '@/utils/getJWT'
@@ -37,6 +37,17 @@ const fetchVendor = async (id: string): Promise<Vendor> => {
   }
 }
 
+/**
+ * Creates a react-query configuration object for fetching vendor data.
+ * @param {string} id - The ID of the vendor.
+ * @return {Object} - The query configuration object.
+ * @property {Array<string>} queryKey - The unique identifier for the query.
+ * @property {Function} queryFn - The async function responsible for fetching the vendor data.
+ * @property {Object} options - Additional configuration options for the query.
+ * @property {boolean} options.refetchOnWindowFocus - Determines whether the query should refetch when the window gains focus.
+ * @property {number} options.staleTime - The duration in milliseconds after which the data is considered stale.
+ * @property {boolean} options.suspense - Determines whether React Suspense should be enabled for this query.
+ */
 export const vendorQuery = (id: string) => ({
   queryKey: ['contacts', 'detail', id],
   queryFn: async () => fetchVendor(id),
@@ -47,6 +58,14 @@ export const vendorQuery = (id: string) => ({
   },
 })
 
+/**
+ * Retrieves vendor data from the provided queryClient based on the given vendor ID.
+ * @param {QueryClient} queryClient - The query client instance used for fetching data.
+ * @param {Object} options - The options object.
+ * @param {string} options.params.id - The ID of the vendor.
+ * @return {Promise<any>} - A promise that resolves to the vendor data.
+ * @throws {Error} - Throws an error if no vendor ID is provided.
+ */
 const vendorLoader =
   (queryClient: QueryClient) =>
   async ({ params }: { params: Params<string> }) => {

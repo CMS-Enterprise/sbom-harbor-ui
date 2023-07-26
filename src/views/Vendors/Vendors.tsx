@@ -2,7 +2,7 @@
  * @module sbom-harbor-ui/views/Vendors/Vendors
  */
 import { Suspense, useCallback } from 'react'
-import { useQuery } from 'react-query'
+import { useQuery } from '@tanstack/react-query'
 import Typography from '@mui/material/Typography'
 import LinearIndeterminate from '@/components/mui/LinearLoadingBar'
 import List from '@/components/crud/List'
