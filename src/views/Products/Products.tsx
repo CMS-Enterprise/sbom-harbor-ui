@@ -2,65 +2,50 @@
  * @module sbom-harbor-ui/views/Products/Products
  */
 import { Suspense, useCallback } from 'react'
+import { Await } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
 import Typography from '@mui/material/Typography'
 import LinearIndeterminate from '@/components/mui/LinearLoadingBar'
 import List from '@/components/crud/List'
-import { Product } from '@/types'
+import { productsQuery } from '@/router/productsLoader'
 import schema from './schema'
 
 /**
- * Does GET /api/products and returns the response body as JSON if the Content-Type
- *  header includes application/json, otherwise returns an empty array.
- * @return {Promise.<Product[]>} the response body as JSON or an empty array.
- * @todo refactor this to a routeLoader with react-query
- */
-const fetchProducts = async (): Promise<Product[]> => {
-  try {
-    const result = await fetch('/api/products')
-    if (result.headers.get('content-type')?.includes('application/json')) {
-      return result.json()
-    }
-    throw new Error('Response was not JSON')
-  } catch (error) {
-    console.error(error)
-    return []
-  }
-}
-
-/**
- * Component for rendering the Products List view.
- * @return {JSX.Element} the Products List view
- * @todo refactor this to a routeLoader with react-query
+ * React Suspense-aware Component for rendering all products in a list view.
+ * @return {JSX.Element} the products list view
  */
 const ProductsContainer: React.FC = (): JSX.Element => {
-  const { data: products = [], isLoading } = useQuery({
-    queryKey: ['products', 'list'],
-    queryFn: fetchProducts,
-    staleTime: Infinity,
-    refetchOnWindowFocus: false,
-    suspense: true,
-  })
+  const { data } = useQuery(productsQuery())
 
   /**
-   * Handles deletion of a product and removes it from the products list.
-   * This is the functional equivalent of handleDeleteVendorPackage from src/views/Vendors/Vendor.tsx
+   * Handles deletion of a product's product and removes it from the products list.
    * @param {string} id the product's ID
-   * @todo implement deletion of a product
+   * @todo implement deletion of a product's product
    */
-  const handleDelete = useCallback((id: string) => {
-    console.debug('handleDelete: ', id)
+  const handleDeleteProductPackage = useCallback((id: string) => {
+    console.debug('handleDeleteProductPackage: ', id)
   }, [])
 
   return (
-    <>
-      <Typography variant="h4" sx={{ mb: 2 }}>
-        Products List
-      </Typography>
-      <Suspense fallback={<LinearIndeterminate />}>
-        <List items={products} schema={schema} deleteItem={handleDelete} />
-      </Suspense>
-    </>
+    <Suspense fallback={<LinearIndeterminate />}>
+      <Await
+        resolve={data}
+        errorElement={<div>Could not load teams 😬</div>}
+        // eslint-disable-next-line react/no-children-prop
+        children={(resolvedData) => (
+          <>
+            <Typography variant="h4" sx={{ mb: 2 }}>
+              Products List
+            </Typography>
+            <List
+              items={resolvedData}
+              schema={schema}
+              deleteItem={handleDeleteProductPackage}
+            />
+          </>
+        )}
+      />
+    </Suspense>
   )
 }
 

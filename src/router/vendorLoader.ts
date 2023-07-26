@@ -43,10 +43,9 @@ const fetchVendor = async (id: string): Promise<Vendor | undefined> => {
  * @return {Object} - The query configuration object.
  * @property {Array<string>} queryKey - The unique identifier for the query.
  * @property {Function} queryFn - The async function responsible for fetching the vendor data.
- * @property {Object} options - Additional configuration options for the query.
- * @property {boolean} options.refetchOnWindowFocus - Determines whether the query should refetch when the window gains focus.
- * @property {number} options.staleTime - The duration in milliseconds after which the data is considered stale.
- * @property {boolean} options.suspense - Determines whether React Suspense should be enabled for this query.
+ * @property {boolean} refetchOnWindowFocus - Determines whether the query should refetch when the window gains focus.
+ * @property {number} staleTime - The duration in milliseconds after which the data is considered stale.
+ * @property {boolean} suspense - Determines whether React Suspense should be enabled for this query.
  */
 export const vendorQuery = (
   id: string

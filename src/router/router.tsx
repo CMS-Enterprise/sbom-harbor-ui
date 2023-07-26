@@ -4,7 +4,7 @@
  * @see {@link @sbom-harbor-ui/dashboard/main} for usage.
  */
 import { createBrowserRouter } from 'react-router-dom'
-import { RouteIds } from '@/types'
+import { QueryClient } from '@tanstack/react-query'
 
 // ** Components
 import App from '@/App'
@@ -27,11 +27,12 @@ import Vendor from '@/views/Vendors/Vendor'
 // ** Loaders, Utils
 import configureCognito from '@/utils/configureCognito'
 import authLoader from '@/router/authLoader'
+import dashboardLoader from '@/router/dashboardLoader'
 import teamLoader from '@/router/teamLoader'
 import productsLoader from '@/router/productsLoader'
 import vendorLoader from '@/router/vendorLoader'
 import vendorsLoader from '@/router/vendorsLoader'
-import { QueryClient } from '@tanstack/react-query'
+import { RouteIds } from '@/types'
 
 // Declare the React Query Client
 const queryClient = new QueryClient()
@@ -75,7 +76,7 @@ const router = createBrowserRouter([
             id: RouteIds.DASHBOARD,
             element: <Dashboard />,
             errorElement: <ErrorBoundary />,
-            loader: productsLoader,
+            loader: dashboardLoader,
             // action:
           },
           {
@@ -99,7 +100,7 @@ const router = createBrowserRouter([
             path: 'products',
             element: <Products />,
             errorElement: <ErrorBoundary />,
-            loader: productsLoader,
+            loader: productsLoader(queryClient),
             // action:
           },
           {

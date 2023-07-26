@@ -1,34 +1,85 @@
 /**
- * State loader for react-router data routes that require a user's single team.
+ * State loader for react-router data routes that require a list of products.
  * @module sbom-harbor-ui/router/productsLoader
- * @see {@link @sbom-harbor-ui/dashboard/Routes}
  */
-import { defer, Params } from 'react-router-dom'
-import { Product } from '@/types'
+import { QueryClient, UseQueryOptions } from '@tanstack/react-query'
 import getJWT from '@/utils/getJWT'
+import { Product } from '@/types'
+import { sampleData } from '@/views/Products/mocks'
 
-const productsLoader = ({
-  params: { productId = '' } = {} as unknown as Params<string>,
-  request: { signal = new AbortController().signal },
-}: {
-  params: Params<string>
-  request: Request
-}) => {
-  return defer({
-    data: getJWT().then(() => {
-      return [
-        {
-          id: '93efbb3e-beb0-4229-9a3c-d452a2f36e38',
-          name: 'Test Product',
-          vendor: {
-            id: 'f7fa92e0-4e3f-4674-b9f8-100b1c2d1bd9',
-            name: 'ABC Software Solutions',
-          },
-          lastUpload: '2023-07-25T03:47:12.798Z',
-        },
-      ] as Product[]
-    }),
-  })
+const fetchProducts = async (): Promise<Product[]> => {
+  try {
+    const jwt = await getJWT()
+    // DEBUG: uncomment this when API is ready
+    // const result = await fetch('/api/products')
+    // DEBUG: remove this when API is ready
+    const result = new Response(JSON.stringify(sampleData), {
+      status: 200,
+      headers: { 'content-type': 'application/json' },
+    })
+
+    if (result.status !== 200) {
+      throw new Error(`Something went wrong: ${result.statusText}`)
+    }
+
+    if (result.headers.get('content-type')?.includes('application/json')) {
+      return result.json()
+    }
+
+    throw new Error('Response was not JSON')
+  } catch (error) {
+    const result = await new Response(JSON.stringify([]), {
+      status: 500,
+      headers: { 'content-type': 'application/json' },
+    })
+    return result.json()
+  }
+}
+
+/**
+ * Creates a query configuration object for fetching a list of products.
+ * @return {Object} - The query configuration object.
+ * @property {Array<string>} queryKey - The unique identifier for the query.
+ * @property {Function} queryFn - The async function responsible for fetching the list of products.
+ * @property {boolean} refetchOnWindowFocus - Determines whether the query should refetch when the window gains focus.
+ * @property {number} staleTime - The duration in milliseconds after which the data is considered stale.
+ * @property {boolean} suspense - Determines whether React Suspense should be enabled for this query.
+ */
+export const productsQuery = (): UseQueryOptions<
+  Product[] | undefined,
+  Error,
+  Product[],
+  ['products', 'list']
+> & {
+  initialData?: undefined
+} => ({
+  queryKey: ['products', 'list'],
+  queryFn: async () => {
+    const products = await fetchProducts()
+    if (!products) {
+      throw new Response('', {
+        status: 404,
+        statusText: 'Not Found',
+      })
+    }
+    return products
+  },
+  refetchOnWindowFocus: false,
+  staleTime: Infinity,
+  suspense: true,
+})
+
+/**
+ * Retrieves a list of products using the provided queryClient.
+ * @param {QueryClient} queryClient - The query client instance used for fetching data.
+ * @return {Promise<any>} - A promise that resolves to the list of products.
+ */
+const productsLoader = (queryClient: QueryClient) => async () => {
+  const query = productsQuery()
+  return (
+    queryClient.getQueryData(query.queryKey) ??
+    (await queryClient.fetchQuery(query))
+  )
 }
 
 export default productsLoader

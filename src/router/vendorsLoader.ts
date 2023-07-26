@@ -2,7 +2,7 @@
  * State loader for react-router data routes that require a list of vendors.
  * @module sbom-harbor-ui/router/vendorsLoader
  */
-import { QueryClient } from '@tanstack/react-query'
+import { QueryClient, UseQueryOptions } from '@tanstack/react-query'
 import getJWT from '@/utils/getJWT'
 import { Vendor } from '@/types'
 import { sampleData } from '@/views/Vendors/mocks'
@@ -41,14 +41,29 @@ const fetchVendors = async (): Promise<Vendor[]> => {
  * @return {Object} - The query configuration object.
  * @property {Array<string>} queryKey - The unique identifier for the query.
  * @property {Function} queryFn - The async function responsible for fetching the list of vendors.
- * @property {Object} options - Additional configuration options for the query.
- * @property {boolean} options.refetchOnWindowFocus - Determines whether the query should refetch when the window gains focus.
- * @property {number} options.staleTime - The duration in milliseconds after which the data is considered stale.
- * @property {boolean} options.suspense - Determines whether React Suspense should be enabled for this query.
+ * @property {boolean} refetchOnWindowFocus - Determines whether the query should refetch when the window gains focus.
+ * @property {number} staleTime - The duration in milliseconds after which the data is considered stale.
+ * @property {boolean} suspense - Determines whether React Suspense should be enabled for this query.
  */
-export const vendorsQuery = () => ({
+export const vendorsQuery = (): UseQueryOptions<
+  Vendor[] | undefined,
+  Error,
+  Vendor[],
+  ['vendors', 'list']
+> & {
+  initialData?: undefined
+} => ({
   queryKey: ['vendors', 'list'],
-  queryFn: async () => fetchVendors(),
+  queryFn: async () => {
+    const vendors = await fetchVendors()
+    if (!vendors) {
+      throw new Response('', {
+        status: 404,
+        statusText: 'Not Found',
+      })
+    }
+    return vendors
+  },
   refetchOnWindowFocus: false,
   staleTime: Infinity,
   suspense: true,
@@ -60,10 +75,9 @@ export const vendorsQuery = () => ({
  * @return {Promise<any>} - A promise that resolves to the list of vendors.
  */
 const vendorsLoader = (queryClient: QueryClient) => async () => {
-  const abortController = new AbortController()
   const query = vendorsQuery()
   return (
-    queryClient.getQueryData<Vendor[]>(query.queryKey) ??
+    queryClient.getQueryData(query.queryKey) ??
     (await queryClient.fetchQuery(query))
   )
 }

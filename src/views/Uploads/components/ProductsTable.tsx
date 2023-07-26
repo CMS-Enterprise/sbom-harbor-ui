@@ -96,7 +96,12 @@ const ProductsTable = ({
             vendor: { id, name },
           },
         }: RenderCellProps) => (
-          <Link to={`/app/vendors/${id}`} component={RouterLink}>
+          <Link
+            to={`/app/vendors/${id}`}
+            component={RouterLink}
+            aria-label={`Vendor Detail: ${name}`}
+            role="link"
+          >
             {name}
           </Link>
         ),

@@ -1,10 +1,22 @@
 // List.test.tsx
-import { render, fireEvent, waitFor, act } from '@testing-library/react'
+import {
+  render as renderImport,
+  fireEvent,
+  waitFor,
+  act,
+  RenderOptions,
+} from '@testing-library/react'
 import List from '@/components/crud/List'
 import TextField from '@mui/material/TextField'
+import { BrowserRouter } from 'react-router-dom'
+import { ReactElement } from 'react'
+
+const render = (ui: ReactElement, options?: Omit<RenderOptions, 'wrapper'>) =>
+  renderImport(ui, { wrapper: BrowserRouter, ...options })
 
 describe('List', () => {
   const deleteItemMock = jest.fn()
+
   const items = [
     { id: '1', name: 'Vendor 1', address: 'Address 1' },
     { id: '2', name: 'Vendor 2', address: 'Address 2' },

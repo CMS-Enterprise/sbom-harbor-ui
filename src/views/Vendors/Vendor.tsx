@@ -2,8 +2,9 @@
  * @module sbom-harbor-ui/views/Vendors/Vendor
  */
 import { Suspense, useCallback } from 'react'
-import { useQuery } from '@tanstack/react-query'
 import { Await, useParams } from 'react-router-dom'
+import { useQuery } from '@tanstack/react-query'
+import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
 import LinearIndeterminate from '@/components/mui/LinearLoadingBar'
 import List from '@/components/crud/List'
@@ -36,16 +37,23 @@ const VendorContainer: React.FC = (): JSX.Element => {
         errorElement={<div>Could not load teams 😬</div>}
         // eslint-disable-next-line react/no-children-prop
         children={(resolvedData) => (
-          <>
-            <Typography variant="h4" sx={{ mb: 2 }}>
-              {resolvedData.name}
-            </Typography>
-            <List
-              items={resolvedData.products}
-              schema={schema}
-              deleteItem={handleDeleteVendorPackage}
-            />
-          </>
+          <Stack spacing={4}>
+            <Typography variant="h4">{resolvedData.name}</Typography>
+
+            <Stack spacing={1}>
+              <Typography variant="h6">Vendor&apos;s Products List</Typography>
+              <List
+                items={resolvedData.products}
+                schema={schema}
+                deleteItem={handleDeleteVendorPackage}
+                actions={{
+                  view: {
+                    to: (id: string) => `../products/${id}`,
+                  },
+                }}
+              />
+            </Stack>
+          </Stack>
         )}
       />
     </Suspense>

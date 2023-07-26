@@ -1,6 +1,6 @@
 import { Product } from '@/types'
 
-export const products: Product[] = [
+export const sampleData: Product[] = [
   {
     id: '93efbb3e-beb0-4229-9a3c-d452a2f36e38',
     name: 'Test Product',
