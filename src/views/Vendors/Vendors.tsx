@@ -7,17 +7,18 @@ import Typography from '@mui/material/Typography'
 import LinearIndeterminate from '@/components/mui/LinearLoadingBar'
 import List from '@/components/crud/List'
 import { vendorsQuery } from '@/router/vendorsLoader'
+import { Vendor } from '@/types'
 import schema from './schema'
 
 /**
  * React Suspense-aware Component for rendering all vendors in a list view.
  * @return {JSX.Element} the vendors list view
  */
-const VendorsContainer = (): JSX.Element => {
-  const { data: vendors = [], isLoading } = useQuery(vendorsQuery())
+const VendorsContainer: React.FC = (): JSX.Element => {
+  const { data: vendors = [], isLoading } = useQuery<Vendor[]>(vendorsQuery())
 
-  const handleDelete = useCallback((id: string) => {
-    console.debug('handleDelete: ', id)
+  const handleDeleteVendor = useCallback((id: string) => {
+    console.debug('handleDeleteVendor: ', id)
   }, [])
 
   return (
@@ -26,7 +27,11 @@ const VendorsContainer = (): JSX.Element => {
         Vendors List
       </Typography>
       <Suspense fallback={<LinearIndeterminate />}>
-        <List items={vendors || []} schema={schema} deleteItem={handleDelete} />
+        <List
+          items={vendors || []}
+          schema={schema}
+          deleteItem={handleDeleteVendor}
+        />
       </Suspense>
     </>
   )

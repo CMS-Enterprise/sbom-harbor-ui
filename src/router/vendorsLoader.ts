@@ -49,11 +49,9 @@ const fetchVendors = async (): Promise<Vendor[]> => {
 export const vendorsQuery = () => ({
   queryKey: ['vendors', 'list'],
   queryFn: async () => fetchVendors(),
-  options: {
-    refetchOnWindowFocus: false,
-    staleTime: Infinity,
-    suspense: true,
-  },
+  refetchOnWindowFocus: false,
+  staleTime: Infinity,
+  suspense: true,
 })
 
 /**
@@ -62,6 +60,7 @@ export const vendorsQuery = () => ({
  * @return {Promise<any>} - A promise that resolves to the list of vendors.
  */
 const vendorsLoader = (queryClient: QueryClient) => async () => {
+  const abortController = new AbortController()
   const query = vendorsQuery()
   return (
     queryClient.getQueryData<Vendor[]>(query.queryKey) ??

@@ -1,7 +1,7 @@
 /**
  * @module sbom-harbor-ui/views/Products/Products
  */
-import React, { Suspense, useCallback } from 'react'
+import { Suspense, useCallback } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import Typography from '@mui/material/Typography'
 import LinearIndeterminate from '@/components/mui/LinearLoadingBar'
@@ -33,7 +33,7 @@ const fetchProducts = async (): Promise<Product[]> => {
  * @return {JSX.Element} the Products List view
  * @todo refactor this to a routeLoader with react-query
  */
-const ProductsContainer: React.FC<void> = (): JSX.Element => {
+const ProductsContainer: React.FC = (): JSX.Element => {
   const { data: products = [], isLoading } = useQuery({
     queryKey: ['products', 'list'],
     queryFn: fetchProducts,

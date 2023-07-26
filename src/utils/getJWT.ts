@@ -12,11 +12,9 @@ import AuthError from '@/errors/AuthError'
 const getJWT = async (): Promise<string> => {
   const session = await Auth.currentSession()
   const jwtToken = session.getAccessToken().getJwtToken()
-
   if (!jwtToken) {
     throw new AuthError().toResponse()
   }
-
   return jwtToken
 }
 

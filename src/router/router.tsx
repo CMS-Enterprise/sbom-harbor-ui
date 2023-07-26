@@ -73,30 +73,34 @@ const router = createBrowserRouter([
           {
             index: true,
             id: RouteIds.DASHBOARD,
-            loader: productsLoader,
             element: <Dashboard />,
             errorElement: <ErrorBoundary />,
+            loader: productsLoader,
+            // action:
           },
           {
             id: RouteIds.VENDOR_VIEW,
             path: 'vendors/:vendorId',
-            loader: vendorLoader(queryClient),
             element: <Vendor />,
             errorElement: <ErrorBoundary />,
+            loader: vendorLoader(queryClient),
+            // action:
           },
           {
             id: RouteIds.VENDORS,
             path: 'vendors',
-            loader: vendorsLoader(queryClient),
             element: <Vendors />,
             errorElement: <ErrorBoundary />,
+            loader: vendorsLoader(queryClient),
+            // action:
           },
           {
             id: RouteIds.PRODUCTS,
             path: 'products',
-            loader: productsLoader,
             element: <Products />,
             errorElement: <ErrorBoundary />,
+            loader: productsLoader,
+            // action:
           },
           {
             path: 'team',

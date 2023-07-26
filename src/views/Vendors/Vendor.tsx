@@ -3,7 +3,7 @@
  */
 import { Suspense, useCallback } from 'react'
 import { useQuery } from '@tanstack/react-query'
-import { useParams } from 'react-router-dom'
+import { Await, useParams } from 'react-router-dom'
 import Typography from '@mui/material/Typography'
 import LinearIndeterminate from '@/components/mui/LinearLoadingBar'
 import List from '@/components/crud/List'
@@ -15,14 +15,12 @@ import schema from './schema'
  * Shows the name of the Vendor and the list of the Vendor's Products.
  * @return {JSX.Element} the Vendor's Products List view
  */
-const VendorContainer: React.FC<void> = (): JSX.Element => {
+const VendorContainer: React.FC = (): JSX.Element => {
   const { vendorId } = useParams() as { vendorId: string }
-
-  const { data: { name = 'Unnamed Vendor', products = [] } = {}, isLoading } =
-    useQuery(vendorQuery(vendorId))
+  const { data } = useQuery(vendorQuery(vendorId))
 
   /**
-   * Handles deletion of a vendor's product and removes it from the products list
+   * Handles deletion of a vendor's product and removes it from the products list.
    * @param {string} id the product's ID
    * @todo implement deletion of a vendor's product
    */
@@ -33,16 +31,23 @@ const VendorContainer: React.FC<void> = (): JSX.Element => {
   return (
     <Suspense fallback={<LinearIndeterminate />}>
       {/* Vendor Page Title */}
-      <Typography variant="h4" sx={{ mb: 2 }}>
-        {name}
-      </Typography>
-      {/* Vendor's Products List */}
-      <List
-        items={products || []}
-        schema={schema}
-        deleteItem={handleDeleteVendorPackage}
+      <Await
+        resolve={data}
+        errorElement={<div>Could not load teams 😬</div>}
+        // eslint-disable-next-line react/no-children-prop
+        children={(resolvedData) => (
+          <>
+            <Typography variant="h4" sx={{ mb: 2 }}>
+              {resolvedData.name}
+            </Typography>
+            <List
+              items={resolvedData.products}
+              schema={schema}
+              deleteItem={handleDeleteVendorPackage}
+            />
+          </>
+        )}
       />
-      )
     </Suspense>
   )
 }

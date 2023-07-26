@@ -10,7 +10,21 @@ import { AuthProvider } from '@/hooks/useAuth'
 import DialogProvider from '@/hooks/useDialog'
 import theme from '@/theme/theme'
 
-const queryClient = new QueryClient()
+const queryClient = new QueryClient({
+  defaultOptions: {
+    // TODO: determine the ideal staleTimes, re-fetch intervals for polls
+    queries: {
+      staleTime: Infinity,
+      refetchOnWindowFocus: false,
+      retry: 2,
+    },
+    mutations: {
+      onError: (error) => {
+        console.error('Mutation error: ', error)
+      },
+    },
+  },
+})
 
 /**
  * Root Layout component that renders the entire application,
@@ -19,15 +33,15 @@ const queryClient = new QueryClient()
  */
 const App = (): JSX.Element => (
   <ThemeProvider theme={theme}>
-    <QueryClientProvider client={queryClient}>
-      <AuthProvider>
-        <AlertProvider>
-          <DialogProvider>
+    <AuthProvider>
+      <AlertProvider>
+        <DialogProvider>
+          <QueryClientProvider client={queryClient}>
             <Outlet />
-          </DialogProvider>
-        </AlertProvider>
-      </AuthProvider>
-    </QueryClientProvider>
+          </QueryClientProvider>
+        </DialogProvider>
+      </AlertProvider>
+    </AuthProvider>
   </ThemeProvider>
 )
 

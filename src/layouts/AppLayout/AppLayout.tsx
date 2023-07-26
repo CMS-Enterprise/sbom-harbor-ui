@@ -10,8 +10,8 @@ import { AuthContext } from '@/hooks/useAuth'
 import AlertMessage from '@/components/AlertMessage'
 import AppDrawer from './components/Drawer/Drawer'
 import TopNavBar from './components/TopNavBar'
+import LinearIndeterminate from '@/components/mui/LinearLoadingBar'
 import DrawerProvider from './components/Drawer/DrawerProvider'
-import NavigateToLogin from '@/components/react-router/NavigateToLogin'
 import { RouteIds } from '@/types'
 
 /**
@@ -22,14 +22,14 @@ const AppLayout = (): JSX.Element => {
   const jwtTokenPromise = useRouteLoaderData(RouteIds.AUTHED_APP)
 
   return (
-    <Suspense fallback={<NavigateToLogin />}>
+    <Suspense fallback={<LinearIndeterminate />}>
       <Await
         resolve={jwtTokenPromise}
         errorElement={<div>Could not load teams 😬</div>}
         // eslint-disable-next-line react/no-children-prop
         children={(jwtToken) => (
-          <DrawerProvider>
-            <AuthContext.Provider value={{ jwtToken }}>
+          <AuthContext.Provider value={{ jwtToken }}>
+            <DrawerProvider>
               <Box
                 data-testid="app"
                 sx={{
@@ -45,24 +45,18 @@ const AppLayout = (): JSX.Element => {
                 }}
               >
                 <AlertMessage />
-
-                {/* top nav bar */}
                 <TopNavBar />
-
-                {/* drawer */}
                 <AppDrawer />
-                {/* main content outlet for child routes */}
                 <Container
                   component="main"
                   maxWidth={false}
                   sx={{ mt: 8, mr: 0, ml: 0, pt: 4, overflow: 'scroll' }}
                 >
-                  {/* @ts-ignore */}
                   <Outlet />
                 </Container>
               </Box>
-            </AuthContext.Provider>
-          </DrawerProvider>
+            </DrawerProvider>
+          </AuthContext.Provider>
         )}
       />
     </Suspense>

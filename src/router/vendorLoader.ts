@@ -2,13 +2,13 @@
  * State loader for react-router data routes that require a list of vendors.
  * @module sbom-harbor-ui/router/vendorLoader
  */
-import { QueryClient } from '@tanstack/react-query'
+import { QueryClient, UseQueryOptions } from '@tanstack/react-query'
 import { Params } from 'react-router-dom'
 import { Vendor } from '@/types'
 import getJWT from '@/utils/getJWT'
 import { sampleData } from '@/views/Vendors/mocks'
 
-const fetchVendor = async (id: string): Promise<Vendor> => {
+const fetchVendor = async (id: string): Promise<Vendor | undefined> => {
   try {
     const jwt = await getJWT()
     // DEBUG: uncomment this when API is ready
@@ -48,14 +48,30 @@ const fetchVendor = async (id: string): Promise<Vendor> => {
  * @property {number} options.staleTime - The duration in milliseconds after which the data is considered stale.
  * @property {boolean} options.suspense - Determines whether React Suspense should be enabled for this query.
  */
-export const vendorQuery = (id: string) => ({
+export const vendorQuery = (
+  id: string
+): UseQueryOptions<
+  Vendor | undefined,
+  Error,
+  Vendor,
+  ['contacts', 'detail', string]
+> & {
+  initialData?: undefined
+} => ({
   queryKey: ['contacts', 'detail', id],
-  queryFn: async () => fetchVendor(id),
-  options: {
-    refetchOnWindowFocus: false,
-    staleTime: Infinity,
-    suspense: true,
+  queryFn: async () => {
+    const vendor = await fetchVendor(id)
+    if (!vendor) {
+      throw new Response('', {
+        status: 404,
+        statusText: 'Not Found',
+      })
+    }
+    return vendor
   },
+  refetchOnWindowFocus: false,
+  staleTime: Infinity,
+  suspense: true,
 })
 
 /**
@@ -70,11 +86,14 @@ const vendorLoader =
   (queryClient: QueryClient) =>
   async ({ params }: { params: Params<string> }) => {
     if (!params?.id) {
-      return Error('No vendor ID provided')
+      return new Response(JSON.stringify({}), {
+        status: 500,
+      })
     }
     const query = vendorQuery(params.id)
+    const { queryKey } = query
     return (
-      queryClient.getQueryData(query.queryKey) ??
+      queryClient.getQueryData(queryKey) ??
       (await queryClient.fetchQuery(query))
     )
   }
