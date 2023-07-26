@@ -1,53 +1,49 @@
 /**
  * @module sbom-harbor-ui/views/Vendors/Vendor
  */
-import { Suspense } from 'react'
-import { useParams } from 'react-router-dom'
+import { Suspense, useCallback } from 'react'
 import { useQuery } from 'react-query'
-import Box from '@mui/material/Box'
-import CircularProgress from '@mui/material/CircularProgress'
+import { useParams } from 'react-router-dom'
 import Typography from '@mui/material/Typography'
-import Fallback from '@/components/SimpleLoadingFallback'
+import LinearIndeterminate from '@/components/mui/LinearLoadingBar'
 import List from '@/components/crud/List'
 import { vendorQuery } from '@/router/vendorLoader'
+import schema from './schema'
 
-const schema = [
-  {
-    name: 'name',
-    label: 'Name',
-    type: 'text',
-  },
-  {
-    name: 'address',
-    label: 'Address',
-    type: 'text',
-  },
-]
-
-const VendorContainer = (): JSX.Element => {
+/**
+ * React Suspense-aware Component for rendering a single Vendor's detail view.
+ * Shows the name of the Vendor and the list of the Vendor's Products.
+ * @return {JSX.Element} the Vendor's Products List view
+ */
+const VendorContainer: React.FC<void> = (): JSX.Element => {
   const { vendorId } = useParams() as { vendorId: string }
 
-  const { data: vendor, isLoading } = useQuery(vendorQuery(vendorId))
+  const { data: { name = 'Unnamed Vendor', products = [] } = {}, isLoading } =
+    useQuery(vendorQuery(vendorId))
 
-  const deleteVendor = (id: string) => {
-    // TODO: implement delete vendor functionality
-    console.debug('deleteVendor: ', id)
-  }
+  /**
+   * Handles deletion of a vendor's product and removes it from the products list
+   * @param {string} id the product's ID
+   * @todo implement deletion of a vendor's product
+   */
+  const handleDeleteVendorPackage = useCallback((id: string) => {
+    console.debug('handleDeleteVendorPackage: ', id)
+  }, [])
 
   return (
-    <Box>
-      {isLoading && <CircularProgress />}
-      <Suspense fallback={<Fallback />}>
-        <Typography variant="h4" sx={{ mb: 2 }}>
-          Vendor
-        </Typography>
-        <List
-          items={vendor?.products || []}
-          schema={schema}
-          deleteItem={deleteVendor}
-        />
-      </Suspense>
-    </Box>
+    <Suspense fallback={<LinearIndeterminate />}>
+      {/* Vendor Page Title */}
+      <Typography variant="h4" sx={{ mb: 2 }}>
+        {name}
+      </Typography>
+      {/* Vendor's Products List */}
+      <List
+        items={products || []}
+        schema={schema}
+        deleteItem={handleDeleteVendorPackage}
+      />
+      )
+    </Suspense>
   )
 }
 

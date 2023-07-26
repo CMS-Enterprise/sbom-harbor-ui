@@ -6,7 +6,7 @@ import { QueryClient } from 'react-query'
 import { Params } from 'react-router-dom'
 import { Vendor } from '@/types'
 import getJWT from '@/utils/getJWT'
-import { sampleData } from './vendorsLoader'
+import { sampleData } from '@/views/Vendors/mocks'
 
 const fetchVendor = async (id: string): Promise<Vendor> => {
   try {
