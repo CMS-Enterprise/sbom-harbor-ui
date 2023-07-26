@@ -23,8 +23,8 @@ import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import { useTheme } from '@mui/material/styles'
-import EyeOutline from 'mdi-material-ui/EyeOutline'
-import EyeOffOutline from 'mdi-material-ui/EyeOffOutline'
+import VisibilityOutline from '@mui/icons-material/Visibility'
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff'
 import loginUser from '@/actions/loginUser'
 import LinearIndeterminate from '@/components/mui/LinearLoadingBar'
 import { useAuthDispatch } from '@/hooks/useAuth'
@@ -226,9 +226,9 @@ const LoginPage = () => {
                               onClick={() => setShowPassword(!showPassword)}
                             >
                               {showPassword ? (
-                                <EyeOutline />
+                                <VisibilityOutline />
                               ) : (
-                                <EyeOffOutline />
+                                <VisibilityOffIcon />
                               )}
                             </IconButton>
                           </InputAdornment>

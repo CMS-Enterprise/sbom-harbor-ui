@@ -17,7 +17,7 @@ import MenuItem from '@mui/material/MenuItem'
 import Select from '@mui/material/Select'
 import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
-import DotsVertical from 'mdi-material-ui/DotsVertical'
+import MoreVertIcon from '@mui/icons-material/MoreVert'
 import { BuildTool, Codebase, CodebaseLanguage, Project } from '@/types'
 import {
   defaultProject,
@@ -125,7 +125,7 @@ const TeamViewProjectCreateCard = ({
             aria-label="settings"
             className="card-more-options"
           >
-            <DotsVertical />
+            <MoreVertIcon />
           </IconButton>
         }
       ></CardHeader>
