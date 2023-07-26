@@ -1,29 +1,20 @@
 /**
  * @module sbom-harbor-ui/views/Products/Products
  */
-import { Suspense, useEffect } from 'react'
-import { Await, useLoaderData } from 'react-router-dom'
+import React, { Suspense, useCallback } from 'react'
 import { useQuery } from 'react-query'
-import Box from '@mui/material/Box'
-import CircularProgress from '@mui/material/CircularProgress'
 import Typography from '@mui/material/Typography'
-import Fallback from '@/components/SimpleLoadingFallback'
+import LinearIndeterminate from '@/components/mui/LinearLoadingBar'
 import List from '@/components/crud/List'
 import { Product } from '@/types'
+import schema from './schema'
 
-const schema = [
-  {
-    name: 'name',
-    label: 'Name',
-    type: 'text',
-  },
-  {
-    name: 'address',
-    label: 'Address',
-    type: 'text',
-  },
-]
-
+/**
+ * Does GET /api/products and returns the response body as JSON if the Content-Type
+ *  header includes application/json, otherwise returns an empty array.
+ * @return {Promise.<Product[]>} the response body as JSON or an empty array.
+ * @todo refactor this to a routeLoader with react-query
+ */
 const fetchProducts = async (): Promise<Product[]> => {
   try {
     const result = await fetch('/api/products')
@@ -37,13 +28,14 @@ const fetchProducts = async (): Promise<Product[]> => {
   }
 }
 
-const ProductsContainer = (): JSX.Element => {
-  // hook for getting the route loader data
-  const { data: loaderData, isLoading: isLoaderDataLoading } =
-    useLoaderData() as { data: Promise<Product[]>; isLoading: boolean }
-
-  const { data: queryData, isLoading: isQueryLoading } = useQuery(
-    'products',
+/**
+ * Component for rendering the Products List view.
+ * @return {JSX.Element} the Products List view
+ * @todo refactor this to a routeLoader with react-query
+ */
+const ProductsContainer: React.FC<void> = (): JSX.Element => {
+  const { data: products = [], isLoading } = useQuery(
+    ['products', 'list'],
     fetchProducts,
     {
       staleTime: Infinity,
@@ -52,36 +44,25 @@ const ProductsContainer = (): JSX.Element => {
     }
   )
 
-  useEffect(() => {
-    console.debug('queryData: ', queryData)
-  }, [queryData])
-
-  const deleteProduct = (id: string) => {
-    // TODO: implement delete product functionality
-    console.debug('deleteProduct: ', id)
-  }
+  /**
+   * Handles deletion of a product and removes it from the products list.
+   * This is the functional equivalent of handleDeleteVendorPackage from src/views/Vendors/Vendor.tsx
+   * @param {string} id the product's ID
+   * @todo implement deletion of a product
+   */
+  const handleDelete = useCallback((id: string) => {
+    console.debug('handleDelete: ', id)
+  }, [])
 
   return (
-    <Box>
-      {(isQueryLoading || isLoaderDataLoading) && <CircularProgress />}
-      <Suspense fallback={<Fallback />}>
-        <Typography variant="h4" sx={{ mb: 2 }}>
-          Products
-        </Typography>
-        <Await
-          resolve={loaderData}
-          errorElement={<div>Could not load products 😬</div>}
-          // eslint-disable-next-line react/no-children-prop
-          children={(resolvedData) => (
-            <List
-              items={resolvedData}
-              schema={schema}
-              deleteItem={deleteProduct}
-            />
-          )}
-        />
+    <>
+      <Typography variant="h4" sx={{ mb: 2 }}>
+        Products List
+      </Typography>
+      <Suspense fallback={<LinearIndeterminate />}>
+        <List items={products} schema={schema} deleteItem={handleDelete} />
       </Suspense>
-    </Box>
+    </>
   )
 }
 
