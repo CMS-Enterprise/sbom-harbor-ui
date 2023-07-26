@@ -8,7 +8,7 @@ import Typography from '@mui/material/Typography'
 import IconButton from '@mui/material/IconButton'
 import CardHeader from '@mui/material/CardHeader'
 import CardContent from '@mui/material/CardContent'
-import DotsVertical from 'mdi-material-ui/DotsVertical'
+import MoreVertIcon from '@mui/icons-material/MoreVert'
 import SbomUploadInput from '@/components/SbomUploadInput'
 import { Project } from '@/types'
 
@@ -50,7 +50,7 @@ const TeamViewProjectCard = ({ teamId, project }: InputProps): JSX.Element => {
             aria-label="settings"
             className="card-more-options"
           >
-            <DotsVertical />
+            <MoreVertIcon />
           </IconButton>
         }
       ></CardHeader>

@@ -6,7 +6,7 @@
 import { Link } from 'react-router-dom'
 import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
-import Google from 'mdi-material-ui/Google'
+import GoogleIcon from '@mui/icons-material/Google'
 
 const SocialLoginButtons = (): JSX.Element => (
   <Box
@@ -26,7 +26,7 @@ const SocialLoginButtons = (): JSX.Element => (
       <Grid item style={{ paddingTop: 0 }}>
         {/* TODO: implement with identity provider */}
         <Link to="/" reloadDocument>
-          <Google sx={{ color: '#db4437' }} />
+          <GoogleIcon sx={{ color: '#db4437' }} />
         </Link>
       </Grid>
     </Grid>

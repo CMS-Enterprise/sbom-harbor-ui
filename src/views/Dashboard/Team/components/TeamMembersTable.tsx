@@ -6,8 +6,8 @@ import { type ReactElement } from 'react'
 import Box from '@mui/material/Box'
 import Card from '@mui/material/Card'
 import Typography from '@mui/material/Typography'
-import CogIcon from 'mdi-material-ui/Cog'
-import AccountIcon from 'mdi-material-ui/AccountOutline'
+import SettingsIcon from '@mui/icons-material/Settings'
+import AccountIcon from '@mui/icons-material/AccountCircleOutlined'
 import { DataGrid, GridColDef } from '@mui/x-data-grid'
 import UserAvatar from '@/components/UserAvatar'
 import { TeamMemberRole, TeamMemberTableRow } from '@/types'
@@ -20,7 +20,9 @@ type UserRoleToIconObject = {
  * @constant {RoleIconsObject} roleIcons Mapping of user roles to their icons.
  */
 const roleIcons: UserRoleToIconObject = Object.freeze({
-  [TeamMemberRole.TEAM_LEAD]: <CogIcon sx={{ mr: 1, color: 'error.main' }} />,
+  [TeamMemberRole.TEAM_LEAD]: (
+    <SettingsIcon sx={{ mr: 1, color: 'error.main' }} />
+  ),
   [TeamMemberRole.MEMBER]: (
     <AccountIcon sx={{ mr: 1, color: 'primary.main' }} />
   ),
