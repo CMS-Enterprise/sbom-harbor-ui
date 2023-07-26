@@ -17,6 +17,15 @@ declare module '*.css' {
 }
 
 /**
+ * Utility type that sets chosen attributes of type T as required. It makes use
+ *  of T for the original type, and K as a union of T keys that need to be set
+ *  as required. The expression { [_ in K]: {} } represents a mapped type where
+ *  every property K in T is defined as necessary. This type is beneficial for
+ *  setting specific properties of object type T as non-nullable or needed.
+ */
+type WithRequired<T, K extends keyof T> = T & { [_ in K]: NonNullable<T[_]> }
+
+/**
  * Generalizable way to require at least one of a set of properties is provided.
  * @see https://stackoverflow.com/a/49725198/1526037
  * @author KPD (https://stackoverflow.com/users/2077574/kpd)
@@ -42,6 +51,27 @@ type RequireOnlyOne<T, Keys extends keyof T = keyof T> = Pick<
     [K in Keys]-?: Required<Pick<T, K>> &
       Partial<Record<Exclude<Keys, K>, undefined>>
   }[Keys]
+
+/**
+ * Utility type that takes two types T and U. It creates a new type that has
+ *  all the properties of T, and where the properties that share with U are
+ *  marked as never. This makes sure that the intersection of properties
+ *  between T and U is not present in the final type.
+ */
+type Only<T, U> = {
+  [P in keyof T]: T[P]
+} & {
+  [P in keyof U]?: never
+}
+
+/**
+ * Utility type that is a union type of Only<T, U> and Only<U, T>.
+ * It represents a type that contains properties of either T or U,
+ *  but not the properties that are shared by T and U.
+ * This is useful when you want to specify a type that takes
+ *  either one or the other type, but not a mix of both.
+ */
+type Either<T, U> = Only<T, U> | Only<U, T>
 
 /**
  * Generic Error Callback type
@@ -80,9 +110,9 @@ type TDateISOTime = `${THours}:${TMinutes}:${TSeconds}.${TMilliseconds}`
 /**
  * Represent a string like `2021-01-08T14:42:34.678Z` (format: ISO 8601).
  *
- * It is not possible to type more precisely (list every possible values for months, hours etc) as
- * it would result in a warning from TypeScript:
- *   "Expression produces a union type that is too complex to represent. ts(2590)
+ * It is not possible to type more precisely (list every possible values
+ * for months, hours, etc.) as it would result in a warning from TypeScript:
+ *  "Expression produces a union type that is too complex to represent. ts(2590)
  */
 type TDateISO = `${TDateISODate}T${TDateISOTime}Z`
 
