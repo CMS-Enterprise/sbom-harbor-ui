@@ -14709,16 +14709,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mdi-material-ui@npm:^7.7.0":
-  version: 7.7.0
-  resolution: "mdi-material-ui@npm:7.7.0"
-  peerDependencies:
-    "@mui/material": ^5.0.0 || ^5.0.0-rc.0
-    react: ^16.8.0 || ^17.0.0 || ^18.0.0
-  checksum: 5dd565522dc4689e5e45b363134a71ac57145a5342e08cdac6725295a45545bb932cf8498dd71d76416793454304af9625b2436af85d553e91a54acb4234f637
-  languageName: node
-  linkType: hard
-
 "media-typer@npm:0.3.0":
   version: 0.3.0
   resolution: "media-typer@npm:0.3.0"
@@ -17780,7 +17770,6 @@ __metadata:
     jest-watch-typeahead: ^2.2.2
     lint-staged: ^13.2.3
     lodash: ^4.17.21
-    mdi-material-ui: ^7.7.0
     npm-run-all: ^4.1.5
     prettier: ^3.0.0
     pretty-quick: ^3.1.3
