@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react'
-import SubmitButton from './SubmitButton'
+import SubmitButton from '@/components/forms/SubmitButton'
 
 describe('SubmitButton', () => {
   it('renders without crashing', () => {
@@ -14,15 +14,19 @@ describe('SubmitButton', () => {
     expect(buttonElement).toHaveAttribute('type', 'submit')
     expect(buttonElement).toHaveClass('MuiButton-contained')
     expect(buttonElement).toHaveClass('MuiButton-containedPrimary')
-    expect(buttonElement.textContent).toBe('Save')
+    expect(buttonElement.textContent).toBe('Submit')
   })
 
   it('applies passed props correctly', () => {
-    render(<SubmitButton color="secondary" variant="outlined" label="Submit" />)
+    render(
+      <SubmitButton color="secondary" variant="outlined">
+        Save
+      </SubmitButton>
+    )
     const buttonElement = screen.getByRole('button')
     expect(buttonElement).toHaveClass('MuiButton-outlined')
     expect(buttonElement).toHaveClass('MuiButton-outlinedSecondary')
-    expect(buttonElement.textContent).toBe('Submit')
+    expect(buttonElement.textContent).toBe('Save')
   })
 
   it('is disabled when disabled prop is passed', () => {

@@ -3,21 +3,21 @@
  * @module sbom-harbor-ui/components/forms/SubmitButton
  */
 import Button, { ButtonProps } from '@mui/material/Button'
+import { PropsWithChildren } from 'react'
 
 type InputProps = {
   disabled?: boolean
-  label?: string
 } & ButtonProps
 
-const SubmitButton = ({ label, ...props }: InputProps) => (
-  <Button {...props} sx={{ mt: 3, ml: 1, ...props.sx }}>
-    {label}
-  </Button>
-)
+const SubmitButton = ({
+  children = 'Submit',
+  ...props
+}: PropsWithChildren<InputProps>) => <Button {...props}>{children}</Button>
 
 SubmitButton.defaultProps = {
   color: 'primary',
-  label: 'Save',
+  label: 'Submit',
+  size: 'large',
   type: 'submit',
   variant: 'contained',
 }

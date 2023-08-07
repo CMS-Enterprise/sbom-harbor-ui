@@ -1,18 +1,18 @@
 /**
  * @module sbom-harbor-ui/views/SignIn/useSignIn.ts
  */
-import { useCallback, useMemo, useState } from 'react'
+import { Auth } from 'aws-amplify'
+import { FederatedSignInOptions } from '@aws-amplify/auth/lib/types'
+import { BaseSyntheticEvent, useCallback, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
-import { Auth } from 'aws-amplify'
-import { type FederatedSignInOptions } from '@aws-amplify/auth/lib/types'
-import { useNavigate } from 'react-router-dom'
 import loginUser from '@/actions/loginUser'
 import useAlert from '@/hooks/useAlert'
 import { useAuthDispatch } from '@/hooks/useAuth'
 
-interface FormData {
+export interface FormData {
   email: string
   password: string
 }
@@ -22,9 +22,15 @@ const defaultValues: FormData = {
   password: '',
 }
 
-const schema = yup.object().shape({
-  email: yup.string().email().required(),
-  password: yup.string().min(5).required(),
+const validationSchema = yup.object().shape({
+  email: yup
+    .string()
+    .email('Invalid email format')
+    .required('Email is required'),
+  password: yup
+    .string()
+    .min(8, 'Password must be at least 8 characters')
+    .required('Password is required'),
 })
 
 export const useSignIn = () => {
@@ -36,13 +42,26 @@ export const useSignIn = () => {
   const [showPassword, setShowPassword] = useState<boolean>(false)
 
   const {
+    clearErrors,
     control,
-    handleSubmit: handleSubmitHookForm,
+    formState,
     formState: { errors },
+    handleSubmit: handleSubmitInternal,
+    getFieldState,
+    getValues,
+    register,
+    reset,
+    resetField,
+    setError,
+    setFocus,
+    setValue,
+    trigger,
+    unregister,
+    watch,
   } = useForm({
     defaultValues,
     mode: 'onBlur',
-    resolver: yupResolver(schema),
+    resolver: yupResolver(validationSchema),
   })
 
   const handleClickFederatedSignIn = async () => {
@@ -82,11 +101,25 @@ export const useSignIn = () => {
   return {
     control,
     errors,
+    formState,
     loading,
-    showPassword,
-    handleSubmitHookForm,
-    onSubmit,
+    clearErrors,
+    getFieldState,
+    getValues,
     handleClickFederatedSignIn,
+    handleSubmit: handleSubmitInternal(onSubmit) satisfies (
+      e?: BaseSyntheticEvent<FormData, any, any> | undefined
+    ) => Promise<void>,
+    register,
+    reset,
+    resetField,
+    setError,
+    setFocus,
+    setValue,
+    trigger,
+    unregister,
+    watch,
+    showPassword,
     setShowPassword,
   }
 }

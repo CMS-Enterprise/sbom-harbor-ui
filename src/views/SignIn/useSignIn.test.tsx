@@ -1,11 +1,11 @@
 // src/views/SignIn/useSignIn.test.ts
-import { renderHook, act, waitFor } from '@testing-library/react'
-import { useNavigate } from 'react-router-dom'
 import { Auth } from 'aws-amplify'
+import { useNavigate } from 'react-router-dom'
+import { renderHook, act, waitFor } from '@testing-library/react'
 import loginUser from '@/actions/loginUser'
 import useAlert from '@/hooks/useAlert'
 import { useAuthDispatch } from '@/hooks/useAuth'
-import { useSignIn } from './useSignIn'
+import { useSignIn } from '@/views/SignIn/useSignIn'
 
 jest.mock('@/actions/loginUser')
 jest.mock('react-router-dom', () => ({
@@ -30,10 +30,7 @@ describe('useSignIn', () => {
     const { result } = renderHook(useSignIn)
 
     await act(async () => {
-      result.current.onSubmit({
-        email: 'test@test.com',
-        password: 'password',
-      })
+      result.current.handleSubmit()
     })
 
     waitFor(() => {
@@ -77,10 +74,7 @@ describe('useSignIn', () => {
     const { result } = renderHook(useSignIn)
 
     await act(async () => {
-      result.current.onSubmit({
-        email: 'test@test.com',
-        password: 'password',
-      })
+      result.current.handleSubmit()
     })
 
     waitFor(() => {
