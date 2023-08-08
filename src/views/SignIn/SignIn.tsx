@@ -10,7 +10,8 @@ import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import InputFormControl from '@/components/forms/InputFormControl'
-import LinearIndeterminate from '@/components/mui/LinearLoadingBar'
+import CircularProgress from '@mui/material/CircularProgress'
+import Backdrop from '@mui/material/Backdrop'
 import PasswordVisibilityToggle from '@/components/PasswordVisibilityToggle'
 import SubmitButton from '@/components/forms/SubmitButton'
 import BlankLayout from '@/layouts/BlankLayout'
@@ -119,7 +120,9 @@ const SignIn = () => {
                 control={control}
                 name="password"
                 InputProps={{
+                  autoComplete: 'current-password',
                   endAdornment: <ShowPasswordButton />,
+                  type: showPassword ? 'text' : 'password',
                 }}
               />
               <SubmitButton
@@ -128,8 +131,13 @@ const SignIn = () => {
                 name="login"
                 role="button"
               >
-                Login
+                Sign In
               </SubmitButton>
+              {loading && (
+                <Backdrop open={loading} sx={{ borderRadius: 2 }}>
+                  <CircularProgress data-testid="linear-indeterminate" />
+                </Backdrop>
+              )}
               <Typography align="center" variant="subtitle2">
                 or...
               </Typography>
@@ -143,10 +151,6 @@ const SignIn = () => {
               </Button>
             </Stack>
             {/* End of Form */}
-
-            {loading && (
-              <LinearIndeterminate data-testid="linear-indeterminate" />
-            )}
           </VerticalCenteredFlexBox>
         </CenteredFlexBox>
       </RightWrapper>

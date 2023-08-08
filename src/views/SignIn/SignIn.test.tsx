@@ -49,12 +49,14 @@ describe('SignIn', () => {
 
     // Type the password into the password field
     await user.type(
-      screen.getByRole('textbox', { name: /password/i }),
+      screen.getByLabelText(/password/i, {
+        selector: 'input',
+      }),
       'password'
     )
 
     // Save the form
-    await user.click(screen.getByRole('button', { name: /^login$/i }))
+    await user.click(screen.getByRole('button', { name: /login/i }))
 
     // Wait for form submission to complete
     waitFor(() => {

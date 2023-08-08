@@ -62,7 +62,6 @@ const InputFormControl = <TFieldValues extends FieldValues>({
                 input: {
                   'aria-invalid': !!error,
                   'aria-labelledby': `${name}-label`,
-                  pattern: name || 'text',
                   ...inputSlotProps,
                 },
               }}
