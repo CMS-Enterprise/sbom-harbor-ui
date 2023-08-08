@@ -1091,6 +1091,10 @@ theme = createTheme(theme, {
           '& .MuiTypography-root': {
             marginBottom: 0,
           },
+
+          '& .MuiFormControlLabel-label': {
+            color: theme.palette.text.primary,
+          },
         },
       },
     },
@@ -1113,6 +1117,7 @@ theme = createTheme(theme, {
           lineHeight: '1.125rem',
           fontWeight: theme.typography.fontWeightRegular,
           color: theme.palette.text.secondary,
+
           '&.Mui-error': {
             color: 'rgba(255, 77, 73, 1)',
           },

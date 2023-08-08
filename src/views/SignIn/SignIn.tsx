@@ -2,302 +2,177 @@
  * The view at the /login route that renders the sign in form.
  * @module sbom-harbor-ui/views/SignIn/SignIn
  */
-import * as React from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import { useForm, Controller } from 'react-hook-form'
-import { Auth } from 'aws-amplify'
-import { type FederatedSignInOptions } from '@aws-amplify/auth/lib/types'
-import * as yup from 'yup'
-import { yupResolver } from '@hookform/resolvers/yup'
+import { memo, ReactNode } from 'react'
+import { useTheme } from '@mui/material/styles'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
-import Checkbox from '@mui/material/Checkbox'
-import FormControl from '@mui/material/FormControl'
-import FormHelperText from '@mui/material/FormHelperText'
-import IconButton from '@mui/material/IconButton'
-import InputAdornment from '@mui/material/InputAdornment'
-import InputLabel from '@mui/material/InputLabel'
-import MuiLink from '@mui/material/Link'
-import OutlinedInput from '@mui/material/OutlinedInput'
-import TextField from '@mui/material/TextField'
+import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
 import useMediaQuery from '@mui/material/useMediaQuery'
-import { useTheme } from '@mui/material/styles'
-import VisibilityOutline from '@mui/icons-material/Visibility'
-import VisibilityOffIcon from '@mui/icons-material/VisibilityOff'
-import loginUser from '@/actions/loginUser'
-import LinearIndeterminate from '@/components/mui/LinearLoadingBar'
-import { useAuthDispatch } from '@/hooks/useAuth'
-import useAlert from '@/hooks/useAlert'
+import InputFormControl from '@/components/forms/InputFormControl'
+import CircularProgress from '@mui/material/CircularProgress'
+import Backdrop from '@mui/material/Backdrop'
+import PasswordVisibilityToggle from '@/components/PasswordVisibilityToggle'
+import SubmitButton from '@/components/forms/SubmitButton'
 import BlankLayout from '@/layouts/BlankLayout'
+import { FormData, useSignIn } from '@/views/SignIn/useSignIn'
 import {
   BoxWrapper,
-  FormControlLabel,
+  CenteredFlexBox,
   LoginIllustrationWrapper,
   RightWrapper,
+  SignInGraphic,
+  VerticalCenteredFlexBox,
 } from '@/views/SignIn/SignIn.components'
-import SignInGraphic from '@/views/SignIn/SignInGraphic'
-
-const defaultValues = {
-  email: '',
-  password: '',
-}
-
-const schema = yup.object().shape({
-  email: yup.string().email().required(),
-  password: yup.string().min(5).required(),
-})
-
-interface FormData {
-  email: string
-  password: string
-}
 
 /**
  * Component that renders the page containing the sign in form.
  * @returns {JSX.Element} component that renders the the sign in form.
  */
-const LoginPage = () => {
-  // theming hooks
+const SignIn = () => {
   const theme = useTheme()
   const hidden = useMediaQuery(theme.breakpoints.down('md'))
 
-  const navigate = useNavigate()
-  const { setAlert } = useAlert()
-  const dispatch = useAuthDispatch()
-
-  // local state
-  const [loading, setLoading] = React.useState<boolean>(false)
-  const [showPassword, setShowPassword] = React.useState<boolean>(false)
+  // const loading = true
 
   const {
     control,
+    loading,
+    handleClickFederatedSignIn,
     handleSubmit,
-    formState: { errors },
-  } = useForm({
-    defaultValues,
-    mode: 'onBlur',
-    resolver: yupResolver(schema),
-  })
+    showPassword,
+    setShowPassword,
+  } = useSignIn()
 
-  const handleClickFederatedSignIn = async () => {
-    try {
-      await Auth.federatedSignIn({
-        provider: 'COGNITO',
-      } as FederatedSignInOptions)
-    } catch (error) {
-      console.error('Error signing in with Google', error)
-    }
-  }
-
-  const onSubmit = async (data: FormData) => {
-    const { email, password } = data
-    setLoading(true)
-    try {
-      // FIXME: correct type error in loginUser action
-      // @ts-expect-error
-      await loginUser(dispatch, { email, password })
-      setLoading(false)
-      navigate('/app')
-    } catch (error) {
-      setLoading(false)
-      setAlert({
-        message: 'There was an error logging in. Please try again.',
-        severity: 'error',
-      })
-    }
-  }
+  const ShowPasswordButton = memo(
+    Object.assign(
+      () => (
+        <PasswordVisibilityToggle
+          showPassword={showPassword}
+          setShowPassword={setShowPassword}
+        />
+      ),
+      { displayName: 'ShowPasswordButton' }
+    ) as React.FC
+  )
 
   return (
-    <>
-      {!hidden ? (
-        <Box
-          sx={{
-            flex: 1,
-            display: 'flex',
-            position: 'relative',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
-        >
+    <BoxWrapper
+      id="box-wrapper"
+      sx={{
+        height: '100%',
+        position: 'relative',
+      }}
+    >
+      {!hidden && (
+        <CenteredFlexBox sx={{ flex: 1, position: 'relative' }}>
           {/* TODO: add graphics for the login page */}
           <LoginIllustrationWrapper />
-        </Box>
-      ) : null}
-      <RightWrapper
-        sx={!hidden ? { borderLeft: `1px solid ${theme.palette.divider}` } : {}}
-      >
-        <Box
+        </CenteredFlexBox>
+      )}
+      <RightWrapper hidden={hidden}>
+        <CenteredFlexBox
           sx={{
-            p: 7,
-            height: '100%',
-            display: 'flex',
-            flexFlow: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
             backgroundColor: 'background.paper',
+            flexFlow: 'column',
+            height: '100%',
+            p: 7,
           }}
         >
-          <BoxWrapper>
-            {!hidden && (
-              <Box
+          {!hidden && (
+            <CenteredFlexBox
+              sx={{
+                position: 'absolute',
+                left: 40,
+                top: 30,
+              }}
+            >
+              <SignInGraphic />
+              <Typography
+                variant="h6"
                 sx={{
-                  top: 30,
-                  left: 40,
-                  display: 'flex',
-                  position: 'absolute',
-                  alignItems: 'center',
-                  justifyContent: 'center',
+                  fontSize: '1.5rem !important',
+                  lineHeight: 1,
+                  ml: 2,
                 }}
               >
-                <SignInGraphic />
-                <Typography
-                  variant="h6"
-                  sx={{
-                    ml: 2,
-                    lineHeight: 1,
-                    fontSize: '1.5rem !important',
-                  }}
-                >
-                  SBOM Harbor
-                </Typography>
-              </Box>
-            )}
-            <Box sx={{ [theme.breakpoints.down('md')]: { mt: '50%' } }}>
-              <Box sx={{ mb: 6 }}>
-                <Typography variant="h5">{`Welcome to the Harbor! 👋🏻`}</Typography>
-                <Typography variant="body2">
-                  Please sign-in to your account.
-                </Typography>
-              </Box>
-              <form
-                noValidate
-                autoComplete="off"
-                onSubmit={handleSubmit(onSubmit)}
+                SBOM Harbor
+              </Typography>
+            </CenteredFlexBox>
+          )}
+          <VerticalCenteredFlexBox>
+            <Box sx={{ mb: 6 }}>
+              <Typography variant="h5">{`Welcome to the Harbor! 👋🏻`}</Typography>
+              <Typography variant="body2">
+                Please sign-in to your account.
+              </Typography>
+            </Box>
+
+            {/* Start of Form */}
+            <Stack
+              component="form"
+              id="login-form"
+              role="form"
+              autoComplete="off"
+              onSubmit={handleSubmit}
+              spacing={3}
+            >
+              <InputFormControl<FormData>
+                control={control}
+                name="email"
+                InputProps={{
+                  placeholder: 'admin@cms.gov',
+                }}
+              />
+              <InputFormControl<FormData>
+                control={control}
+                name="password"
+                InputProps={{
+                  autoComplete: 'current-password',
+                  endAdornment: <ShowPasswordButton />,
+                  type: showPassword ? 'text' : 'password',
+                }}
+              />
+              <SubmitButton
+                disabled={loading}
+                fullWidth
+                name="login"
+                role="button"
               >
-                <FormControl fullWidth sx={{ mb: 4 }}>
-                  <Controller
-                    name="email"
-                    control={control}
-                    rules={{ required: true }}
-                    render={({ field: { value, onChange, onBlur } }) => (
-                      <TextField
-                        autoFocus
-                        label="Email"
-                        value={value}
-                        onBlur={onBlur}
-                        onChange={onChange}
-                        error={Boolean(errors.email)}
-                        placeholder="admin@materialize.com"
-                      />
-                    )}
-                  />
-                  {errors.email && (
-                    <FormHelperText sx={{ color: 'error.main' }}>
-                      {errors.email.message}
-                    </FormHelperText>
-                  )}
-                </FormControl>
-                <FormControl fullWidth>
-                  <InputLabel
-                    htmlFor="auth-login-v2-password"
-                    error={Boolean(errors.password)}
-                  >
-                    Password
-                  </InputLabel>
-                  <Controller
-                    name="password"
-                    control={control}
-                    rules={{ required: true }}
-                    render={({ field: { value, onChange, onBlur } }) => (
-                      <OutlinedInput
-                        value={value}
-                        onBlur={onBlur}
-                        label="Password"
-                        onChange={onChange}
-                        id="auth-login-v2-password"
-                        error={Boolean(errors.password)}
-                        type={showPassword ? 'text' : 'password'}
-                        endAdornment={
-                          <InputAdornment position="end">
-                            <IconButton
-                              edge="end"
-                              onMouseDown={(e) => e.preventDefault()}
-                              onClick={() => setShowPassword(!showPassword)}
-                            >
-                              {showPassword ? (
-                                <VisibilityOutline />
-                              ) : (
-                                <VisibilityOffIcon />
-                              )}
-                            </IconButton>
-                          </InputAdornment>
-                        }
-                      />
-                    )}
-                  />
-                  {errors.password && (
-                    <FormHelperText sx={{ color: 'error.main' }} id="">
-                      {errors.password.message}
-                    </FormHelperText>
-                  )}
-                </FormControl>
-                <Box
+                Sign In
+              </SubmitButton>
+              {loading && (
+                <Backdrop
+                  open={loading}
+                  style={{ marginTop: 0 }}
                   sx={{
-                    mb: 4,
-                    display: 'flex',
-                    alignItems: 'center',
-                    flexWrap: 'wrap',
-                    justifyContent: 'space-between',
+                    borderRadius: hidden ? 2 : 0,
+                    position: 'absolute',
                   }}
                 >
-                  <FormControlLabel
-                    label="Remember Me"
-                    control={<Checkbox />}
-                    sx={{
-                      '& .MuiFormControlLabel-label': { color: 'text.primary' },
-                    }}
-                  />
-                  <MuiLink
-                    component={Link}
-                    to="/login"
-                    variant="body2"
-                    sx={{ color: 'primary.main' }}
-                  >
-                    Forgot Password?
-                  </MuiLink>
-                </Box>
-                <Button
-                  fullWidth
-                  size="large"
-                  type="submit"
-                  variant="contained"
-                  disabled={loading}
-                  sx={{ mb: 5 }}
-                >
-                  Login
-                </Button>
-              </form>
-              {loading && <LinearIndeterminate />}
+                  <CircularProgress data-testid="linear-indeterminate" />
+                </Backdrop>
+              )}
+              <Typography align="center" variant="subtitle2">
+                or...
+              </Typography>
               <Button
                 fullWidth
-                size="large"
-                variant="outlined"
-                sx={{ mb: 5 }}
                 onClick={handleClickFederatedSignIn}
+                role="button"
+                variant="outlined"
               >
                 Login with IDP
               </Button>
-            </Box>
-          </BoxWrapper>
-        </Box>
+            </Stack>
+            {/* End of Form */}
+          </VerticalCenteredFlexBox>
+        </CenteredFlexBox>
       </RightWrapper>
-    </>
+    </BoxWrapper>
   )
 }
 
-LoginPage.getLayout = (page: React.ReactNode) => (
-  <BlankLayout>{page}</BlankLayout>
-)
+SignIn.getLayout = (page: ReactNode) => <BlankLayout>{page}</BlankLayout>
 
-export default LoginPage
+export default SignIn

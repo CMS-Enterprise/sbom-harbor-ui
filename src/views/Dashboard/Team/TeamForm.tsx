@@ -408,7 +408,11 @@ const TeamForm = () => {
                       >
                         Cancel
                       </Button>
-                      <SubmitButton disabled={isSubmitting} />
+                      <SubmitButton
+                        disabled={isSubmitting}
+                        label="Save"
+                        sx={{ mt: 3, ml: 1 }}
+                      />
                     </Box>
                   </Grid>
                 </Grid>
