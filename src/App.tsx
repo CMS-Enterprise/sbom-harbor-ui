@@ -15,7 +15,13 @@ import theme from '@/theme/theme'
  * @returns {JSX.Element}
  */
 const App = (): JSX.Element => (
-  <main data-testid="main">
+  <main
+    data-testid="main"
+    style={{
+      height: '100%',
+      width: '100%',
+    }}
+  >
     <ThemeProvider theme={theme}>
       <AuthProvider>
         <AlertProvider>

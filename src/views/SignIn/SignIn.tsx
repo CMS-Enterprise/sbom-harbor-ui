@@ -33,6 +33,8 @@ const SignIn = () => {
   const theme = useTheme()
   const hidden = useMediaQuery(theme.breakpoints.down('md'))
 
+  // const loading = true
+
   const {
     control,
     loading,
@@ -55,7 +57,13 @@ const SignIn = () => {
   )
 
   return (
-    <BoxWrapper id="box-wrapper">
+    <BoxWrapper
+      id="box-wrapper"
+      sx={{
+        height: '100%',
+        position: 'relative',
+      }}
+    >
       {!hidden && (
         <CenteredFlexBox sx={{ flex: 1, position: 'relative' }}>
           {/* TODO: add graphics for the login page */}
@@ -134,7 +142,14 @@ const SignIn = () => {
                 Sign In
               </SubmitButton>
               {loading && (
-                <Backdrop open={loading} sx={{ borderRadius: 2 }}>
+                <Backdrop
+                  open={loading}
+                  style={{ marginTop: 0 }}
+                  sx={{
+                    borderRadius: hidden ? 2 : 0,
+                    position: 'absolute',
+                  }}
+                >
                   <CircularProgress data-testid="linear-indeterminate" />
                 </Backdrop>
               )}

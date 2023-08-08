@@ -64,7 +64,7 @@ export const useSignIn = () => {
     resolver: yupResolver(validationSchema),
   })
 
-  const handleClickFederatedSignIn = async () => {
+  const handleClickFederatedSignIn = useCallback(async () => {
     try {
       await Auth.federatedSignIn({
         provider: 'COGNITO',
@@ -75,7 +75,7 @@ export const useSignIn = () => {
         severity: 'error',
       })
     }
-  }
+  }, [setAlert])
 
   const onSubmit = useCallback(
     async (data: FormData) => {
@@ -108,7 +108,7 @@ export const useSignIn = () => {
     getValues,
     handleClickFederatedSignIn,
     handleSubmit: handleSubmitInternal(onSubmit) satisfies (
-      e?: BaseSyntheticEvent<FormData, any, any> | undefined
+      e?: BaseSyntheticEvent<FormData, unknown, unknown> | undefined
     ) => Promise<void>,
     register,
     reset,
