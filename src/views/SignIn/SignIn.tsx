@@ -113,7 +113,6 @@ const SignIn = () => {
               component="form"
               id="login-form"
               role="form"
-              autoComplete="off"
               onSubmit={handleSubmit}
               spacing={3}
             >
@@ -121,6 +120,7 @@ const SignIn = () => {
                 control={control}
                 name="email"
                 InputProps={{
+                  autoComplete: 'username',
                   placeholder: 'admin@cms.gov',
                 }}
               />
