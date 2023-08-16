@@ -9,6 +9,11 @@ This project contains the Harbor application's UI built with React, Vite, TypeSc
 Version 2 of this project is in early stages of development. We are rapidly iterating towards a v2.0.0 MVP,
 but at this time all features are not yet operational, and the usage documentation is not available.
 
+## Security
+
+For more information about our Security, Vulnerability, and Responsible
+Disclosure Policies, see [SECURITY.md](SECURITY.md).
+
 ## System Requirements
 
 - [Node 18.16.0](https://nodejs.org/en/download)
