@@ -10,7 +10,6 @@ import { enableFetchMocks } from 'jest-fetch-mock'
 enableFetchMocks()
 
 import '@testing-library/jest-dom'
-import '@testing-library/jest-dom/extend-expect'
 
 // mock environment variables for the global app config during tests
 if (process.env.NODE_ENV === 'test') {

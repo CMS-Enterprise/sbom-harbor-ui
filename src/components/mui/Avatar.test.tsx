@@ -1,5 +1,4 @@
 import { render, cleanup } from '@testing-library/react'
-import '@testing-library/jest-dom/extend-expect'
 import { ThemeProvider, lighten } from '@mui/material/styles'
 import { createTheme } from '@mui/material'
 import Avatar from '@/components/mui/Avatar'
