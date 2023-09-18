@@ -1,3 +1,9 @@
+# Decommissioned!
+
+:warning: This project has been decommissioned and is no longer maintained or supported.
+
+---
+
 # sbom-harbor-ui
 
 ## Overview
